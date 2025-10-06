@@ -4,179 +4,286 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà</title>
-<meta name="description" content="Thu Hà chuyên cho thuê xe máy 50cc, Vision, Air Blade tại Long Biên, Hà Nội. Giao xe tận nơi, thủ tục nhanh, giá rẻ, thuê xe tháng và 50cc không cần bằng.">
+<meta name="description" content="Thu Hà chuyên cho thuê xe máy 50cc, Vision, Air Blade tại Hà Nội – giao tận nơi, giá rẻ, xe bền đẹp, uy tín gần bến xe Gia Lâm, phố cổ và Mipec Long Biên.">
 <meta name="keywords" content="thuê xe máy hà nội, thuê xe máy 50cc hà nội, thuê xe máy tháng hà nội, thuê xe máy giao tận nơi hà nội, giá thuê xe máy hà nội, thuê xe máy cọc nhẹ hà nội">
 <meta name="robots" content="index,follow">
 
 <style>
-/* RESET */
+/* RESET & BASE */
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Arial',sans-serif;line-height:1.6;color:#111;background:#fff;}
+body{font-family:Arial,Helvetica,sans-serif;line-height:1.6;color:#222;background-color:#fff;}
 a{text-decoration:none;color:inherit;}
-img{max-width:100%;display:block;}
-html{scroll-behavior:smooth;}
+img{max-width:100%;height:auto;display:block;}
+button,a{cursor:pointer;}
 
-/* MENU TRONG SUỐT */
+/* MENU */
 .menu{
-  position:fixed;top:0;left:0;width:100%;
-  display:flex;justify-content:center;gap:25px;
-  padding:18px 0;
-  transition:0.4s;z-index:1000;
-}
-.menu a{
-  color:#fff;font-weight:bold;transition:0.3s;
-  text-transform:uppercase;letter-spacing:0.5px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  position:fixed;
+  top:0;left:0;width:100%;
+  padding:12px 0;
+  background:transparent;
+  transition:background-color 0.4s ease, box-shadow 0.4s ease;
+  z-index:1000;
 }
 .menu.scrolled{
-  background:#fff;
-  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+  background-color:#fff;
+  box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
-.menu.scrolled a{color:#111;}
+.menu a{
+  margin:0 15px;
+  font-weight:bold;
+  color:#111;
+  transition:color 0.3s ease;
+}
 .menu a:hover{color:#f1c40f;}
 
-/* HERO SPACE (khoảng trắng đầu để lộ menu) */
-.hero-space{height:80px;}
+/* HERO SECTION */
+.hero{
+  position:relative;
+  width:100%;
+  height:55vh;
+  min-height:300px;
+  background-image:url('https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg');
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:#fff;
+  padding:0 20px;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:800px;
+}
+.hero h1{
+  font-size:2rem;
+  color:#f1c40f;
+  margin-bottom:10px;
+}
+.hero p{
+  color:#f8f8f8;
+  margin-bottom:20px;
+  font-size:1rem;
+}
+.hero a{
+  background-color:#111;
+  color:#f1c40f;
+  padding:12px 25px;
+  border-radius:5px;
+  font-weight:bold;
+  transition:all 0.3s ease;
+}
+.hero a:hover{
+  background-color:#f1c40f;
+  color:#111;
+}
 
 /* CONTENT */
-.content{max-width:1100px;margin:0 auto;padding:30px 20px;}
-h1{text-align:center;font-size:2rem;margin:20px 0;color:#111;opacity:0;transform:translateY(40px);transition:0.8s;}
-h2{text-align:center;color:#f1c40f;margin:30px 0 15px;opacity:0;transform:translateY(40px);transition:0.8s;}
-h3{color:#f1c40f;margin:20px 0 10px;font-size:1.1rem;}
-p{margin:10px 0;text-align:justify;opacity:0;transform:translateY(40px);transition:0.8s;}
-.section-gray{background:#f6f6f6;padding:30px 20px;border-radius:10px;}
-
-/* IMAGE */
-.image-center{text-align:center;margin:25px 0;}
-.image-center img{border-radius:10px;max-width:700px;margin:auto;}
+section{
+  max-width:1100px;
+  margin:80px auto;
+  padding:0 20px;
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+section.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+h2{
+  text-align:center;
+  color:#111;
+  margin-bottom:10px;
+}
+h3{
+  color:#f1c40f;
+  margin:20px 0 10px;
+}
+p{text-align:justify;margin-bottom:10px;}
+ul{margin-left:20px;}
 
 /* CTA */
-.cta{text-align:center;margin:30px 0;opacity:0;transform:translateY(40px);transition:0.8s;}
-.cta a{
-  display:inline-block;background:#f1c40f;color:#111;
-  padding:12px 25px;border-radius:5px;
-  margin:5px;font-weight:bold;transition:0.3s;
+.cta{
+  text-align:center;
+  margin-top:30px;
 }
-.cta a:hover{background:#111;color:#f1c40f;}
+.cta a{
+  display:inline-block;
+  background-color:#f1c40f;
+  color:#111;
+  font-weight:bold;
+  padding:12px 25px;
+  border-radius:5px;
+  margin:5px;
+  transition:0.3s;
+}
+.cta a:hover{
+  background-color:#111;
+  color:#f1c40f;
+}
 
 /* CONTACT */
-.contact{background:#f6f6f6;text-align:center;padding:25px;font-size:16px;}
-
-/* NÚT GỌI & ZALO */
-.call-button, .zalo-button{
-  position:fixed;bottom:20px;
-  width:55px;height:55px;border-radius:50%;
-  display:flex;justify-content:center;align-items:center;
-  color:#fff;font-size:24px;z-index:1001;
-  transition:0.3s;
+.contact{
+  background-color:#f6f6f6;
+  padding:30px 20px;
+  text-align:center;
+  font-size:16px;
+  margin-top:50px;
 }
-.call-button{right:20px;background:#111;}
-.call-button:hover{transform:scale(1.1);background:#f1c40f;color:#111;}
-.zalo-button{right:90px;background:#007bff;}
-.zalo-button:hover{transform:scale(1.1);}
+.contact p{margin:5px 0;}
+.contact a{color:#111;font-weight:bold;}
+.contact a:hover{color:#f1c40f;}
 
-/* NÚT LÊN ĐẦU TRANG */
-#toTop{
-  position:fixed;bottom:90px;right:25px;
-  background:#f1c40f;color:#111;
-  padding:10px 15px;border:none;
-  border-radius:5px;cursor:pointer;
-  font-weight:bold;display:none;z-index:999;
-  transition:0.3s;
+/* FLOATING BUTTONS */
+.call-btn, .top-btn{
+  position:fixed;
+  z-index:1000;
+  border:none;
+  border-radius:50%;
+  width:55px;
+  height:55px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.3);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all 0.3s;
 }
-#toTop:hover{background:#111;color:#f1c40f;}
+.call-btn{
+  bottom:90px;
+  right:20px;
+  background-color:#f1c40f;
+  color:#111;
+  font-size:24px;
+}
+.call-btn:hover{background-color:#111;color:#f1c40f;}
+.top-btn{
+  bottom:20px;
+  right:20px;
+  background-color:#111;
+  color:#f1c40f;
+  font-size:22px;
+  display:none;
+}
+.top-btn.show{display:flex;}
+.top-btn:hover{background-color:#f1c40f;color:#111;}
 
 /* RESPONSIVE */
 @media(max-width:768px){
-  h1{font-size:1.6rem;}
-  .menu{gap:12px;}
-  .menu a{font-size:14px;}
+  .hero{height:40vh;}
+  .hero h1{font-size:1.4rem;}
+  .hero p{font-size:0.9rem;}
+  .menu a{margin:8px 10px;font-size:14px;}
 }
 </style>
 </head>
+
 <body>
 
 <!-- MENU -->
 <div class="menu" id="menu">
-  <a href="#about">Giới thiệu</a>
-  <a href="#services">Dịch vụ</a>
-  <a href="#price">Bảng giá</a>
-  <a href="#contact">Liên hệ</a>
+  <a href="#gioithieu">Giới thiệu</a>
+  <a href="#dichvu">Dịch vụ</a>
+  <a href="#lienhe">Liên hệ</a>
+  <a href="https://m.facebook.com/chothuexemayohanoigiare/">Fanpage</a>
   <a href="https://share.google/8NaCZJ82JU92sVTGl">Local Map</a>
 </div>
 
-<div class="hero-space"></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà</h1>
+    <p>Thu Hà cung cấp dịch vụ cho thuê xe máy đa dạng – 50cc, Vision, Air Blade, giao tận nơi Hà Nội, giá rẻ, nhanh gọn và uy tín.</p>
+    <a href="https://share.google/8NaCZJ82JU92sVTGl">Thuê xe máy Hà Nội</a>
+  </div>
+</section>
 
 <!-- GIỚI THIỆU -->
-<div class="content" id="about">
-  <h1>Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà</h1>
-  <p>Thu Hà chuyên cho thuê xe máy 50cc, Honda Vision, Honda Air Blade tại khu vực Long Biên. Dịch vụ thuận tiện cho khách hàng gần bến xe Gia Lâm, phố cổ, Hoàn Kiếm và trung tâm thương mại Mipec. Chúng tôi cung cấp xe sạch, bền bỉ, giá rẻ, bảo dưỡng định kỳ và giao xe tận nơi theo yêu cầu.</p>
-  
-  <div class="image-center">
-    <img src="https://i.postimg.cc/qBYXKnF2/IMG-4932.png" alt="Thuê xe máy Hà Nội - Dịch vụ Thu Hà">
-  </div>
-</div>
+<section id="gioithieu">
+  <h2>Giới thiệu về Thu Hà</h2>
+  <p>Thu Hà chuyên cho thuê xe máy 50cc, Honda Vision, Honda Air Blade tại khu vực Long Biên, thuận tiện cho khách hàng gần bến xe Gia Lâm, phố cổ, Hoàn Kiếm và trung tâm thương mại Mipec. Với nhiều dòng xe đa dạng, luôn được bảo dưỡng định kỳ, chúng tôi cam kết mang đến cho bạn những chiếc xe an toàn và bền bỉ.</p>
+  <h3>Dịch vụ giao xe tận nơi (có tính phí nhẹ)</h3>
+  <p>Chúng tôi hỗ trợ giao xe tận nơi tại Long Biên và các quận nội thành Hà Nội. Khách hàng chỉ cần đặt xe qua Zalo hoặc điện thoại, xe sẽ được giao nhanh chóng, đảm bảo đúng giờ và đúng mẫu đã chọn.</p>
+  <h3>Thủ tục thuê xe đơn giản</h3>
+  <p>Chỉ cần CCCD và cọc từ 2 – 5 triệu đồng tùy loại xe. Thời gian làm thủ tục nhanh, chỉ 5–10 phút. Xe được kiểm tra kỹ trước khi bàn giao để đảm bảo an toàn cho khách hàng.</p>
+</section>
 
 <!-- DỊCH VỤ -->
-<div class="content section-gray" id="services">
-  <h2>Dịch vụ nổi bật</h2>
-  <h3>Dịch vụ giao xe tận nơi (có tính phí)</h3>
-  <p>Chúng tôi hỗ trợ giao xe tận nơi tại các quận nội thành Hà Nội. Dịch vụ này giúp khách hàng tiết kiệm thời gian, đặc biệt phù hợp cho du khách, sinh viên và người bận rộn. Xe luôn đảm bảo tình trạng tốt, sẵn sàng vận hành.</p>
+<section id="dichvu">
+  <h2>Dịch vụ & Bảng giá thuê xe máy Hà Nội</h2>
+  <h3>Các loại xe hiện có</h3>
+  <ul>
+    <li>Xe 50cc – phù hợp học sinh, sinh viên chưa có bằng lái</li>
+    <li>Honda Vision – tiết kiệm xăng, dễ điều khiển</li>
+    <li>Honda Air Blade – mạnh mẽ, sang trọng</li>
+  </ul>
 
-  <h3>Thủ tục thuê xe</h3>
-  <p>Chỉ cần CCCD và khoản cọc nhẹ từ 2–5 triệu đồng tùy dòng xe. Không cần bằng lái đối với xe 50cc, rất phù hợp cho học sinh, sinh viên. Thủ tục nhanh chóng, nhận xe trong 5 phút.</p>
+  <h3>Giá thuê ưu đãi</h3>
+  <p>Giá thuê dao động từ <strong>150.000 – 200.000đ/ngày</strong>, giảm giá khi thuê dài hạn (tuần/tháng). Xe bảo dưỡng định kỳ, thay dầu miễn phí định kỳ.</p>
+
+  <h3>Ưu điểm dịch vụ Thu Hà</h3>
+  <ul>
+    <li>Thủ tục nhanh, cọc nhẹ</li>
+    <li>Hỗ trợ thuê xe theo ngày, tuần, tháng</li>
+    <li>Giao xe tận nơi Hà Nội, thuận tiện cho khách du lịch & người đi làm</li>
+    <li>Xe đẹp, vận hành êm, tiết kiệm nhiên liệu</li>
+  </ul>
 
   <div class="cta">
-    <a href="tel:0334699969">📞 Gọi Ngay</a>
-    <a href="https://zalo.me/0334699969">💬 Liên hệ Zalo</a>
+    <a href="https://zalo.me/0334699969">Liên hệ Zalo</a>
+    <a href="tel:0334699969">Gọi ngay: 0334 699 969</a>
   </div>
-</div>
-
-<!-- GIÁ THUÊ -->
-<div class="content" id="price">
-  <h2>Giá thuê xe máy tại Hà Nội</h2>
-  <h3>Giá thuê & Ưu đãi</h3>
-  <p>Giá thuê xe dao động từ 150.000 – 200.000đ/ngày tùy loại xe. Thuê theo tuần hoặc tháng được giảm giá sâu. Dịch vụ <a href="https://share.google/8NaCZJ82JU92sVTGl" target="_blank"><strong>Thuê xe máy Hà Nội</strong></a> của chúng tôi hỗ trợ giao tận nơi, cọc nhẹ, uy tín và tiện lợi nhất khu vực Long Biên.</p>
-</div>
+</section>
 
 <!-- LIÊN HỆ -->
-<div class="contact" id="contact">
-  <p><strong>Địa chỉ:</strong> 108 Nguyễn Văn Cừ, Bồ Đề, Long Biên, Hà Nội, Việt Nam</p>
-  <p><strong>Điện thoại:</strong> <a href="tel:0334699969">0334 699 969</a></p>
-  <p><strong>Zalo:</strong> <a href="https://zalo.me/0334699969">zalo.me/0334699969</a></p>
-  <p><strong>Fanpage:</strong> <a href="https://m.facebook.com/chothuexemayohanoigiare/">Facebook Thu Hà</a></p>
-</div>
+<section class="contact" id="lienhe">
+  <h2>Liên hệ Thu Hà</h2>
+  <p>📍 Địa chỉ: 108 Nguyễn Văn Cừ, Bồ Đề, Long Biên, Hà Nội</p>
+  <p>📞 Điện thoại: <a href="tel:0334699969">0334 699 969</a></p>
+  <p>💬 Zalo: <a href="https://zalo.me/0334699969">zalo.me/0334699969</a></p>
+  <p>🌐 Fanpage: <a href="https://m.facebook.com/chothuexemayohanoigiare/">facebook.com/chothuexemayohanoigiare</a></p>
+  <p>🗺️ Bản đồ: <a href="https://share.google/8NaCZJ82JU92sVTGl">Xem vị trí trên Google Maps</a></p>
+</section>
 
-<!-- NÚT GỌI & ZALO -->
-<a href="tel:0334699969" class="call-button">📞</a>
-<a href="https://zalo.me/0334699969" class="zalo-button">Z</a>
-
-<!-- NÚT LÊN ĐẦU TRANG -->
-<button id="toTop">▲</button>
+<!-- NÚT GỌI + LÊN ĐẦU -->
+<a href="tel:0334699969" class="call-btn">📞</a>
+<button class="top-btn" id="topBtn">⬆️</button>
 
 <script>
-// MENU ĐỔI MÀU
-window.addEventListener("scroll",()=>{
-  const menu=document.getElementById("menu");
-  menu.classList.toggle("scrolled",window.scrollY>50);
-});
-
-// SCROLL REVEAL
-window.addEventListener("scroll",()=>{
-  document.querySelectorAll("h1,h2,h3,p,.cta").forEach(el=>{
+// Scroll reveal
+window.addEventListener('scroll',()=>{
+  document.querySelectorAll('section').forEach(el=>{
     const rect=el.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 60){
-      el.style.opacity=1;
-      el.style.transform="translateY(0)";
-    }
+    if(rect.top<window.innerHeight-100){el.classList.add('visible');}
   });
 });
 
-// NÚT LÊN ĐẦU
-const toTop=document.getElementById("toTop");
-window.addEventListener("scroll",()=>{
-  toTop.style.display=window.scrollY>400?"block":"none";
+// Menu background khi cuộn
+window.addEventListener('scroll',()=>{
+  const menu=document.getElementById('menu');
+  if(window.scrollY>50){menu.classList.add('scrolled');}
+  else{menu.classList.remove('scrolled');}
 });
-toTop.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+
+// Nút lên đầu trang
+const topBtn=document.getElementById('topBtn');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>400){topBtn.classList.add('show');}
+  else{topBtn.classList.remove('show');}
+});
+topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 </script>
 
 </body>
