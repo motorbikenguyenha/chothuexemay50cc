@@ -49,19 +49,20 @@ header nav a:hover {color:#f1c40f;}
 .hero-content {
   position:relative;z-index:2;color:#fff;padding:0 20px;
 }
-.hero h1 {color:#f1c40f;font-size:2rem;margin-bottom:10px;}
-.hero p {color:#f8f8f8;font-size:1rem;margin-bottom:20px;}
+.hero h1 {color:#111;background:rgba(255,255,255,0.85);display:inline-block;padding:8px 12px;border-radius:6px;}
+.hero p {color:#f8f8f8;font-size:1rem;margin:15px 0;}
 .hero-btn {
-  background:#111;color:#f1c40f;padding:12px 25px;
+  background:#f1c40f;color:#111;padding:12px 25px;
   border-radius:5px;text-decoration:none;font-weight:bold;
   transition:all 0.3s ease;
 }
-.hero-btn:hover {background:#f1c40f;color:#111;}
+.hero-btn:hover {background:#111;color:#f1c40f;}
 
 /* ===== CONTENT ===== */
 section {padding:40px 20px;max-width:1000px;margin:auto;}
-h2 {color:#111;text-align:center;margin-bottom:25px;}
-h3 {color:#f1c40f;margin-top:25px;}
+h1, h2, h3 {color:#111;}
+h2 {text-align:center;margin-bottom:25px;}
+h3 {margin-top:25px;}
 
 /* ===== ĐÁNH GIÁ SLIDER ===== */
 .testimonial-container {
@@ -80,7 +81,7 @@ h3 {color:#f1c40f;margin-top:25px;}
 }
 .testimonial.active {display: block;}
 .testimonial p {font-style: italic;}
-.testimonial h4 {margin-top: 10px; color: #f1c40f;}
+.testimonial h4 {margin-top: 10px; color:#111;}
 
 /* ===== FAQ ===== */
 .faq-item {
@@ -104,15 +105,17 @@ footer {
 footer a {color:#f1c40f; text-decoration:none;}
 
 /* ===== FLOATING BUTTONS ===== */
-.call-btn, .zalo-btn {
+.call-btn, .zalo-btn, .map-btn {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 999;
 }
 .zalo-btn {bottom:85px;}
-.call-btn img, .zalo-btn img {
+.map-btn {bottom:150px;}
+.call-btn img, .zalo-btn img, .map-btn img {
   width:55px; height:55px; border-radius:50%;
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
 }
 
 /* ===== SCROLL REVEAL ===== */
@@ -144,7 +147,7 @@ footer a {color:#f1c40f; text-decoration:none;}
   <div class="hero-content">
     <h1>Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà</h1>
     <p>Thuê xe máy giá rẻ – Giao tận nơi – Xe 50cc, Vision, Air Blade an toàn, bền bỉ & tiết kiệm.</p>
-    <a href="https://share.google/8NaCZJ82JU92sVTGl" class="hero-btn">Thuê xe máy Hà Nội</a>
+    <a href="https://share.google/8NaCZJ82JU92sVTGl" class="hero-btn">📍 Đến nơi ngay</a>
   </div>
 </section>
 
@@ -203,17 +206,20 @@ footer a {color:#f1c40f; text-decoration:none;}
 
 <footer id="lienhe">
   <p>📍 Địa chỉ: 108 Nguyễn Văn Cừ, Bồ Đề, Long Biên, Hà Nội, Việt Nam</p>
-  <p>📞 Điện thoại: <a href="tel:0334699969">0334 699 969</a> | <a href="https://zalo.me/0942467674">Zalo</a></p>
-  <p>🌐 <a href="https://share.google/8NaCZJ82JU92sVTGl">Xem bản đồ</a> | <a href="https://m.facebook.com/chothuexemayohanoigiare/">Fanpage</a></p>
+  <p>📞 Điện thoại: <a href="tel:+84334699969">+84 33 469 9969</a> | <a href="https://zalo.me/84334699969">Zalo</a></p>
+  <p>🌐 <a href="https://share.google/8NaCZJ82JU92sVTGl">Xem bản đồ</a> | <a href="https://m.facebook.com/chothuexemayohanoigiare/">Fanpage</a> | <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">Website</a></p>
   <p>© 2025 Thu Hà - Cho Thuê Xe Máy Hà Nội</p>
 </footer>
 
 <!-- Floating buttons -->
-<a href="tel:0334699969" class="call-btn">
-  <img src="https://i.postimg.cc/3x5QpYvp/phone-icon.png" alt="Gọi ngay">
+<a href="https://share.google/8NaCZJ82JU92sVTGl" class="map-btn" target="_blank">
+  <img src="https://i.postimg.cc/7ZP3xJ2n/map-icon.png" alt="Đến nơi ngay">
 </a>
-<a href="https://zalo.me/0942467674" class="zalo-btn" target="_blank">
-  <img src="https://i.postimg.cc/dt8V7Z1p/zalo-icon.png" alt="Zalo">
+<a href="https://zalo.me/84334699969" class="zalo-btn" target="_blank">
+  <img src="https://i.postimg.cc/hPfxvZcq/z-icon.png" alt="Zalo">
+</a>
+<a href="tel:+84334699969" class="call-btn">
+  <img src="https://i.postimg.cc/3x5QpYvp/phone-icon.png" alt="Gọi ngay">
 </a>
 
 <script>
