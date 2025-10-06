@@ -112,10 +112,31 @@
       100% {transform: scale(1);}
     }
 
-    /* FAQ Section */
+    /* FAQ Accordion */
     .faq { margin-top: 40px; border-top: 2px solid #f4c542; padding-top: 20px; }
-    .faq-item { margin-bottom: 20px; }
-    .faq-item strong { display: block; color: #000; }
+    .faq-item { margin-bottom: 10px; }
+    .faq-question {
+      width: 100%;
+      background-color: #f4c542;
+      color: #000;
+      border: none;
+      text-align: center;
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .faq-question:hover { background-color: #e5b935; }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      background-color: #f9f9f9;
+      padding: 0 12px;
+      border-radius: 0 0 6px 6px;
+    }
+    .faq-answer p { margin: 10px 0; text-align: center; }
 
     /* Review Slider */
     .review-slider {
@@ -188,20 +209,28 @@
     <section class="faq">
       <h2>Câu hỏi thường gặp</h2>
       <div class="faq-item">
-        <strong>Thuê xe máy ở Hà Nội có giao tận nơi không?</strong>
-        <p>Chúng tôi có giao tận nơi (có tính phí) tại Long Biên, Ba Đình, Hoàn Kiếm, Phố Cổ, Gia Lâm.</p>
+        <button class="faq-question">Thuê xe máy ở Hà Nội có giao tận nơi không?</button>
+        <div class="faq-answer">
+          <p>Chúng tôi có giao tận nơi (có tính phí) tại Long Biên, Ba Đình, Hoàn Kiếm, Phố Cổ, Gia Lâm.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <strong>Thuê xe máy có cần cọc không?</strong>
-        <p>Thuê xe cần đặt cọc từ 2 – 5 triệu đồng tùy loại xe.</p>
+        <button class="faq-question">Thuê xe máy có cần cọc không?</button>
+        <div class="faq-answer">
+          <p>Thuê xe cần đặt cọc từ 2 – 5 triệu đồng tùy loại xe.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <strong>Giá thuê xe máy tháng bao nhiêu?</strong>
-        <p>Từ 1 – 2 triệu đồng/tháng tùy từng loại xe.</p>
+        <button class="faq-question">Giá thuê xe máy tháng bao nhiêu?</button>
+        <div class="faq-answer">
+          <p>Từ 1 – 2 triệu đồng/tháng tùy từng loại xe.</p>
+        </div>
       </div>
       <div class="faq-item">
-        <strong>Giờ làm việc?</strong>
-        <p>Từ 8h00 đến 21h00 hàng ngày.</p>
+        <button class="faq-question">Giờ làm việc?</button>
+        <div class="faq-answer">
+          <p>Từ 8h00 đến 21h00 hàng ngày.</p>
+        </div>
       </div>
     </section>
   </div>
@@ -216,6 +245,22 @@
   <a href="tel:+84334699969" class="call-btn">Gọi</a>
   <a href="https://zalo.me/84334699969" class="zalo-btn" target="_blank">Z</a>
   <a href="https://share.google/8NaCZJ82JU92sVTGl" class="map-btn" target="_blank">🗺 Đến nơi</a>
+
+  <!-- FAQ Accordion Script -->
+  <script>
+    const faqButtons = document.querySelectorAll('.faq-question');
+    faqButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        if(answer.style.maxHeight){
+          answer.style.maxHeight = null;
+        } else {
+          document.querySelectorAll('.faq-answer').forEach(a=>a.style.maxHeight=null);
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
