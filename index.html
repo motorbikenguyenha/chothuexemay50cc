@@ -1,245 +1,226 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="index, follow">
-<meta name="description" content="Thu Hà chuyên cho thuê xe máy 50cc, Vision, Air Blade tại Long Biên, Hà Nội. Giao xe tận nơi, giá rẻ, uy tín, hỗ trợ thuê theo ngày, tuần, tháng.">
-<meta name="keywords" content="thuê xe máy hà nội, thuê xe máy 50cc hà nội, thuê xe máy tháng hà nội, thuê xe máy giao tận nơi hà nội, giá thuê xe máy hà nội, thuê xe máy cọc nhẹ hà nội">
-<meta property="og:title" content="Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà">
-<meta property="og:description" content="Thuê xe máy 50cc, Vision, Air Blade tại Hà Nội. Giao xe tận nơi, thủ tục đơn giản, giá rẻ, uy tín - Thu Hà.">
-<meta property="og:image" content="https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg">
-<meta property="og:url" content="https://share.google/8NaCZJ82JU92sVTGl">
-<title>Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <meta http-equiv="content-language" content="vi">
+  <link rel="canonical" href="https://motorbikenguyenha.github.io/chothuexemay50cc/">
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0; padding: 0;
-  color: #333;
-  line-height: 1.6;
-  background: #fff;
-}
+  <!-- Favicon & Font -->
+  <link rel="icon" href="https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg" type="image/jpeg">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style" onload="this.rel='stylesheet'">
 
-/* ===== MENU ===== */
-header {
-  background: #f2f2f2;
-  padding: 12px 0;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-header nav a {
-  color: #111;
-  text-decoration: none;
-  margin: 0 12px;
-  font-weight: bold;
-}
-header nav a:hover { color: #f1c40f; }
+  <!-- Meta for iPhone/Android -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="theme-color" content="#111">
 
-/* ===== ẢNH ===== */
-.banner {
-  width: 100%;
-  height: auto;
-  max-height: 420px;
-  object-fit: cover;
-  display: block;
-}
+  <title>Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà</title>
 
-/* ===== NỘI DUNG ===== */
-section {
-  padding: 40px 20px;
-  max-width: 1000px;
-  margin: auto;
-}
-h1, h2, h3 {
-  color: #111;
-  text-align: center;
-}
-h2 {margin-bottom: 25px;}
-h3 {margin-top: 25px;}
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #000;
+      line-height: 1.6;
+    }
 
-/* ===== ĐÁNH GIÁ SLIDER ===== */
-.testimonial-container {
-  position: relative;
-  max-width: 700px;
-  margin: auto;
-  overflow: hidden;
-}
-.testimonial {
-  display: none;
-  text-align: center;
-  padding: 20px;
-  background: #fafafa;
-  border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-}
-.testimonial.active {display: block;}
-.testimonial p {font-style: italic;}
-.testimonial h4 {margin-top: 10px; color: #111;}
+    header {
+      background-color: #f2f2f2;
+      color: #000;
+      text-align: center;
+      padding: 12px 0;
+      font-weight: bold;
+      font-size: 18px;
+    }
 
-/* ===== FAQ ===== */
-.faq-item {
-  background: #f8f8f8;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  padding: 15px;
-  cursor: pointer;
-}
-.faq-item h4 {margin: 0; color: #111;}
-.faq-item p {display: none; margin-top: 8px;}
-.faq-item.active p {display: block;}
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #e0e0e0;
+      padding: 10px 0;
+    }
 
-/* ===== NÚT NỔI ===== */
-.call-btn, .zalo-btn, .map-btn {
-  position: fixed;
-  right: 20px;
-  border-radius: 50%;
-  width: 55px; height: 55px;
-  text-align: center;
-  line-height: 55px;
-  color: #fff;
-  font-weight: bold;
-  font-size: 22px;
-  z-index: 999;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-}
-.call-btn {bottom: 20px; background: #27ae60;}
-.zalo-btn {bottom: 90px; background: #0084ff;}
-.map-btn {bottom: 160px; background: #f1c40f; color: #111;}
+    nav a {
+      text-decoration: none;
+      color: #000;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
 
-/* ===== CHÂN TRANG ===== */
-footer {
-  background: #111;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-}
-footer a {color: #f1c40f; text-decoration: none;}
+    nav a:hover {
+      color: #f4c542;
+    }
 
-/* ===== SCROLL REVEAL ===== */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all .8s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .container {
+      width: 90%;
+      margin: 20px auto;
+      max-width: 1000px;
+    }
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-  .banner {max-height: 280px;}
-}
-</style>
+    img.responsive {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin: 20px 0;
+    }
+
+    h2, h3 {
+      text-align: center;
+      color: #000;
+    }
+
+    footer {
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    /* Floating Buttons */
+    .call-btn, .zalo-btn, .map-btn {
+      position: fixed;
+      right: 15px;
+      border-radius: 50%;
+      padding: 12px 15px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      text-align: center;
+      font-size: 16px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      z-index: 999;
+      animation: pulse 2.5s infinite;
+    }
+    .call-btn {background: #28a745; bottom: 20px;}
+    .zalo-btn {background: #0078ff; bottom: 80px;}
+    .map-btn {background: #f4c542; bottom: 140px; color: #000;}
+
+    /* Pulse Animation */
+    @keyframes pulse {
+      0% {transform: scale(1);}
+      50% {transform: scale(1.08);}
+      100% {transform: scale(1);}
+    }
+
+    /* FAQ Section */
+    .faq {
+      margin-top: 40px;
+      border-top: 2px solid #f4c542;
+      padding-top: 20px;
+    }
+    .faq-item {
+      margin-bottom: 20px;
+    }
+    .faq-item strong {
+      display: block;
+      color: #000;
+    }
+
+    /* Review Slider */
+    .review-slider {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 30px auto;
+    }
+
+    .reviews {
+      display: flex;
+      width: 300%;
+      animation: slide 12s infinite;
+    }
+
+    .review {
+      flex: 1;
+      background: #f9f9f9;
+      margin: 10px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    @keyframes slide {
+      0%, 25% {transform: translateX(0);}
+      35%, 60% {transform: translateX(-33.33%);}
+      70%, 95% {transform: translateX(-66.66%);}
+    }
+
+  </style>
 </head>
-
 <body>
 
-<header>
+  <header>Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà</header>
+
   <nav>
     <a href="#gioithieu">Giới thiệu</a>
     <a href="#dichvu">Dịch vụ</a>
-    <a href="#danhgia">Đánh giá</a>
-    <a href="#faq">FAQ</a>
     <a href="#lienhe">Liên hệ</a>
   </nav>
-</header>
 
-<!-- ẢNH BANNER -->
-<img src="https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg" alt="Thuê xe máy Hà Nội - Thu Hà" class="banner">
+  <div class="container">
+    <img src="https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg" alt="Thuê xe máy Hà Nội" class="responsive">
 
-<section id="gioithieu" class="reveal">
-  <h1>Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà</h1>
-  <p>Thu Hà chuyên cho thuê xe máy 50cc, Honda Vision, Honda Air Blade tại khu vực Long Biên, thuận tiện cho khách hàng gần bến xe Gia Lâm, phố cổ, Hoàn Kiếm và trung tâm thương mại Mipec. Với nhiều dòng xe đa dạng, luôn được bảo dưỡng định kỳ, chúng tôi cam kết mang đến cho bạn những chiếc xe an toàn và bền bỉ.</p>
+    <section id="gioithieu">
+      <h2>Giới thiệu</h2>
+      <p>Thu Hà chuyên cho thuê xe máy 50cc, Honda Vision, Honda Air Blade tại khu vực Long Biên, thuận tiện cho khách hàng gần bến xe Gia Lâm, phố cổ, Hoàn Kiếm và trung tâm thương mại Mipec. Với nhiều dòng xe đa dạng, luôn được bảo dưỡng định kỳ, chúng tôi cam kết mang đến cho bạn những chiếc xe an toàn và bền bỉ.</p>
+    </section>
 
-  <h3>Dịch vụ giao xe tận nơi</h3>
-  <p>Chúng tôi nhận giao xe tận nơi có tính phí, áp dụng cho khu vực Long Biên, Gia Lâm, Hoàn Kiếm, Ba Đình và phố cổ.</p>
+    <section id="dichvu">
+      <h2>Dịch vụ thuê xe máy Hà Nội</h2>
+      <h3>Dịch vụ giao xe tận nơi</h3>
+      <p>Chúng tôi hỗ trợ giao xe tận nơi có tính phí tại khu vực Long Biên, Hoàn Kiếm, Gia Lâm và Ba Đình.</p>
+      <h3>Thủ tục thuê xe</h3>
+      <p>Chỉ cần CCCD và cọc từ 2–5 triệu đồng, bạn có thể thuê xe nhanh chóng.</p>
+      <h3>Giá thuê xe máy</h3>
+      <p>Giá thuê theo ngày từ 150.000đ – 200.000đ, thuê theo tháng từ 1 – 2 triệu đồng.</p>
+    </section>
 
-  <h3>Thủ tục thuê xe</h3>
-  <p>Khách thuê chỉ cần CCCD và đặt cọc nhẹ từ 2–5 triệu đồng tuỳ loại xe. Thời gian thuê linh hoạt: theo ngày, tuần hoặc tháng.</p>
-</section>
+    <section class="review-slider">
+      <div class="reviews">
+        <div class="review">⭐️⭐️⭐️⭐️⭐️ “Xe tốt, giao tận nơi đúng hẹn. Rất hài lòng!” – Minh, Hà Nội</div>
+        <div class="review">⭐️⭐️⭐️⭐️⭐️ “Thủ tục nhanh gọn, chị chủ thân thiện, giá hợp lý.” – Hương, Gia Lâm</div>
+        <div class="review">⭐️⭐️⭐️⭐️⭐️ “Xe 50cc mới, đi ổn, tiết kiệm xăng. Sẽ thuê lại!” – Tuấn, Long Biên</div>
+      </div>
+    </section>
 
-<section id="danhgia" class="reveal">
-  <h2>Khách hàng nói gì?</h2>
-  <div class="testimonial-container">
-    <div class="testimonial active">
-      <p>“Xe mới, chạy êm và giao đúng giờ. Anh chị chủ rất nhiệt tình!”</p>
-      <h4>– Minh Đức (Hà Nội)</h4>
-    </div>
-    <div class="testimonial">
-      <p>“Thuê xe 50cc đi học cực tiện. Giá rẻ, xe sạch sẽ và tiết kiệm xăng.”</p>
-      <h4>– Thu Trang (Sinh viên)</h4>
-    </div>
-    <div class="testimonial">
-      <p>“Dịch vụ tốt, có giao xe tận nơi. Mình thuê dài ngày được giảm giá rất ổn.”</p>
-      <h4>– Quang Huy (Long Biên)</h4>
-    </div>
-  </div>
-</section>
-
-<section id="faq" class="reveal">
-  <h2>Câu hỏi thường gặp</h2>
-
-  <div class="faq-item">
-    <h4>Thuê xe máy ở Hà Nội có giao tận nơi không?</h4>
-    <p>Chúng tôi nhận giao xe máy có tính phí. Giao xung quanh Long Biên, Ba Đình, Hoàn Kiếm, phố cổ, Gia Lâm.</p>
-  </div>
-
-  <div class="faq-item">
-    <h4>Thuê xe máy có cần cọc không?</h4>
-    <p>Thuê xe máy Hà Nội cần thanh toán và cọc từ 2 triệu đến 5 triệu tùy loại xe.</p>
-  </div>
-
-  <div class="faq-item">
-    <h4>Giá thuê xe máy theo tháng bao nhiêu?</h4>
-    <p>Giá thuê xe theo tháng từ 1 đến 2 triệu đồng tùy dòng xe.</p>
+    <section class="faq">
+      <h2>Câu hỏi thường gặp</h2>
+      <div class="faq-item">
+        <strong>Thuê xe máy ở Hà Nội có giao tận nơi không?</strong>
+        <p>Chúng tôi có giao tận nơi (có tính phí) tại Long Biên, Ba Đình, Hoàn Kiếm, Phố Cổ, Gia Lâm.</p>
+      </div>
+      <div class="faq-item">
+        <strong>Thuê xe máy có cần cọc không?</strong>
+        <p>Thuê xe cần đặt cọc từ 2 – 5 triệu đồng tùy loại xe.</p>
+      </div>
+      <div class="faq-item">
+        <strong>Giá thuê xe máy tháng bao nhiêu?</strong>
+        <p>Từ 1 – 2 triệu đồng/tháng tùy từng loại xe.</p>
+      </div>
+      <div class="faq-item">
+        <strong>Giờ làm việc?</strong>
+        <p>Từ 8h00 đến 21h00 hàng ngày.</p>
+      </div>
+    </section>
   </div>
 
-  <div class="faq-item">
-    <h4>Giờ làm việc của Thu Hà?</h4>
-    <p>Chúng tôi hoạt động từ 8h sáng đến 21h hàng ngày, kể cả cuối tuần.</p>
-  </div>
-</section>
+  <footer>
+    <p>📍 108 Nguyễn Văn Cừ, Bồ Đề, Long Biên, Hà Nội, Việt Nam</p>
+    <p>📞 0334 699 969 (Z)</p>
+    <p>🌐 <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/" style="color:#f4c542;text-decoration:none;">https://motorbikenguyenha.github.io/chothuexemay50cc/</a></p>
+  </footer>
 
-<footer id="lienhe">
-  <p>📍 Địa chỉ: 108 Nguyễn Văn Cừ, Bồ Đề, Long Biên, Hà Nội, Việt Nam</p>
-  <p>📞 Điện thoại: <a href="tel:+84334699969">+84 33 469 9969</a> | <a href="https://zalo.me/84334699969">Zalo</a></p>
-  <p>🌐 <a href="https://share.google/8NaCZJ82JU92sVTGl">Xem bản đồ</a> | <a href="https://m.facebook.com/chothuexemayohanoigiare/">Fanpage</a> | <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">Website</a></p>
-  <p>© 2025 Thu Hà - Cho Thuê Xe Máy Hà Nội</p>
-</footer>
-
-<!-- Floating buttons -->
-<a href="https://share.google/8NaCZJ82JU92sVTGl" class="map-btn" title="Đến nơi ngay">📍</a>
-<a href="https://zalo.me/84334699969" class="zalo-btn" title="Zalo">Z</a>
-<a href="tel:+84334699969" class="call-btn" title="Gọi ngay">📞</a>
-
-<script>
-// Scroll reveal
-document.addEventListener('DOMContentLoaded', () => {
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(r => observer.observe(r));
-});
-
-// Slider đánh giá
-let current = 0;
-const testimonials = document.querySelectorAll('.testimonial');
-setInterval(() => {
-  testimonials[current].classList.remove('active');
-  current = (current + 1) % testimonials.length;
-  testimonials[current].classList.add('active');
-}, 4000);
-
-// FAQ toggle
-document.querySelectorAll('.faq-item').forEach(item => {
-  item.addEventListener('click', () => item.classList.toggle('active'));
-});
-</script>
+  <!-- Floating Buttons -->
+  <a href="tel:+84334699969" class="call-btn">Gọi</a>
+  <a href="https://zalo.me/84334699969" class="zalo-btn" target="_blank">Z</a>
+  <a href="https://share.google/8NaCZJ82JU92sVTGl" class="map-btn" target="_blank">🗺 Đến nơi</a>
 
 </body>
 </html>
