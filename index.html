@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
-<meta name="description" content="Thu Hà chuyên cho thuê xe máy 50cc, Vision, Air Blade tại Long Biên, Hà Nội. Dịch vụ giao xe tận nơi, giá rẻ, uy tín, hỗ trợ thuê theo ngày, tuần, tháng.">
+<meta name="description" content="Thu Hà chuyên cho thuê xe máy 50cc, Vision, Air Blade tại Long Biên, Hà Nội. Giao xe tận nơi, giá rẻ, uy tín, hỗ trợ thuê theo ngày, tuần, tháng.">
 <meta name="keywords" content="thuê xe máy hà nội, thuê xe máy 50cc hà nội, thuê xe máy tháng hà nội, thuê xe máy giao tận nơi hà nội, giá thuê xe máy hà nội, thuê xe máy cọc nhẹ hà nội">
 <meta property="og:title" content="Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà">
 <meta property="og:description" content="Thuê xe máy 50cc, Vision, Air Blade tại Hà Nội. Giao xe tận nơi, thủ tục đơn giản, giá rẻ, uy tín - Thu Hà.">
@@ -13,24 +13,30 @@
 <title>Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà</title>
 
 <style>
-body {font-family: Arial, sans-serif; margin:0; padding:0; color:#333; line-height:1.6; background:#fff;}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0; padding: 0;
+  color: #333;
+  line-height: 1.6;
+  background: #fff;
+}
 
 /* ===== MENU ===== */
 header {
-  background:#f2f2f2;
-  padding:12px 0;
-  text-align:center;
-  box-shadow:0 2px 5px rgba(0,0,0,0.05);
+  background: #f2f2f2;
+  padding: 12px 0;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 header nav a {
-  color:#111;
-  text-decoration:none;
-  margin:0 12px;
-  font-weight:bold;
+  color: #111;
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: bold;
 }
-header nav a:hover {color:#f1c40f;}
+header nav a:hover { color: #f1c40f; }
 
-/* ===== ẢNH ĐẦU TRANG ===== */
+/* ===== ẢNH ===== */
 .banner {
   width: 100%;
   height: auto;
@@ -39,11 +45,18 @@ header nav a:hover {color:#f1c40f;}
   display: block;
 }
 
-/* ===== CONTENT ===== */
-section {padding:40px 20px;max-width:1000px;margin:auto;}
-h1, h2, h3 {color:#111;}
-h2 {text-align:center;margin-bottom:25px;}
-h3 {margin-top:25px;}
+/* ===== NỘI DUNG ===== */
+section {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+h1, h2, h3 {
+  color: #111;
+  text-align: center;
+}
+h2 {margin-bottom: 25px;}
+h3 {margin-top: 25px;}
 
 /* ===== ĐÁNH GIÁ SLIDER ===== */
 .testimonial-container {
@@ -58,50 +71,61 @@ h3 {margin-top:25px;}
   padding: 20px;
   background: #fafafa;
   border-radius: 10px;
-  box-shadow:0 3px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 .testimonial.active {display: block;}
 .testimonial p {font-style: italic;}
-.testimonial h4 {margin-top: 10px; color:#111;}
+.testimonial h4 {margin-top: 10px; color: #111;}
 
 /* ===== FAQ ===== */
 .faq-item {
-  background:#f8f8f8;
-  margin-bottom:10px;
-  border-radius:5px;
-  padding:15px;
-  cursor:pointer;
+  background: #f8f8f8;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 15px;
+  cursor: pointer;
 }
-.faq-item h4 {margin:0; color:#111;}
-.faq-item p {display:none; margin-top:8px;}
-.faq-item.active p {display:block;}
+.faq-item h4 {margin: 0; color: #111;}
+.faq-item p {display: none; margin-top: 8px;}
+.faq-item.active p {display: block;}
 
-/* ===== FOOTER ===== */
-footer {
-  background:#111;
-  color:#fff;
-  text-align:center;
-  padding:20px;
-}
-footer a {color:#f1c40f; text-decoration:none;}
-
-/* ===== FLOATING BUTTONS ===== */
+/* ===== NÚT NỔI ===== */
 .call-btn, .zalo-btn, .map-btn {
   position: fixed;
-  bottom: 20px;
   right: 20px;
+  border-radius: 50%;
+  width: 55px; height: 55px;
+  text-align: center;
+  line-height: 55px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 22px;
   z-index: 999;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
-.zalo-btn {bottom:85px;}
-.map-btn {bottom:150px;}
-.call-btn img, .zalo-btn img, .map-btn img {
-  width:55px; height:55px; border-radius:50%;
-  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+.call-btn {bottom: 20px; background: #27ae60;}
+.zalo-btn {bottom: 90px; background: #0084ff;}
+.map-btn {bottom: 160px; background: #f1c40f; color: #111;}
+
+/* ===== CHÂN TRANG ===== */
+footer {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
 }
+footer a {color: #f1c40f; text-decoration: none;}
 
 /* ===== SCROLL REVEAL ===== */
-.reveal {opacity: 0; transform: translateY(40px); transition: all .8s ease;}
-.reveal.visible {opacity: 1; transform: translateY(0);}
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all .8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
@@ -186,15 +210,9 @@ footer a {color:#f1c40f; text-decoration:none;}
 </footer>
 
 <!-- Floating buttons -->
-<a href="https://share.google/8NaCZJ82JU92sVTGl" class="map-btn" target="_blank">
-  <img src="https://i.postimg.cc/7ZP3xJ2n/map-icon.png" alt="Đến nơi ngay">
-</a>
-<a href="https://zalo.me/84334699969" class="zalo-btn" target="_blank">
-  <img src="https://i.postimg.cc/hPfxvZcq/z-icon.png" alt="Zalo">
-</a>
-<a href="tel:+84334699969" class="call-btn">
-  <img src="https://i.postimg.cc/3x5QpYvp/phone-icon.png" alt="Gọi ngay">
-</a>
+<a href="https://share.google/8NaCZJ82JU92sVTGl" class="map-btn" title="Đến nơi ngay">📍</a>
+<a href="https://zalo.me/84334699969" class="zalo-btn" title="Zalo">Z</a>
+<a href="tel:+84334699969" class="call-btn" title="Gọi ngay">📞</a>
 
 <script>
 // Scroll reveal
@@ -208,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
   reveals.forEach(r => observer.observe(r));
 });
 
-// Đánh giá slider
+// Slider đánh giá
 let current = 0;
 const testimonials = document.querySelectorAll('.testimonial');
 setInterval(() => {
@@ -217,7 +235,7 @@ setInterval(() => {
   testimonials[current].classList.add('active');
 }, 4000);
 
-// FAQ mở rộng
+// FAQ toggle
 document.querySelectorAll('.faq-item').forEach(item => {
   item.addEventListener('click', () => item.classList.toggle('active'));
 });
