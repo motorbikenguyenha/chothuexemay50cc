@@ -30,33 +30,14 @@ header nav a {
 }
 header nav a:hover {color:#f1c40f;}
 
-/* ===== HERO ===== */
-.hero {
-  position: relative;
+/* ===== ẢNH ĐẦU TRANG ===== */
+.banner {
   width: 100%;
-  height: 55vh;
-  min-height: 300px;
-  background-image: url('https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg');
-  background-size: cover;
-  background-position: center;
-  display:flex;justify-content:center;align-items:center;text-align:center;
+  height: auto;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
 }
-.hero::before {
-  content:"";
-  position:absolute;inset:0;
-  background:rgba(0,0,0,0.45);
-}
-.hero-content {
-  position:relative;z-index:2;color:#fff;padding:0 20px;
-}
-.hero h1 {color:#111;background:rgba(255,255,255,0.85);display:inline-block;padding:8px 12px;border-radius:6px;}
-.hero p {color:#f8f8f8;font-size:1rem;margin:15px 0;}
-.hero-btn {
-  background:#f1c40f;color:#111;padding:12px 25px;
-  border-radius:5px;text-decoration:none;font-weight:bold;
-  transition:all 0.3s ease;
-}
-.hero-btn:hover {background:#111;color:#f1c40f;}
 
 /* ===== CONTENT ===== */
 section {padding:40px 20px;max-width:1000px;margin:auto;}
@@ -124,9 +105,7 @@ footer a {color:#f1c40f; text-decoration:none;}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
-  .hero {height: 45vh;}
-  .hero h1 {font-size:1.4rem;}
-  .hero p {font-size:0.9rem;}
+  .banner {max-height: 280px;}
 }
 </style>
 </head>
@@ -143,16 +122,11 @@ footer a {color:#f1c40f; text-decoration:none;}
   </nav>
 </header>
 
-<section class="hero">
-  <div class="hero-content">
-    <h1>Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà</h1>
-    <p>Thuê xe máy giá rẻ – Giao tận nơi – Xe 50cc, Vision, Air Blade an toàn, bền bỉ & tiết kiệm.</p>
-    <a href="https://share.google/8NaCZJ82JU92sVTGl" class="hero-btn">📍 Đến nơi ngay</a>
-  </div>
-</section>
+<!-- ẢNH BANNER -->
+<img src="https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg" alt="Thuê xe máy Hà Nội - Thu Hà" class="banner">
 
 <section id="gioithieu" class="reveal">
-  <h2>Về Thu Hà</h2>
+  <h1>Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà</h1>
   <p>Thu Hà chuyên cho thuê xe máy 50cc, Honda Vision, Honda Air Blade tại khu vực Long Biên, thuận tiện cho khách hàng gần bến xe Gia Lâm, phố cổ, Hoàn Kiếm và trung tâm thương mại Mipec. Với nhiều dòng xe đa dạng, luôn được bảo dưỡng định kỳ, chúng tôi cam kết mang đến cho bạn những chiếc xe an toàn và bền bỉ.</p>
 
   <h3>Dịch vụ giao xe tận nơi</h3>
