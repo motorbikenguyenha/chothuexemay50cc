@@ -7,11 +7,24 @@
   <meta http-equiv="content-language" content="vi">
   <link rel="canonical" href="https://motorbikenguyenha.github.io/chothuexemay50cc/">
 
+  <!-- Meta SEO nâng cao -->
+  <meta name="description" content="Cho thuê xe máy 50cc, Vision, Air Blade tại Long Biên - Gia Lâm - Hà Nội. Dịch vụ Thu Hà giao xe tận nơi, xe mới, giá rẻ, thủ tục nhanh gọn. Gọi ngay 0334 699 969!">
+  <meta name="keywords" content="thuê xe máy 50cc Hà Nội, thuê xe máy Long Biên, cho thuê xe máy gần bến xe Gia Lâm, thuê xe Vision, thuê xe Air Blade, Thu Hà Motorbike Rental">
+
+  <!-- Open Graph & Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà">
+  <meta property="og:description" content="Thuê xe máy Long Biên - Gia Lâm, xe 50cc, Vision, Air Blade, giá rẻ, giao tận nơi nhanh chóng.">
+  <meta property="og:image" content="https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg">
+  <meta property="og:url" content="https://motorbikenguyenha.github.io/chothuexemay50cc/">
+  <meta name="twitter:card" content="summary_large_image">
+
   <!-- Favicon & Font -->
   <link rel="icon" href="https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg" type="image/jpeg">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" as="style" onload="this.rel='stylesheet'">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Meta for iPhone/Android -->
+  <!-- Meta iPhone/Android -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="theme-color" content="#111">
@@ -19,6 +32,7 @@
   <title>Cho Thuê Xe Máy Gần Bến Xe Gia Lâm 50cc Hà Nội - Thu Hà</title>
 
   <style>
+    /* Reset & Base */
     body {
       font-family: 'Roboto', sans-serif;
       margin: 0;
@@ -26,53 +40,43 @@
       background-color: #fff;
       color: #000;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
-
     header {
       background-color: #f2f2f2;
-      color: #000;
       text-align: center;
       padding: 12px 0;
       font-weight: bold;
       font-size: 18px;
     }
-
     nav {
       display: flex;
       justify-content: center;
       background-color: #e0e0e0;
       padding: 10px 0;
+      flex-wrap: wrap;
     }
-
     nav a {
       text-decoration: none;
       color: #000;
-      margin: 0 15px;
+      margin: 5px 15px;
       font-weight: bold;
       transition: color 0.3s;
     }
-
-    nav a:hover {
-      color: #f4c542;
-    }
+    nav a:hover { color: #f4c542; }
 
     .container {
       width: 90%;
-      margin: 20px auto;
       max-width: 1000px;
+      margin: 20px auto;
     }
-
     img.responsive {
       width: 100%;
       height: auto;
       border-radius: 6px;
       margin: 20px 0;
     }
-
-    h2, h3 {
-      text-align: center;
-      color: #000;
-    }
+    h2, h3 { text-align: center; color: #000; }
 
     footer {
       background-color: #111;
@@ -95,12 +99,13 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
       z-index: 999;
       animation: pulse 2.5s infinite;
+      transition: all 0.3s ease;
     }
-    .call-btn {background: #28a745; bottom: 20px;}
-    .zalo-btn {background: #0078ff; bottom: 80px;}
-    .map-btn {background: #f4c542; bottom: 140px; color: #000;}
+    .call-btn:hover, .zalo-btn:hover, .map-btn:hover { transform: scale(1.1); filter: brightness(1.15); }
+    .call-btn { background: #28a745; bottom: 20px; }
+    .zalo-btn { background: #0078ff; bottom: 80px; }
+    .map-btn { background: #f4c542; bottom: 140px; color: #000; }
 
-    /* Pulse Animation */
     @keyframes pulse {
       0% {transform: scale(1);}
       50% {transform: scale(1.08);}
@@ -108,18 +113,9 @@
     }
 
     /* FAQ Section */
-    .faq {
-      margin-top: 40px;
-      border-top: 2px solid #f4c542;
-      padding-top: 20px;
-    }
-    .faq-item {
-      margin-bottom: 20px;
-    }
-    .faq-item strong {
-      display: block;
-      color: #000;
-    }
+    .faq { margin-top: 40px; border-top: 2px solid #f4c542; padding-top: 20px; }
+    .faq-item { margin-bottom: 20px; }
+    .faq-item strong { display: block; color: #000; }
 
     /* Review Slider */
     .review-slider {
@@ -129,13 +125,7 @@
       max-width: 800px;
       margin: 30px auto;
     }
-
-    .reviews {
-      display: flex;
-      width: 300%;
-      animation: slide 12s infinite;
-    }
-
+    .reviews { display: flex; width: 300%; animation: slide 12s infinite; }
     .review {
       flex: 1;
       background: #f9f9f9;
@@ -145,13 +135,18 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       text-align: center;
     }
-
     @keyframes slide {
       0%, 25% {transform: translateX(0);}
       35%, 60% {transform: translateX(-33.33%);}
       70%, 95% {transform: translateX(-66.66%);}
     }
 
+    /* Responsive */
+    @media(max-width:768px){
+      nav a { margin:5px 10px; font-size:14px; }
+      h2 { font-size:1.5rem; }
+      h3 { font-size:1.2rem; }
+    }
   </style>
 </head>
 <body>
@@ -211,7 +206,7 @@
     </section>
   </div>
 
-  <footer>
+  <footer id="lienhe">
     <p>📍 108 Nguyễn Văn Cừ, Bồ Đề, Long Biên, Hà Nội, Việt Nam</p>
     <p>📞 0334 699 969 (Z)</p>
     <p>🌐 <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/" style="color:#f4c542;text-decoration:none;">https://motorbikenguyenha.github.io/chothuexemay50cc/</a></p>
