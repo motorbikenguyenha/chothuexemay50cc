@@ -1,0 +1,13 @@
+# robots.txt cho GitHub Pages
+User-agent: *
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
+
+Allow: /
+
+# Sitemap
+Sitemap: https://motorbikenguyenha.github.io/chothuexemay50cc/sitemap.xml
+
+# Crawl-delay (tùy chọn)
+Crawl-delay: 1
