@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Thuê xe máy Hà Nội, Long Biên, thuê xe tháng, xe 50cc, Vision, Air Blade. Giao tận nơi, thủ tục nhanh, giá rẻ." />
   <link rel="canonical" href="https://motorbikenguyenha.github.io/chothuexemay50cc/" />
-  <!-- favicon/logo: dùng link ảnh bạn cung cấp trước đó -->
   <link rel="icon" href="https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg" />
 
   <style>
@@ -167,11 +166,23 @@
     /* swipe hint */
     .carousel .sr-only{ position:absolute; left:-9999px }
 
+    /* ============== SERVICE CARD STYLES (Đã thêm) ============== */
+    .service-card {
+      padding:14px;border-radius:12px;
+      /* Các thuộc tính thay đổi theo Dark Mode sẽ được định nghĩa trong :root[data-theme="dark"] */
+      background:linear-gradient(180deg,rgba(249,249,249,0.9),rgba(245,245,245,0.9));
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+    :root[data-theme="dark"] .service-card {
+      /* Màu nền tối cho các card dịch vụ */
+      background: linear-gradient(180deg, rgba(28,28,28,0.9), rgba(38,38,38,0.9));
+    }
     /* ============== FAQ ============== */
     .faq{ margin-top:32px; padding-top:8px; border-top:3px solid rgba(244,197,66,0.12) }
     .faq-question{ width:100%; background:var(--accent); color:#000; border:none; padding:12px; border-radius:8px; font-weight:700; cursor:pointer }
     .faq-answer{ max-height:0; overflow:hidden; transition:max-height .34s var(--ease), padding .28s var(--ease) }
     .faq-answer.open{ max-height:240px; padding:10px 12px; background: linear-gradient(180deg, rgba(249,249,249,0.6), rgba(245,245,245,0.5)); border-radius:0 0 8px 8px }
+    :root[data-theme="dark"] .faq-answer.open{ background: linear-gradient(180deg, rgba(20,20,20,0.8), rgba(30,30,30,0.8)); } /* FIX Dark mode cho FAQ Answer */
 
     /* ============== Back to top & FABs ============== */
     .back-to-top{ position:fixed; right:18px; bottom:22px; width:54px;height:54px;border-radius:50%;
@@ -205,13 +216,10 @@
 </head>
 
 <body>
-  <!-- ARIA live region for announcements -->
   <div aria-live="polite" aria-atomic="true" class="visually-hidden" id="ariaAnnounce"></div>
 
-  <!-- overlay -->
   <div id="overlay" class="overlay" aria-hidden="true"></div>
 
-  <!-- sidebar -->
   <aside id="sidebar" class="sidebar" aria-hidden="true" aria-label="Main menu">
     <div class="sidebar-header">
       <button id="closeSidebar" class="close-btn" aria-label="Đóng menu">×</button>
@@ -226,7 +234,6 @@
     </nav>
   </aside>
 
-  <!-- header -->
   <header id="header" class="site-header" role="banner">
     <button id="menuBtn" class="menu-toggle" aria-haspopup="true" aria-controls="sidebar" aria-expanded="false" aria-label="Mở menu">
       <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -238,10 +245,8 @@
     <button id="themeToggle" class="theme-toggle" aria-label="Chuyển chế độ sáng/tối">☀️</button>
   </header>
 
-  <!-- main -->
   <main>
     <section class="container" id="top">
-      <!-- Hero (no image) -->
       <div class="hero" role="region" aria-labelledby="hero-title">
         <h1 id="hero-title" class="headline" aria-hidden="true"></h1>
         <p class="sub" id="hero-sub">Thuê xe 50cc, Vision, Air Blade — giao tận nơi, thủ tục nhanh, giá hợp lý. Thuê theo ngày, tuần, tháng.</p>
@@ -251,28 +256,30 @@
         </div>
       </div>
 
-      <!-- Services -->
       <section id="dichvu" aria-labelledby="dichvu-title" style="margin-top:28px">
         <h2 id="dichvu-title">Dịch vụ Thuê Xe Máy Tại Hà Nội</h2>
         <p style="max-width:820px;margin:10px auto;color:var(--muted)">Dịch vụ uy tín, giá rẻ, hỗ trợ thuê theo ngày, tuần hoặc tháng. Giao xe tận nơi (có phí) tại Long Biên, Hoàn Kiếm, Gia Lâm, Ba Đình.</p>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px">
-          <div style="background:linear-gradient(180deg,rgba(249,249,249,0.9),rgba(245,245,245,0.9));padding:14px;border-radius:12px">
+          
+          <div class="service-card">
             <h3>Xe 50cc</h3>
             <p style="color:var(--muted)">Tiết kiệm, phù hợp đi phố.</p>
           </div>
-          <div style="background:linear-gradient(180deg,rgba(249,249,249,0.9),rgba(245,245,245,0.9));padding:14px;border-radius:12px">
+          
+          <div class="service-card">
             <h3>Vision / Air Blade</h3>
             <p style="color:var(--muted)">Xe đời mới, an toàn, tiết kiệm.</p>
           </div>
-          <div style="background:linear-gradient(180deg,rgba(249,249,249,0.9),rgba(245,245,245,0.9));padding:14px;border-radius:12px">
+          
+          <div class="service-card">
             <h3>Thuê theo tháng</h3>
             <p style="color:var(--muted)">Giá ưu đãi, thủ tục nhanh gọn.</p>
           </div>
+          
         </div>
       </section>
 
-      <!-- Review carousel -->
       <section class="carousel" aria-label="Đánh giá khách hàng" style="margin-top:28px">
         <div class="carousel-track" id="carouselTrack">
           <div class="slide active" role="group" aria-roledescription="slide" aria-label="Đánh giá 1">
@@ -289,7 +296,6 @@
         <div class="sr-only" aria-hidden="true">Vuốt sang trái/phải để xem thêm đánh giá</div>
       </section>
 
-      <!-- FAQ -->
       <section class="faq" aria-labelledby="faq-title" style="margin-top:32px">
         <h2 id="faq-title">Câu hỏi thường gặp</h2>
 
@@ -318,7 +324,6 @@
     </section>
   </main>
 
-  <!-- footer -->
   <footer class="mini-footer" id="lienhe" role="contentinfo" style="margin-top:36px;padding:18px 12px;background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,250,0.96));border-top:1px solid rgba(244,197,66,0.12)">
     <div class="links" style="margin-bottom:8px">
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">Trang chủ</a>
@@ -330,15 +335,12 @@
     <div class="copy">© Thu Hà Motorbike Rental – Hà Nội</div>
   </footer>
 
-  <!-- FABs -->
   <a class="fab call" href="tel:+84334699969" aria-label="Gọi điện">📞</a>
   <a class="fab zalo" href="https://zalo.me/8434699969" target="_blank" aria-label="Zalo">Z</a>
   <a class="fab map" href="https://share.google/8NaCZJ82JU92sVTGl" target="_blank" aria-label="Bản đồ">🗺</a>
 
-  <!-- Back to top -->
   <button id="backToTop" class="back-to-top" aria-label="Lên đầu trang">⬆</button>
 
-  <!-- ================= JS: typing hero, carousel, menu ripple, focus trap, accessibility ================= -->
   <script>
     (function(){
       const html = document.documentElement;
