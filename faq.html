@@ -255,6 +255,90 @@
       .menu-toggle{width: 44px; height: 44px;}
       .theme-toggle{width: 40px; height: 40px;}
     }
+
+    /* ========================================================= */
+    /* === FOOTER KIỂU MESSENGER NÂNG CẤP (Đã Tích Hợp) === */
+    /* ========================================================= */
+    .mini-footer-messenger{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      max-width:320px;
+      width:280px;
+      /* Dùng màu nền động từ biến CSS */
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#111; /* Màu chữ cố định là đen để tương phản với màu vàng */
+      border-radius:28px;
+      padding:12px 16px;
+      box-shadow:0 10px 28px rgba(0,0,0,0.22);
+      display:flex;
+      flex-direction:row;
+      align-items:center;
+      justify-content:space-between;
+      font-weight:700; /* Tăng độ đậm để dễ đọc hơn */
+      font-size:0.95em;
+      transform:translateX(120%); /* ẩn ban đầu */
+      transition: transform 0.5s cubic-bezier(.18,.9,.28,1),
+                  width 0.36s ease,
+                  padding 0.36s ease,
+                  bottom 0.36s ease,
+                  background 0.3s ease;
+      z-index:2799;
+    }
+    /* Biến thể màu cho chế độ tối */
+    :root[data-theme="dark"] .mini-footer-messenger{
+      box-shadow:0 12px 32px rgba(255,255,255,0.18); 
+    }
+    /* Hiệu ứng nổi bật khi hover */
+    .mini-footer-messenger:hover{
+        transform:translateX(0) translateY(-2px); 
+        box-shadow:0 14px 36px rgba(0,0,0,0.3); 
+    }
+    :root[data-theme="dark"] .mini-footer-messenger:hover{
+        box-shadow:0 14px 36px rgba(255,255,255,0.3);
+    }
+
+    .mini-footer-messenger.show{
+      transform:translateX(0);
+    }
+    .mini-footer-messenger.expand{
+      width:320px;
+      padding:16px 20px;
+    }
+    .mini-footer-messenger .icon{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:22px; /* Tăng kích thước icon */
+      margin-left:16px; /* Tăng khoảng cách */
+    }
+    .mini-footer-messenger .icon a {
+      transition: transform 0.2s ease;
+    }
+    .mini-footer-messenger .icon a:hover {
+      transform: scale(1.15); /* Hiệu ứng nhấn */
+    }
+
+    /* Media Query cho di động */
+    @media(max-width:600px){
+        .mini-footer-messenger{
+            right:12px;
+            bottom:12px;
+            max-width:92vw;
+            width:250px;
+            font-size:0.9em;
+            padding:10px 14px;
+            box-shadow:0 8px 20px rgba(0,0,0,0.2);
+        }
+        .mini-footer-messenger.expand{
+            width:300px;
+            padding:14px 18px;
+        }
+    }
+    /* ========================================================= */
+    /* === KẾT THÚC FOOTER KIỂU MESSENGER NÂNG CẤP === */
+    /* ========================================================= */
+
   </style>
 </head>
 
@@ -378,6 +462,12 @@
     <div class="copy">© Thu Hà Motorbike Rental – Hà Nội | ⏰ 9h - 21h | ✉️ nguyenthuha203@gmail.com</div>
   </footer>
 
+  <div id="messengerFooter" class="mini-footer-messenger" aria-label="Footer Messenger style">
+    <span>💬 Chat & Liên hệ nhanh với Thu Hà!</span>
+    <div class="icon">
+      <a href="https://zalo.me/8434699969" target="_blank" rel="noopener" aria-label="Zalo Chat">💬</a>
+    </div>
+  </div>
   <div id="miniAppFooter" class="mini-app-footer" aria-label="Mini App Actions">
     <button id="miniAppToggle" class="mini-app-toggle" aria-label="Mở menu nhanh">⚡</button>
     <div class="mini-app-buttons" aria-hidden="true">
@@ -389,6 +479,61 @@
     </div>
   </div>
   <script>
+    /* ========================================================= */
+    /* === JAVASCRIPT FOOTER MESSENGER NÂNG CẤP (Đã Tích Hợp) === */
+    /* ========================================================= */
+    (function(){
+      const footer = document.getElementById('messengerFooter');
+      const miniApp = document.getElementById('miniAppFooter');
+      if(!footer || !miniApp) return;
+
+      let lastScroll = 0;
+      const SCROLL_THRESHOLD = 150; // Điểm bắt đầu ẩn/hiện footer
+
+      function updateFooterPosition() {
+        const scrollY = window.scrollY || window.pageYOffset;
+        const miniAppHeight = miniApp.offsetHeight;
+
+        // 1. Logic HIỆN/ẨN footer
+        if(scrollY > SCROLL_THRESHOLD){
+          if(!footer.classList.contains('show')) footer.classList.add('show');
+          // Đảm bảo footer nằm trên Mini App FAB
+          footer.style.bottom = (miniAppHeight + 24) + 'px';
+        } else {
+          if(footer.classList.contains('show')) footer.classList.remove('show');
+          footer.style.bottom = '20px'; // Quay về vị trí mặc định
+        }
+
+        // 2. Logic ẨN KHI CUỘN XUỐNG (như Messenger)
+        // Ẩn khi cuộn xuống và đã cuộn qua một ngưỡng nhất định
+        if(scrollY > lastScroll && scrollY > SCROLL_THRESHOLD + 50){ // scroll xuống mạnh hơn
+          footer.style.transform = 'translateX(120%)';
+        } else { // scroll lên
+          if(footer.classList.contains('show')) {
+             // Nếu đang được hiển thị (tức scrollY > SCROLL_THRESHOLD)
+             footer.style.transform = 'translateX(0)';
+          }
+        }
+        
+        lastScroll = scrollY;
+      }
+
+      // Khởi chạy lần đầu để đặt vị trí bottom chính xác nếu trang đã load ở scroll > 100
+      updateFooterPosition();
+
+      window.addEventListener('scroll', updateFooterPosition, {passive:true});
+
+      // Giữ nguyên logic mở rộng khi hover/click
+      footer.addEventListener('mouseenter', ()=> footer.classList.add('expand'));
+      footer.addEventListener('mouseleave', ()=> footer.classList.remove('expand'));
+      // Sử dụng 'click' thay vì 'touchstart'
+      footer.addEventListener('click', ()=> footer.classList.toggle('expand')); 
+
+    })();
+    /* ========================================================= */
+    /* === KẾT THÚC JAVASCRIPT FOOTER MESSENGER NÂNG CẤP === */
+    /* ========================================================= */
+    
     // JS for the new MINI APP
     (function(){
       const miniApp = document.getElementById('miniAppFooter');
@@ -640,15 +785,6 @@
           }
         });
       });
-
-      /* ---------- TYPING HERO (V2) - Removed as V1 has been removed from body. New typing logic is in new FAB JS ---------- */
-      /*
-      (function heroTyping(){
-        const el = document.getElementById('hero-title');
-        if(!el) return;
-        // ... (typing logic removed)
-      })();
-      */
 
       /* ---------- REVIEW CAROUSEL (V2) ---------- */
       (function carouselInit(){
