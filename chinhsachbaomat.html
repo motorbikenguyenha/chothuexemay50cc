@@ -64,81 +64,60 @@
   </script>
 
   <style amp-custom>
-    /* ===== Reset & body ===== */
-    body{font-family:'Roboto',sans-serif;margin:0;padding:0;line-height:1.6;background:#fff;color:#000;scroll-behavior:smooth;}
+    /* ===== CÁC STYLE TỔNG HỢP VÀ TINH CHỈNH ===== */
+    
+    /* Global/Body */
+    body {
+      font-family:'Roboto',sans-serif;margin:0;padding:0;line-height:1.6;
+      background:#fff;color:#000;scroll-behavior:smooth;
+      transition:background 0.5s ease, color 0.5s ease;
+    }
     a{color:inherit}
-    /* ---------- Header (default + shrink state) ---------- */
+
+    /* ---------- Header (Sticky & Shrink) ---------- */
     .site-header {
-      position:sticky;
-      top:0;
-      z-index:1000;
-      display:flex;
-      align-items:center;
+      position:sticky;top:0;z-index:1000;display:flex;align-items:center;
       justify-content:center;
       background:rgba(249,249,249,0.75);
-      -webkit-backdrop-filter:blur(8px) saturate(140%);
-      backdrop-filter:blur(8px) saturate(140%);
+      -webkit-backdrop-filter:blur(8px) saturate(140%); backdrop-filter:blur(8px) saturate(140%);
       padding:18px 10px;
       transition:padding 300ms ease, box-shadow 300ms ease, background 300ms ease, transform 300ms ease;
       border-bottom:1px solid rgba(0,0,0,0.04);
-      will-change:padding, box-shadow;
     }
     .site-header.shrink {
       padding:10px 10px;
       background:rgba(255,255,255,0.88);
       box-shadow:0 8px 20px rgba(12,12,12,0.08);
-      transform:translateY(0);
     }
     .site-title {
-      flex:1;
-      text-align:center;
-      font-weight:700;
-      font-size:18px;
-      color:#000;
-      letter-spacing:0.2px;
+      flex:1;text-align:center;font-weight:700;font-size:18px;
+      color:#000;letter-spacing:0.2px;
     }
 
     /* ---------- Menu Toggle / Hamburger ---------- */
     .menu-toggle {
-      position:absolute;
-      left:14px;
-      width:30px;
-      height:22px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      background:none;
-      border:none;
-      z-index:1100;
-      cursor:pointer;
+      position:absolute;left:14px;width:30px;height:22px;
+      display:flex;flex-direction:column;justify-content:space-between;
+      background:none;border:none;z-index:1100;cursor:pointer;
     }
     .bar {
-      height:3px;
-      width:100%;
-      background:#111;
-      border-radius:4px;
+      height:3px;width:100%;background:#111;border-radius:4px;
       transition:transform 380ms cubic-bezier(.2,.9,.2,1.55), opacity 200ms ease, background 200ms ease;
       box-shadow:0 1px 0 rgba(0,0,0,0.12);
     }
-    .menu-toggle:hover .bar { background:#f4c542; transform:scaleX(1.02); }
     .bar.top.active { transform:translateY(9px) rotate(45deg); background:#f4c542; }
     .bar.mid.active { opacity:0; transform:scaleX(0.2); }
     .bar.bot.active { transform:translateY(-9px) rotate(-45deg); background:#f4c542; }
 
     /* ---------- Dark Mode Toggle (right) ---------- */
     .dark-toggle {
-      position:absolute;
-      right:16px;
-      background:none;
-      border:none;
-      font-size:22px;
-      cursor:pointer;
-      transition:transform 0.3s ease;
+      position:absolute;right:16px;background:none;border:none;
+      font-size:22px;cursor:pointer;transition:transform 0.3s ease;
       z-index:1100;
     }
     .dark-toggle:hover { transform:scale(1.15) rotate(10deg); }
 
-    /* ---------- Sidebar (glass + gold accents) ---------- */
+    /* ---------- Sidebar Styling ---------- */
     amp-sidebar {
       width:300px;
       background:linear-gradient(180deg, rgba(255,255,255,0.94), rgba(250,250,250,0.92));
@@ -147,34 +126,20 @@
       box-shadow:2px 0 30px rgba(0,0,0,0.22);
       border-right:1px solid rgba(0,0,0,0.05);
     }
-    /* overlay to blur page behind */
     .sidebar-overlay {
-      position:fixed;
-      top:0; left:0;
-      width:100%; height:100%;
-      background:rgba(0,0,0,0.36);
-      backdrop-filter:blur(6px);
-      z-index:6;
+      position:fixed;top:0; left:0;width:100%; height:100%;
+      background:rgba(0,0,0,0.36);backdrop-filter:blur(6px);z-index:6;
     }
-    .sidebar-content { position:relative; z-index:10; height:100%; display:flex; flex-direction:column; }
-    .sidebar-header { display:flex; align-items:center; justify-content:space-between; padding:20px; border-bottom:1px solid rgba(0,0,0,0.05); }
-    .sidebar-header h3 { margin:0; font-size:18px; font-weight:700; color:#111; }
-    .close-btn { background:none; border:none; font-size:28px; cursor:pointer; color:#111; transition:transform .25s ease; }
-    .close-btn:hover { transform:rotate(90deg); color:#f4c542; }
-
-    /* nav links */
-    .sidebar-nav { display:flex; flex-direction:column; padding:18px; gap:8px; }
+    .sidebar-content {position:relative; z-index:10; height:100%; display:flex; flex-direction:column; }
+    .sidebar-header {display:flex; align-items:center; justify-content:space-between; padding:20px; border-bottom:1px solid rgba(0,0,0,0.05); }
+    .sidebar-header h3 {margin:0; font-size:18px; font-weight:700; color:#111; }
+    .close-btn {background:none; border:none; font-size:28px; cursor:pointer; color:#111; transition:transform .25s ease; }
+    .sidebar-nav {display:flex; flex-direction:column; padding:18px; gap:8px; }
     .sidebar-nav a {
-      display:block;
-      text-decoration:none;
-      color:#111;
-      padding:12px 14px;
-      border-radius:10px;
-      font-weight:600;
-      transition:transform .28s ease, box-shadow .28s ease, background .28s ease;
+      display:block;text-decoration:none;color:#111;padding:12px 14px;
+      border-radius:10px;font-weight:600;position:relative;overflow:hidden;
       background:linear-gradient(90deg, transparent 0%, transparent 92%, rgba(244,197,66,0.07) 100%);
-      position:relative;
-      overflow:hidden;
+      transition:transform .28s ease, box-shadow .28s ease, background .28s ease;
     }
     .sidebar-nav a:hover {
       background:linear-gradient(90deg, rgba(244,197,66,0.18), rgba(244,197,66,0.95));
@@ -182,97 +147,35 @@
       box-shadow:0 6px 18px rgba(244,197,66,0.12);
       color:#111;
     }
-
-    /* === GLOW HOVER ANIMATION FOR LINKS === */
     .sidebar-nav a::after {
-      content:'';
-      position:absolute;
-      top:0; left:-110%;
-      width:120%; height:100%;
+      content:'';position:absolute;top:0; left:-110%;width:120%; height:100%;
       background:linear-gradient(120deg, transparent, rgba(244,197,66,0.45), transparent);
       transform:skewX(-12deg);
-      transition:left 0.55s cubic-bezier(.22,.9,.33,1);
-      pointer-events:none;
+      transition:left 0.55s cubic-bezier(.22,.9,.33,1);pointer-events:none;
     }
     .sidebar-nav a:hover::after { left:100%; }
 
-    /* ---------- Back to top button (tròn vàng kim) ---------- */
-    .back-to-top {
-      position:fixed;
-      right:18px;
-      bottom:22px;
-      width:52px;
-      height:52px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-      font-size:22px;
-      color:#111;
-      background:linear-gradient(180deg,#fff5e6,#f9e5b6);
-      box-shadow:0 10px 22px rgba(244,197,66,0.18), 0 2px 6px rgba(0,0,0,0.12);
-      border:1px solid rgba(244,197,66,0.25);
-      transition:transform 220ms ease, opacity 220ms ease;
-      z-index:1200;
-    }
-    .back-to-top:hover { transform:translateY(-6px) scale(1.03); }
-    [hidden].back-to-top { opacity:0; transform:translateY(20px) scale(.98); }
-
-    /* ---------- Mini Footer (white mờ viền vàng) ---------- */
-    .mini-footer {
-      margin-top:36px;
-      padding:18px 12px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,250,0.96));
-      border-top:1px solid rgba(244,197,66,0.12);
-      text-align:center;
-      color:#222;
-      font-size:14px;
-    }
-    .mini-footer .links { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:8px; }
-    .mini-footer a { text-decoration:none; color:#111; font-weight:600; padding:6px 8px; border-radius:6px; transition:background .2s ease; }
-    .mini-footer a:hover { background:rgba(244,197,66,0.08); }
-    .mini-footer .copy { color:#666; font-size:13px; margin-top:6px; }
-
-    /* ---------- Dark Mode Styles (applied when .dark on <html>) ---------- */
-    .dark body, .dark { /* fallback selectors if needed */ }
-    .dark .site-header {
-      background:rgba(30,30,30,0.85);
-      border-bottom:1px solid rgba(244,197,66,0.2);
-    }
-    .dark .site-header.shrink {
-      background:rgba(25,25,25,0.9);
-      box-shadow:0 8px 22px rgba(0,0,0,0.4);
-    }
-    .dark .site-title { color:#f4c542; }
-    .dark .bar { background:#f4c542 !important; }
-    .dark .sidebar-nav a {
-      color:#f4c542;
-      background:linear-gradient(90deg, transparent 0%, transparent 92%, rgba(244,197,66,0.1) 100%);
-    }
-    .dark .sidebar-nav a:hover {
-      background:linear-gradient(90deg, rgba(244,197,66,0.3), rgba(244,197,66,0.9));
-      box-shadow:0 6px 18px rgba(244,197,66,0.35);
-      color:#fff;
-    }
-    .dark .mini-footer {
-      background:rgba(22,22,22,0.95);
-      border-top:1px solid rgba(244,197,66,0.25);
-      color:#ddd;
-    }
+    /* ---------- Dark Mode Styles (on <html>.dark) ---------- */
+    .dark .site-header {background:rgba(30,30,30,0.85);border-bottom:1px solid rgba(244,197,66,0.2);}
+    .dark .site-header.shrink {background:rgba(25,25,25,0.9);box-shadow:0 8px 22px rgba(0,0,0,0.4);}
+    .dark .site-title {color:#f4c542;}
+    .dark .bar {background:#f4c542 !important;}
+    .dark amp-sidebar {background:#1a1a1a;color:#f4c542;}
+    .dark .sidebar-header h3, .dark .close-btn {color:#f4c542;}
+    .dark .sidebar-nav a {color:#f4c542;background:linear-gradient(90deg, transparent 0%, transparent 92%, rgba(244,197,66,0.1) 100%);}
+    .dark .sidebar-nav a:hover {background:linear-gradient(90deg, rgba(244,197,66,0.3), rgba(244,197,66,0.9));color:#fff;}
+    .dark body {background: #1a1a1a; color: #ddd;}
+    .dark h1, .dark h2, .dark h3 { color: #f4c542; }
+    .dark .review { background: #222; box-shadow: 0 2px 5px rgba(244,197,66,0.15); }
+    .dark .faq-answer { background: #2a2a2a; }
+    .dark .mini-footer {background:rgba(22,22,22,0.95);border-top:1px solid rgba(244,197,66,0.25);color:#ddd;}
     .dark .mini-footer a { color:#f4c542; }
 
-    /* Smooth global transition */
-    body, .site-header, .sidebar-nav a, .mini-footer {
-      transition:background 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
-    }
-
-    /* layout basics */
-    header{margin:0;padding:0}
-    .container{width:90%;max-width:1000px;margin:20px auto;}
+    /* Layout, Content & Components */
+    .container {width:90%;max-width:1000px;margin:20px auto;}
     amp-img.responsive{width:100%;height:auto;border-radius:6px;margin:20px 0;}
     h1,h2,h3{text-align:center;color:#000;margin:15px 0;}
-    footer{background:#111;color:#fff;text-align:center;padding:20px 10px;}
+    .faq-answer.open { max-height: 200px; padding: 12px; }
     .faq{margin-top:40px;border-top:2px solid #f4c542;padding-top:20px;}
     .faq-item{margin-bottom:10px;}
     .faq-question{width:100%;background:#f4c542;color:#000;border:none;text-align:center;padding:12px;font-size:16px;cursor:pointer;border-radius:6px;transition:background 0.3s;}
@@ -281,27 +184,44 @@
     .faq-answer p{margin:10px 0;text-align:center;}
     .review-slider{overflow:hidden;position:relative;width:100%;max-width:800px;margin:30px auto;}
     .review{background:#f9f9f9;margin:10px;padding:15px;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,0.1);text-align:center;}
-    @media(max-width:768px){nav a{margin:5px 10px;font-size:14px;}h2{font-size:1.5rem;}h3{font-size:1.2rem;}}
-    /* Floating buttons */
+
+    /* Floating Buttons */
     .call-btn,.zalo-btn,.map-btn{position:fixed;right:15px;border-radius:50%;padding:12px 15px;color:#fff;font-weight:bold;text-align:center;font-size:16px;box-shadow:0 4px 8px rgba(0,0,0,0.3);z-index:999;transition:all 0.3s ease;}
     .call-btn{background:#28a745;bottom:20px;}
     .zalo-btn{background:#0078ff;bottom:80px;}
     .map-btn{background:#f4c542;color:#000;bottom:140px;}
     .call-btn:hover,.zalo-btn:hover,.map-btn:hover{transform:scale(1.1);filter:brightness(1.15);}
 
+    /* Back to Top */
+    .back-to-top {
+      position:fixed;right:18px;bottom:22px;width:52px;height:52px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;text-decoration:none;
+      font-size:22px;color:#111;background:linear-gradient(180deg,#fff5e6,#f9e5b6);
+      box-shadow:0 10px 22px rgba(244,197,66,0.18), 0 2px 6px rgba(0,0,0,0.12);
+      border:1px solid rgba(244,197,66,0.25);
+      transition:transform 220ms ease, opacity 220ms ease;z-index:1200;
+    }
+    .back-to-top:hover { transform:translateY(-6px) scale(1.03); }
+    [hidden].back-to-top { opacity:0; transform:translateY(20px) scale(.98); }
+
+    /* Footer */
+    .mini-footer {
+      margin-top:36px;padding:18px 12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,250,0.96));
+      border-top:1px solid rgba(244,197,66,0.12);text-align:center;color:#222;font-size:14px;
+    }
+    .mini-footer .links { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:8px; }
+    .mini-footer a { text-decoration:none; color:#111; font-weight:600; padding:6px 8px; border-radius:6px; transition:background .2s ease; }
+    .mini-footer a:hover { background:rgba(244,197,66,0.08); }
+    .mini-footer .copy { color:#666; font-size:13px; margin-top:6px; }
+
+    /* Media Queries */
+    @media(max-width:768px){h2{font-size:1.5rem;}h3{font-size:1.2rem;}}
     @media(max-width:540px){
       .site-title{ font-size:16px; }
       amp-sidebar{ width:86vw; }
       .back-to-top{ width:46px; height:46px; font-size:20px; right:14px; bottom:18px; }
     }
-
-    /* Thêm style cho FAQ answer khi mở */
-    .faq-answer.open { max-height: 200px; padding: 12px; }
-    /* Dark mode for general text/headings */
-    .dark h1, .dark h2, .dark h3 { color: #f4c542; }
-    .dark body { background: #1a1a1a; color: #ddd; }
-    .dark .review { background: #222; box-shadow: 0 2px 5px rgba(244,197,66,0.15); }
-    .dark .faq-answer { background: #2a2a2a; }
   </style>
 
   <style amp-boilerplate>
@@ -317,22 +237,14 @@
     @keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}
   </style>
   <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-
 </head>
+
 <body [class]="dark ? 'dark' : ''">
 
-  <amp-state id="dark">
-    <script type="application/json">false</script>
-  </amp-state>
-  <amp-state id="menuOpen">
-    <script type="application/json">false</script>
-  </amp-state>
-  <amp-state id="scrolled">
-    <script type="application/json">false</script>
-  </amp-state>
-  <amp-state id="faqOpen">
-    <script type="application/json">""</script>
-  </amp-state>
+  <amp-state id="dark"><script type="application/json">false</script></amp-state>
+  <amp-state id="menuOpen"><script type="application/json">false</script></amp-state>
+  <amp-state id="scrolled"><script type="application/json">false</script></amp-state>
+  <amp-state id="faqOpen"><script type="application/json">""</script></amp-state>
 
   <a id="top"></a>
 
@@ -357,7 +269,7 @@
     </amp-position-observer>
   </div>
 
-  <amp-sidebar id="sidebar1" layout="nodisplay" side="left" on="sidebarClose:AMP.setState({menuOpen:false})">
+  <amp-sidebar id="sidebar1" layout="nodisplay" side="left" [class]="dark ? 'dark' : ''" on="sidebarClose:AMP.setState({menuOpen:false})">
     <div class="sidebar-overlay" on="tap:sidebar1.close" role="button" tabindex="0" aria-label="Đóng Menu"></div>
     <div class="sidebar-content">
       <div class="sidebar-header">
@@ -382,7 +294,7 @@
 
     <section id="gioithieu">
       <h2>Giới thiệu Thuê Xe Máy Hà Nội</h2>
-      <p>Thu Hà chuyên <strong>thuê xe máy Hà Nội</strong>, <strong>thuê xe máy Long Biên</strong> và <strong>thuê xe máy tháng Hà Nội</strong>. Cung cấp xe 50cc, Honda Vision, Honda Air Blade, giao tận nơi, giá rẻ, thủ tục nhanh, thuận tiện di chuyển.</p>
+      <p>Thu Hà chuyên **thuê xe máy Hà Nội**, **thuê xe máy Long Biên** và **thuê xe máy tháng Hà Nội**. Cung cấp xe 50cc, Honda Vision, Honda Air Blade, giao tận nơi, giá rẻ, thủ tục nhanh, thuận tiện di chuyển.</p>
     </section>
 
     <section id="dichvu">
@@ -397,6 +309,7 @@
     </section>
 
     <section class="review-slider">
+      <h2>Khách hàng nói gì?</h2>
       <amp-carousel width="800" height="200" layout="responsive" type="carousel" autoplay delay="4000" loop>
         <div class="review">⭐️⭐️⭐️⭐️⭐️ “Xe tốt, giao tận nơi đúng hẹn. Rất hài lòng!” – Minh, Hà Nội</div>
         <div class="review">⭐️⭐️⭐️⭐️⭐️ “Thủ tục nhanh gọn, chị chủ thân thiện, giá hợp lý.” – Hương, Gia Lâm</div>
@@ -407,19 +320,19 @@
     <section class="faq">
       <h2>Câu hỏi thường gặp</h2>
       <div class="faq-item">
-        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q1' ? '' : 'q1'})" aria-expanded="false" [attr.aria-expanded]="faqOpen=='q1'">Thuê xe máy ở Hà Nội có giao tận nơi không?</button>
+        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q1' ? '' : 'q1'})" [attr.aria-expanded]="faqOpen=='q1'">Thuê xe máy ở Hà Nội có giao tận nơi không?</button>
         <div class="faq-answer" [class]="faqOpen=='q1'?'open':'closed'"><p>Chúng tôi có giao tận nơi (có tính phí) tại Long Biên, Ba Đình, Hoàn Kiếm, Phố Cổ, Gia Lâm.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q2' ? '' : 'q2'})" aria-expanded="false" [attr.aria-expanded]="faqOpen=='q2'">Thuê xe máy có cần cọc không?</button>
+        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q2' ? '' : 'q2'})" [attr.aria-expanded]="faqOpen=='q2'">Thuê xe máy có cần cọc không?</button>
         <div class="faq-answer" [class]="faqOpen=='q2'?'open':'closed'"><p>Thuê xe cần đặt cọc từ 2 – 5 triệu đồng tùy loại xe.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q3' ? '' : 'q3'})" aria-expanded="false" [attr.aria-expanded]="faqOpen=='q3'">Giá thuê xe máy tháng bao nhiêu?</button>
+        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q3' ? '' : 'q3'})" [attr.aria-expanded]="faqOpen=='q3'">Giá thuê xe máy tháng bao nhiêu?</button>
         <div class="faq-answer" [class]="faqOpen=='q3'?'open':'closed'"><p>Từ 1 – 2 triệu đồng/tháng tùy từng loại xe.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q4' ? '' : 'q4'})" aria-expanded="false" [attr.aria-expanded]="faqOpen=='q4'">Giờ làm việc?</button>
+        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q4' ? '' : 'q4'})" [attr.aria-expanded]="faqOpen=='q4'">Giờ làm việc?</button>
         <div class="faq-answer" [class]="faqOpen=='q4'?'open':'closed'"><p>Từ 8h00 đến 21h00 hàng ngày.</p></div>
       </div>
     </section>
