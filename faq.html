@@ -140,32 +140,8 @@
     }
     .overlay.show{ opacity:1; pointer-events:auto }
 
-    /* ============== HERO MINI APP (Old V1 Structure) ============== */
-    .hero-miniapp{
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      gap:14px;text-align:center;padding:28px;border-radius:14px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,250,0.92));
-      box-shadow:0 18px 50px rgba(0,0,0,0.06);transition:background .4s;
-      margin-top: 110px; /* offset for fixed header */
-      max-width: 600px; margin-left: auto; margin-right: auto;
-    }
-    :root[data-theme="dark"] .hero-miniapp{background:linear-gradient(180deg, rgba(18,18,18,0.92), rgba(28,28,28,0.92));color:#fff;}
+    /* NOTE: .hero-miniapp section V1 (old) has been removed from HTML body */
     
-    .hero-cta-row{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-      gap:12px;width:100%;max-width:420px;margin-top:12px;
-    }
-    .btn.mini-call,.btn.mini-zalo,.btn.mini-map,.btn.mini-backtop{
-      padding:12px 18px;border-radius:12px;font-weight:700;border:none;cursor:pointer;
-      display:grid;place-items:center;transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
-    }
-    .btn.mini-call{background:linear-gradient(90deg,#f4c542,#e8c44a);color:#111;}
-    .btn.mini-zalo{background:#007aff;color:#fff;}
-    .btn.mini-map{background:#34c759;color:#fff;}
-    .btn.mini-backtop{background:#ff9500;color:#fff;}
-    .btn.mini-call:hover,.btn.mini-zalo:hover,.btn.mini-map:hover,.btn.mini-backtop:hover{transform:scale(1.08);box-shadow:0 6px 18px rgba(0,0,0,0.18);}
-
-
     /* ============== SECTIONS (V2) ============== */
     .hero{text-align:center;padding:28px 0;}
     .cta-row{display:flex;gap:12px;justify-content:center;margin-top:20px;}
@@ -237,55 +213,48 @@
     .mini-footer .copy{font-size:.85em;color:var(--muted);margin-top:12px;padding-top:12px;border-top:1px solid rgba(244,197,66,0.12);}
 
 
-    /* ============== FAB BUTTONS (Nâng cấp) ============== */
-    .fab{
-        position:fixed;width:52px;height:52px;border-radius:50%;
-        display:grid;place-items:center;font-size:20px;
-        box-shadow:0 10px 24px rgba(0,0,0,0.18);color:#fff;z-index:2700;
-        transition:transform .2s var(--ease), box-shadow .2s var(--ease);
-        text-decoration: none; /* Ensure FABs that are links look right */
+    /* ================= FAB BUTTONS (Nâng cấp) - Removed old FABs/BackToTop and kept new MINI-APP FAB logic only ================= */
+    /* MINI APP UX COMBINED (FOOTER VERSION) CSS */
+    .mini-app-footer{
+      position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;align-items:flex-end;z-index:2800;
     }
-    .fab:hover, .fab:focus{transform:scale(1.1) translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,0.22);}
-    .fab:active{transform:scale(0.95);}
-
-    .fab.call{bottom:20px;right:20px;background:linear-gradient(135deg,#3ecf7e,#1ec96a);} 
-    .fab.zalo{bottom:80px;right:20px;background:#0068ff;font-weight:700;font-size:24px;}
-    .fab.map{bottom:140px;right:20px;background:linear-gradient(135deg,#ff5f6d,#ffc371);}
-
-    /* BACK TO TOP */
-    .back-to-top{
-        position:fixed;right:20px;bottom:20px;z-index:100;width:44px;height:44px;
-        border-radius:10px;border:none;
-        /* Theme-aware background for back-to-top button (Initial default) */
-        background:rgba(0,0,0,0.08);color:var(--text); 
-        display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;
-        transform:translateY(20px);
-        transition:transform .3s var(--ease), opacity .3s var(--ease), background .3s ease, color .3s ease;
-        box-shadow:0 4px 12px rgba(0,0,0,0.06);
+    .mini-app-toggle{
+      width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#f4c542,#e8c44a);
+      border:none;color:#111;font-size:24px;cursor:pointer;display:grid;place-items:center;
+      box-shadow:0 10px 24px rgba(0,0,0,0.18);transition:transform .2s ease, box-shadow .2s ease;
     }
-    .back-to-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
-    :root[data-theme="dark"] .back-to-top { background:rgba(255,255,255,0.12); color:var(--text); }
-    :root[data-theme="light"] .back-to-top { background:rgba(0,0,0,0.08); color:var(--text); }
-
-
+    .mini-app-toggle:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,0.22);}
+    .mini-app-buttons{
+      display:flex;flex-direction:column;gap:12px;margin-top:10px;
+      opacity:0;pointer-events:none;transform:translateY(10px);
+      transition:opacity .3s ease, transform .3s ease;
+    }
+    .mini-app-footer.open .mini-app-buttons{
+      opacity:1;pointer-events:auto;transform:translateY(0);
+    }
+    .fab{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:20px;box-shadow:0 8px 20px rgba(0,0,0,0.18);cursor:pointer;border:none;transition:transform .2s ease, box-shadow .2s ease;text-decoration:none;}
+    .fab:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,0.22);}
+    .fab.call{background:linear-gradient(135deg,#3ecf7e,#1ec96a);color:#fff;}
+    .fab.zalo{background:#0068ff;color:#fff;font-weight:700;font-size:20px;}
+    .fab.map{background:linear-gradient(135deg,#ff5f6d,#ffc371);color:#fff;}
+    .fab.backtop{background:rgba(0,0,0,0.08);color:var(--text);}
+    :root[data-theme="dark"] .fab.backtop{background:rgba(255,255,255,0.12);color:#fff;}
+    
     /* Media Queries for better mobile spacing */
-    @media(max-width: 600px) {
-        .container{width: 95%; margin-top: 80px;}
-        header.site-header{padding: 10px 15px;}
-        header.site-header.shrink{padding: 5px 15px;}
-        .menu-toggle{width: 44px; height: 44px;}
-        .theme-toggle{width: 40px; height: 40px;}
-        .hero-miniapp{margin-top: 80px; padding: 24px 18px;}
-        .hero-cta-row{grid-template-columns: repeat(2, 1fr);}
-        
-        /* FAB Adjustments */
-        .fab.call{bottom:12px;right:12px; width: 48px; height: 48px; font-size: 18px;} 
-        .fab.zalo{bottom:66px;right:12px; width: 48px; height: 48px; font-size: 20px;}
-        .fab.map{display: none;} /* Hide map FAB on very small screens for cleaner look */
-        .back-to-top{right: 12px; bottom: 12px; width: 40px; height: 40px; font-size: 16px;}
-        .fab:hover, .fab:focus{transform:scale(1.05) translateY(-1px); box-shadow:0 8px 18px rgba(0,0,0,0.22);}
-    }
+    @media(max-width:600px){
+      .mini-app-footer{right:12px;bottom:12px}
+      .mini-app-buttons{gap:8px}
+      .fab{width:44px;height:44px;font-size:18px;}
+      .fab.zalo{font-size:18px;} /* Adjust Zalo size too */
+      .fab:hover, .fab:focus{transform:scale(1.05) translateY(-1px); box-shadow:0 8px 18px rgba(0,0,0,0.22);}
 
+      /* Original media queries are kept for other elements */
+      .container{width: 95%; margin-top: 80px;}
+      header.site-header{padding: 10px 15px;}
+      header.site-header.shrink{padding: 5px 15px;}
+      .menu-toggle{width: 44px; height: 44px;}
+      .theme-toggle{width: 40px; height: 40px;}
+    }
   </style>
 </head>
 
@@ -323,17 +292,6 @@
   </header>
 
   <main>
-    <section class="hero-miniapp" role="region" aria-labelledby="hero-title">
-      <h1 class="headline" id="hero-title"></h1>
-      <p>Thuê xe 50cc, Vision, Air Blade — giao tận nơi, thủ tục nhanh, giá hợp lý.</p>
-      <div class="hero-cta-row" role="group" aria-label="Call to action mini app">
-        <a class="btn mini-call" href="tel:+84334699969">📞 Gọi</a>
-        <a class="btn mini-zalo" href="https://zalo.me/8434699969" target="_blank" rel="noopener">💬 Zalo</a>
-        <a class="btn mini-map" href="https://share.google/8NaCZJ82JU92sVTGl" target="_blank" rel="noopener">🗺 Bản đồ</a>
-        <button class="btn mini-backtop">⬆ Lên đầu</button>
-      </div>
-    </section>
-
     <section class="container" id="top">
       <section id="dichvu" aria-labelledby="dichvu-title" style="margin-top:28px;text-align:center;">
         <h2 id="dichvu-title">Dịch vụ Thuê Xe Máy Tại Hà Nội</h2>
@@ -420,13 +378,75 @@
     <div class="copy">© Thu Hà Motorbike Rental – Hà Nội | ⏰ 9h - 21h | ✉️ nguyenthuha203@gmail.com</div>
   </footer>
 
-  <a class="fab call" href="tel:+84334699969" aria-label="Gọi điện">📞</a>
-  <a class="fab zalo" href="https://zalo.me/8434699969" target="_blank" rel="noopener" aria-label="Zalo">Z</a>
-  <a class="fab map" href="https://share.google/8NaCZJ82JU92sVTGl" target="_blank" rel="noopener" aria-label="Bản đồ">🗺</a>
-
-  <button id="backToTop" class="back-to-top" aria-label="Lên đầu trang">⬆</button>
-
+  <div id="miniAppFooter" class="mini-app-footer" aria-label="Mini App Actions">
+    <button id="miniAppToggle" class="mini-app-toggle" aria-label="Mở menu nhanh">⚡</button>
+    <div class="mini-app-buttons" aria-hidden="true">
+      <span id="miniAppTyping" style="font-size:0.95em;font-weight:600;color:var(--text);display:block;text-align:center;margin-bottom:6px;"></span>
+      <a class="fab call" href="tel:+84334699969" aria-label="Gọi điện">📞</a>
+      <a class="fab zalo" href="https://zalo.me/8434699969" target="_blank" rel="noopener" aria-label="Zalo">💬</a>
+      <a class="fab map" href="https://share.google/8NaCZJ82JU92sVTGl" target="_blank" rel="noopener" aria-label="Bản đồ">🗺</a>
+      <button class="fab backtop" id="miniBackToTop" aria-label="Lên đầu trang">⬆</button>
+    </div>
+  </div>
   <script>
+    // JS for the new MINI APP
+    (function(){
+      const miniApp = document.getElementById('miniAppFooter');
+      const toggleBtn = document.getElementById('miniAppToggle');
+      const backTopBtn = document.getElementById('miniBackToTop');
+      const typingEl = document.getElementById('miniAppTyping');
+      const html = document.documentElement;
+
+      // Toggle open/close mini app
+      toggleBtn.addEventListener('click', ()=>{
+        miniApp.classList.toggle('open');
+        miniApp.querySelector('.mini-app-buttons').setAttribute('aria-hidden', miniApp.classList.contains('open') ? 'false' : 'true');
+      });
+
+      // Back to top
+      backTopBtn.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
+
+      // Theme-aware BackTop for the new FAB
+      function updateBackTopTheme(){
+        if(html.getAttribute('data-theme') === 'dark'){
+          // Using CSS variables when possible, but direct style for robustness
+          backTopBtn.style.background='rgba(255,255,255,0.12)'; backTopBtn.style.color='#fff';
+        } else {
+          backTopBtn.style.background='rgba(0,0,0,0.08)'; backTopBtn.style.color='#111';
+        }
+      }
+      updateBackTopTheme();
+      // Watch for theme changes
+      new MutationObserver(updateBackTopTheme).observe(html, {attributes:true, attributeFilter:['data-theme']});
+
+      // TYPING animation in mini app
+      const phrases = [
+        'Thuê Xe Máy Hà Nội – Nhanh, Rẻ, Tận Nơi.',
+        'Xe 50cc • Vision • Air Blade – Giao Tận Nơi.',
+        'Thuê theo ngày, tuần, tháng – Thủ tục nhanh.'
+      ];
+      let p = 0, i = 0, forward = true;
+      const TYPING_SPEED = 48, PAUSE = 1600;
+      function typeStep(){
+        const text = phrases[p];
+        if(forward){
+          i++;
+          typingEl.textContent = text.slice(0,i);
+          if(i >= text.length){ forward=false; setTimeout(typeStep, PAUSE); return; }
+        } else {
+          i--;
+          typingEl.textContent = text.slice(0,i);
+          if(i<=0){ forward=true; p=(p+1)%phrases.length; setTimeout(typeStep,240); return; }
+        }
+        setTimeout(typeStep,TYPING_SPEED);
+      }
+      typeStep();
+
+    })();
+    // END JS for the new MINI APP
+
+
+    // Original JS (Modified to remove old FAB/BackToTop logic)
     (function(){
       const html = document.documentElement;
       const menuBtn = document.getElementById('menuBtn');
@@ -435,11 +455,11 @@
       const closeSidebarBtn = document.getElementById('closeSidebar');
       const navItems = Array.from(document.querySelectorAll('.sidebar-nav .nav-item'));
       const themeToggle = document.getElementById('themeToggle');
-      const backToTop = document.getElementById('backToTop');
+      // const backToTop = document.getElementById('backToTop'); // Removed
       const header = document.getElementById('header');
       const faqItems = document.querySelectorAll('.faq-item');
       const ariaAnnounce = document.getElementById('ariaAnnounce');
-      const miniBackTop = document.querySelector('.mini-backtop');
+      // const miniBackTop = document.querySelector('.mini-backtop'); // Removed. Logic moved to new FAB JS
 
 
       /* ---------- ANNOUNCE for accessibility ---------- */
@@ -584,12 +604,11 @@
       function onScroll(){
         const y = window.scrollY || window.pageYOffset;
         if(y > 80) header.classList.add('shrink'); else header.classList.remove('shrink');
-        if(y > 320) backToTop.classList.add('show'); else backToTop.classList.remove('show');
+        // REMOVED backToTop.classList.add/remove('show') logic as it's no longer used.
       }
       window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-      backToTop.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}) );
-      if(miniBackTop) miniBackTop.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'})); // For the backtop button in the hero section
-
+      // REMOVED backToTop.addEventListener('click')
+      // REMOVED miniBackTop.addEventListener('click') - Logic is now in new FAB JS
 
       /* ---------- FAQ accordion ---------- */
       faqItems.forEach(item=>{
@@ -622,33 +641,14 @@
         });
       });
 
-      /* ---------- TYPING HERO (V2) ---------- */
+      /* ---------- TYPING HERO (V2) - Removed as V1 has been removed from body. New typing logic is in new FAB JS ---------- */
+      /*
       (function heroTyping(){
         const el = document.getElementById('hero-title');
         if(!el) return;
-        const phrases = [
-          'Thuê Xe Máy Hà Nội — Nhanh, Rẻ, Tận Nơi.',
-          'Xe 50cc • Vision • Air Blade — Giao Tận Nơi.',
-          'Thuê theo ngày, tuần, tháng — Thủ tục nhanh.'
-        ];
-        let p = 0, i = 0, forward = true;
-        const TYPING_SPEED = 48;
-        const PAUSE = 1600;
-        function step(){
-          const text = phrases[p];
-          if(forward){
-            i++;
-            el.textContent = text.slice(0,i);
-            if(i >= text.length){ forward = false; setTimeout(step, PAUSE); return; }
-          } else {
-            i--;
-            el.textContent = text.slice(0,i);
-            if(i <= 0){ forward = true; p = (p+1) % phrases.length; setTimeout(step, 240); return; }
-          }
-          setTimeout(step, TYPING_SPEED);
-        }
-        step();
+        // ... (typing logic removed)
       })();
+      */
 
       /* ---------- REVIEW CAROUSEL (V2) ---------- */
       (function carouselInit(){
