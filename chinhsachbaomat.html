@@ -1,338 +1,266 @@
 <!doctype html>
-<html ⚡ lang="vi">
+<html lang="vi">
 <head>
-  <meta name="google-site-verification" content="gocezGhK3SBEOimOs_AkFYyLHQx3aRzIj4EtedcdYAs" />
   <meta charset="utf-8">
-  <title>Thuê Xe Máy Hà Nội | Thuê Xe Máy Long Biên & Thuê Xe Máy Tháng Hà Nội - Thu Hà</title>
-  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-  <meta name="description" content="Thuê xe máy Hà Nội, Thuê xe máy Long Biên, Thuê xe máy tháng Hà Nội tại Thu Hà Motorbike Rental. Xe 50cc, Vision, Air Blade, giao tận nơi, giá rẻ, thủ tục nhanh.">
-  <meta name="keywords" content="thuê xe máy Hà Nội, thuê xe máy Long Biên, thuê xe máy tháng Hà Nội, thuê xe máy 50cc, thuê xe Vision, thuê xe Air Blade">
+  <title>Thuê Xe Máy Hà Nội | Thu Hà Motorbike Rental</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Thuê xe máy Hà Nội, Long Biên, thuê xe tháng, xe 50cc, Vision, Air Blade. Giao tận nơi, thủ tục nhanh, giá rẻ.">
   <link rel="canonical" href="https://motorbikenguyenha.github.io/chothuexemay50cc/">
 
-  <script async src="https://cdn.ampproject.org/v0.js"></script>
-  <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.2.js"></script>
-  <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-  <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
-  <script async custom-element="amp-position-observer" src="https://cdn.ampproject.org/v0/amp-position-observer-0.1.js"></script>
+  <style>
+    /* -------------------- Variables -------------------- */
+    :root{
+      --bg:#fff;
+      --text:#0b0b0b;
+      --muted:#6b6b6b;
+      --accent:#f4c542;
+      --glass: rgba(255,255,255,0.86);
+      --glass-strong: rgba(255,255,255,0.96);
+      --shadow: 0 12px 30px rgba(12,12,12,0.08);
+      --radius:12px;
+      --ease: cubic-bezier(.2,.9,.3,1);
+      --menu-width:320px;
+      --menu-gap:14px;
+      --z-top:1400;
+    }
+    :root.dark{
+      --bg:#0b0b0b;
+      --text:#efe7d6;
+      --muted:#cfc6b3;
+      --accent:#f4c542;
+      --glass: rgba(20,20,20,0.94);
+      --glass-strong: rgba(12,12,12,0.98);
+      --shadow: 0 16px 40px rgba(0,0,0,0.45);
+    }
 
-  <style amp-custom>
-    /* ===== Reset & body ===== */
-    body{font-family:'Roboto',sans-serif;margin:0;padding:0;line-height:1.6;background:#fff;color:#000;scroll-behavior:smooth;}
-    a{color:inherit}
-    /* ---------- Header (default + shrink state) ---------- */
-    .site-header {
-      position:sticky;
-      top:0;
-      z-index:1000;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(249,249,249,0.75);
-      -webkit-backdrop-filter:blur(8px) saturate(140%);
-      backdrop-filter:blur(8px) saturate(140%);
-      padding:18px 10px;
-      transition:padding 300ms ease, box-shadow 300ms ease, background 300ms ease, transform 300ms ease;
+    /* -------------------- Base -------------------- */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter, "Roboto", system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
+      background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;
+      transition:background .45s var(--ease), color .45s var(--ease);
+    }
+    a{color:inherit;text-decoration:none}
+    .container{width:92%;max-width:1100px;margin:96px auto 48px auto}
+
+    /* -------------------- Header -------------------- */
+    header.site-header{
+      position:fixed;inset:0 0 auto 0;display:flex;align-items:center;justify-content:center;
+      padding:18px 18px;z-index:var(--z-top);
+      background:linear-gradient(180deg,var(--glass),transparent);
+      backdrop-filter:blur(10px) saturate(140%);
+      box-shadow:var(--shadow);
+      transition:padding .28s var(--ease), box-shadow .28s var(--ease), background .28s var(--ease);
       border-bottom:1px solid rgba(0,0,0,0.04);
-      will-change:padding, box-shadow;
     }
-    .site-header.shrink {
-      padding:10px 10px;
-      background:rgba(255,255,255,0.88);
-      box-shadow:0 8px 20px rgba(12,12,12,0.08);
-      transform:translateY(0);
-    }
-    .site-title {
-      flex:1;
-      text-align:center;
-      font-weight:700;
-      font-size:18px;
-      color:#000;
-      letter-spacing:0.2px;
-    }
+    header.site-header.shrink{ padding:8px 18px; box-shadow:0 14px 36px rgba(0,0,0,0.09); }
+    .site-title{ font-weight:700;font-size:18px; color:var(--text); text-align:center; pointer-events:none; }
 
-    /* ---------- Menu Toggle / Hamburger ---------- */
-    .menu-toggle {
-      position:absolute;
-      left:14px;
-      width:30px;
-      height:22px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      background:none;
-      border:none;
-      z-index:1100;
-      cursor:pointer;
+    /* -------------------- Hamburger -------------------- */
+    .menu-toggle{
+      position:absolute;left:18px;top:50%;transform:translateY(-50%);
+      width:44px;height:44px;border-radius:12px;border:none;background:transparent;cursor:pointer;
+      display:grid;place-items:center;z-index:1600;outline:none;
+      transition:transform .2s ease;
     }
-    .bar {
-      height:3px;
-      width:100%;
-      background:#111;
-      border-radius:4px;
-      transition:transform 380ms cubic-bezier(.2,.9,.2,1.55), opacity 200ms ease, background 200ms ease;
-      box-shadow:0 1px 0 rgba(0,0,0,0.12);
+    .menu-toggle:active{transform:translateY(-50%) scale(.98)}
+    .hamburger{width:22px;height:18px;position:relative;display:inline-block}
+    .hamburger span{
+      position:absolute;left:0;width:100%;height:3px;border-radius:4px;background:var(--text);
+      transition:transform .36s var(--ease), top .28s var(--ease), opacity .28s var(--ease), background .28s var(--ease);
+      box-shadow:0 1px 0 rgba(0,0,0,0.06);
     }
-    .menu-toggle:hover .bar { background:#f4c542; transform:scaleX(1.02); }
-    .bar.top.active { transform:translateY(9px) rotate(45deg); background:#f4c542; }
-    .bar.mid.active { opacity:0; transform:scaleX(0.2); }
-    .bar.bot.active { transform:translateY(-9px) rotate(-45deg); background:#f4c542; }
+    .hamburger span:nth-child(1){top:0}
+    .hamburger span:nth-child(2){top:7.5px}
+    .hamburger span:nth-child(3){top:15px}
+    .menu-toggle:hover .hamburger span{ background:var(--accent) }
 
-    /* Đã loại bỏ Dark Mode Toggle CSS tại đây */
+    /* active = X */
+    .menu-toggle.active .hamburger span:nth-child(1){ transform:translateY(7.5px) rotate(45deg); background:var(--accent);}
+    .menu-toggle.active .hamburger span:nth-child(2){ opacity:0; transform:scaleX(.2) }
+    .menu-toggle.active .hamburger span:nth-child(3){ transform:translateY(-7.5px) rotate(-45deg); background:var(--accent) }
 
-    /* ---------- Sidebar (glass + gold accents) ---------- */
-    amp-sidebar {
-      width:300px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.94), rgba(250,250,250,0.92));
-      backdrop-filter:blur(22px) saturate(150%);
-      -webkit-backdrop-filter:blur(22px) saturate(150%);
-      box-shadow:2px 0 30px rgba(0,0,0,0.22);
-      border-right:1px solid rgba(0,0,0,0.05);
-      transition: background 0.5s ease;
+    /* -------------------- Theme Toggle -------------------- */
+    .theme-toggle{
+      position:absolute;right:18px;top:50%;transform:translateY(-50%);
+      width:44px;height:44px;border-radius:12px;border:none;background:transparent;cursor:pointer;
+      display:grid;place-items:center;font-size:18px;z-index:1600;outline:none;
+      transition:transform .18s ease;
     }
-    /* overlay to blur page behind */
-    .sidebar-overlay {
-      position:fixed;
-      top:0; left:0;
-      width:100%; height:100%;
-      background:rgba(0,0,0,0.36);
-      backdrop-filter:blur(6px);
-      z-index:6;
-    }
-    .sidebar-content { position:relative; z-index:10; height:100%; display:flex; flex-direction:column; }
-    .sidebar-header { display:flex; align-items:center; justify-content:space-between; padding:20px; border-bottom:1px solid rgba(0,0,0,0.05); }
-    .sidebar-header h3 { margin:0; font-size:18px; font-weight:700; color:#111; }
-    .close-btn { background:none; border:none; font-size:28px; cursor:pointer; color:#111; transition:transform .25s ease; }
-    .close-btn:hover { transform:rotate(90deg); color:#f4c542; }
+    .theme-toggle:active{transform:translateY(-50%) scale(.98)}
 
-    /* nav links */
-    .sidebar-nav { display:flex; flex-direction:column; padding:18px; gap:8px; }
-    .sidebar-nav a {
-      display:block;
-      text-decoration:none;
-      color:#111;
-      padding:12px 14px;
-      border-radius:10px;
-      font-weight:600;
-      transition:transform .28s ease, box-shadow .28s ease, background .28s ease;
-      background:linear-gradient(90deg, transparent 0%, transparent 92%, rgba(244,197,66,0.07) 100%);
-      position:relative;
-      overflow:hidden;
+    /* -------------------- Sidebar (Glass) -------------------- */
+    .sidebar{
+      position:fixed;left:0;top:0;height:100vh;width:var(--menu-width);max-width:86vw;
+      transform:translateX(calc(-1 * var(--menu-width) - 10px));
+      transition:transform .46s var(--ease), box-shadow .28s var(--ease);
+      z-index:1550;border-right:1px solid rgba(0,0,0,0.04);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);backdrop-filter: blur(16px) saturate(140%);
+      display:flex;flex-direction:column;background:linear-gradient(180deg,var(--glass-strong),var(--glass));
+      box-shadow:2px 0 40px rgba(0,0,0,0.18);padding-bottom:40px;
     }
-    .sidebar-nav a:hover {
-      background:linear-gradient(90deg, rgba(244,197,66,0.18), rgba(244,197,66,0.95));
-      transform:translateX(8px);
-      box-shadow:0 6px 18px rgba(244,197,66,0.12);
-      color:#111;
-    }
+    .sidebar.open{ transform:translateX(0) }
+    :root.dark .sidebar{ background: linear-gradient(180deg, rgba(12,12,12,0.98), rgba(18,18,18,0.95)); color:var(--text); }
 
-    /* === GLOW HOVER ANIMATION FOR LINKS === */
-    .sidebar-nav a::after {
-      content:'';
-      position:absolute;
-      top:0; left:-110%;
-      width:120%; height:100%;
+    .sidebar-header{ display:flex;align-items:center;justify-content:flex-end;padding:18px 16px;border-bottom:1px solid rgba(0,0,0,0.04) }
+    .sidebar .close-btn{ background:none;border:none;font-size:26px;cursor:pointer;color:var(--text);padding:4px;border-radius:8px; }
+    .sidebar .close-btn:hover{ color:var(--accent) }
+
+    .sidebar-nav{ padding:18px; display:flex;flex-direction:column; gap:var(--menu-gap); overflow:auto; -webkit-overflow-scrolling:touch }
+    .sidebar-nav a{
+      display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;color:var(--text);font-weight:700;position:relative;
+      transform:translateX(-8px);opacity:0; /* initial for stagger animation */
+      transition: transform .36s var(--ease), box-shadow .28s var(--ease), background .28s var(--ease);
+    }
+    .sidebar.open .sidebar-nav a{ transform:translateX(0); opacity:1 } /* will be refined with staggers by JS */
+    .sidebar-nav a .ico{
+      width:36px;height:36px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.04);
+      color:var(--text);font-size:18px;
+    }
+    :root.dark .sidebar-nav a .ico{ background: rgba(255,255,255,0.03) }
+
+    .sidebar-nav a:hover{ transform:translateX(8px); box-shadow:0 10px 30px rgba(0,0,0,0.08); background: linear-gradient(90deg, rgba(244,197,66,0.06), rgba(244,197,66,0.14)) }
+
+    /* Glow sweep */
+    .sidebar-nav a::after{
+      content:'';position:absolute;left:-110%;top:0;width:120%;height:100%;
       background:linear-gradient(120deg, transparent, rgba(244,197,66,0.45), transparent);
-      transform:skewX(-12deg);
-      transition:left 0.55s cubic-bezier(.22,.9,.33,1);
-      pointer-events:none;
+      transform:skewX(-12deg);transition:left .62s cubic-bezier(.2,.9,.3,1);pointer-events:none;
     }
-    .sidebar-nav a:hover::after { left:100%; }
+    .sidebar-nav a:hover::after{ left:100% }
 
-    /* ---------- Back to top button (tròn vàng kim) ---------- */
-    .back-to-top {
-      position:fixed;
-      right:18px;
-      bottom:22px;
-      width:52px;
-      height:52px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-      font-size:22px;
-      color:#111;
-      background:linear-gradient(180deg,#fff5e6,#f9e5b6);
-      box-shadow:0 10px 22px rgba(244,197,66,0.18), 0 2px 6px rgba(0,0,0,0.12);
-      border:1px solid rgba(244,197,66,0.25);
-      transition:transform 220ms ease, opacity 220ms ease;
-      z-index:1200;
+    /* stagger helper (JS adds inline delay) */
+    .nav-stagger{ will-change: transform, opacity; }
+
+    /* -------------------- Overlay -------------------- */
+    .overlay{
+      position:fixed;inset:0;background:rgba(0,0,0,0.36);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .32s var(--ease);
+      z-index:1520;
     }
-    .back-to-top:hover { transform:translateY(-6px) scale(1.03); }
-    [hidden].back-to-top { opacity:0; transform:translateY(20px) scale(.98); }
+    .overlay.show{ opacity:1; pointer-events:auto }
 
-    /* ---------- Mini Footer (white mờ viền vàng) ---------- */
-    .mini-footer {
-      margin-top:36px;
-      padding:18px 12px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,250,0.96));
-      border-top:1px solid rgba(244,197,66,0.12);
-      text-align:center;
-      color:#222;
-      font-size:14px;
-      transition:background 0.5s ease, color 0.5s ease;
+    /* -------------------- Content & Cards -------------------- */
+    .hero-img{border-radius:12px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.06)}
+    h1,h2,h3{ margin:16px 0; color:var(--text); text-align:center }
+    p{ color:var(--muted); margin:0 0 14px 0 }
+
+    .review{ background: linear-gradient(180deg, rgba(249,249,249,0.9), rgba(245,245,245,0.9)); padding:16px;border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,0.06) }
+    :root.dark .review{ background: linear-gradient(180deg, rgba(18,18,18,0.9), rgba(28,28,28,0.9)) }
+
+    /* -------------------- FAQ -------------------- */
+    .faq{ margin-top:40px; padding-top:6px; border-top:3px solid rgba(244,197,66,0.12) }
+    .faq-question{ width:100%; background:var(--accent); color:#000; border:none; padding:12px; border-radius:8px; font-weight:700; cursor:pointer }
+    .faq-answer{ max-height:0; overflow:hidden; transition:max-height .36s var(--ease), padding .28s var(--ease) }
+
+    .faq-answer.open{ max-height:260px; padding:10px 12px; background: linear-gradient(180deg, rgba(249,249,249,0.6), rgba(245,245,245,0.5)); border-radius:0 0 8px 8px }
+
+    /* -------------------- Back to top -------------------- */
+    .back-to-top{ position:fixed; right:18px; bottom:22px; width:54px; height:54px; border-radius:50%;
+      display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff5e6,#f9e5b6);
+      box-shadow:0 10px 24px rgba(244,197,66,0.18); font-size:20px; color:#111; border:1px solid rgba(244,197,66,0.22);
+      z-index:1500; cursor:pointer; transform:translateY(8px); opacity:0; transition:transform .28s var(--ease), opacity .28s var(--ease) }
+    .back-to-top.show{ transform:translateY(0); opacity:1 }
+
+    /* -------------------- Footer -------------------- */
+    footer.mini-footer{
+      margin-top:36px; padding:18px 12px; background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,250,0.96));
+      border-top:1px solid rgba(244,197,66,0.12); text-align:center; color:var(--text)
     }
-    .mini-footer .links { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:8px; }
-    .mini-footer a { text-decoration:none; color:#111; font-weight:600; padding:6px 8px; border-radius:6px; transition:background .2s ease; }
-    .mini-footer a:hover { background:rgba(244,197,66,0.08); }
-    .mini-footer .copy { color:#666; font-size:13px; margin-top:6px; }
+    :root.dark footer.mini-footer{ background: linear-gradient(180deg, rgba(12,12,12,0.95), rgba(10,10,10,0.96)); color:var(--muted); border-top-color:rgba(244,197,66,0.18) }
+    .mini-footer .links{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:8px }
+    .mini-footer a{ color:var(--text); font-weight:600; padding:6px 8px; border-radius:6px }
+    .mini-footer a:hover{ background:rgba(244,197,66,0.06) }
 
-    /* Đã loại bỏ toàn bộ Dark Mode Styles tại đây */
+    /* -------------------- FABs -------------------- */
+    .fab{ position:fixed; right:16px; border-radius:50%; padding:12px 14px; color:#fff; font-weight:bold; text-align:center; font-size:16px; box-shadow:0 8px 26px rgba(0,0,0,0.12); z-index:1500; cursor:pointer }
+    .fab.call{ bottom:18px; background:#28a745 }
+    .fab.zalo{ bottom:86px; background:#0078ff }
+    .fab.map{ bottom:154px; background:var(--accent); color:#000 }
 
-    /* Smooth global transition */
-    body, .site-header, .sidebar-nav a, .mini-footer {
-      transition:background 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
-    }
-
-    /* layout basics */
-    header{margin:0;padding:0}
-    .container{width:90%;max-width:1000px;margin:20px auto;}
-    amp-img.responsive{width:100%;height:auto;border-radius:6px;margin:20px 0;}
-    h1,h2,h3{text-align:center;color:#000;margin:15px 0;}
-    footer{background:#111;color:#fff;text-align:center;padding:20px 10px;}
-    .faq{margin-top:40px;border-top:2px solid #f4c542;padding-top:20px;}
-    .faq-item{margin-bottom:10px;}
-    .faq-question{width:100%;background:#f4c542;color:#000;border:none;text-align:center;padding:12px;font-size:16px;cursor:pointer;border-radius:6px;transition:background 0.3s;}
-    .faq-question:hover{background:#e5b935;}
-    .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s ease;background:#f9f9f9;padding:0 12px;border-radius:0 0 6px 6px;}
-    .faq-answer p{margin:10px 0;text-align:center;}
-    .review-slider{overflow:hidden;position:relative;width:100%;max-width:800px;margin:30px auto;}
-    .review{background:#f9f9f9;margin:10px;padding:15px;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,0.1);text-align:center;}
-    @media(max-width:768px){nav a{margin:5px 10px;font-size:14px;}h2{font-size:1.5rem;}h3{font-size:1.2rem;}}
-    /* Floating buttons */
-    .call-btn,.zalo-btn,.map-btn{position:fixed;right:15px;border-radius:50%;padding:12px 15px;color:#fff;font-weight:bold;text-align:center;font-size:16px;box-shadow:0 4px 8px rgba(0,0,0,0.3);z-index:999;transition:all 0.3s ease;}
-    .call-btn{background:#28a745;bottom:20px;}
-    .zalo-btn{background:#0078ff;bottom:80px;}
-    .map-btn{background:#f4c542;color:#000;bottom:140px;}
-    .call-btn:hover,.zalo-btn:hover,.map-btn:hover{transform:scale(1.1);filter:brightness(1.15);}
-
-    @media(max-width:540px){
-      .site-title{ font-size:16px; }
-      amp-sidebar{ width:86vw; }
-      .back-to-top{ width:46px; height:46px; font-size:20px; right:14px; bottom:18px; }
-    }
-
-    /* Thêm style cho FAQ answer khi mở */
-    .faq-answer.open { max-height: 200px; padding: 12px; }
+    /* -------------------- Responsive -------------------- */
+    @media (max-width:900px){ .container{margin-top:84px} .menu-toggle{left:12px} .theme-toggle{right:12px} }
+    @media (max-width:540px){ :root{--menu-width:86vw} .site-title{ font-size:15px } .back-to-top{right:12px;bottom:12px} }
   </style>
-
-  <style amp-boilerplate>
-    body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;
-         -moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;
-         -ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;
-         -o-animation:-amp-start 8s steps(1,end) 0s 1 normal both;
-         animation:-amp-start 8s steps(1,end) 0s 1 normal both}
-    @-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}
-    @-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}
-    @-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}
-    @-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}
-    @keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}
-  </style>
-  <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-
 </head>
 <body>
 
-  <amp-state id="menuOpen">
-    <script type="application/json">false</script>
-  </amp-state>
-  <amp-state id="scrolled">
-    <script type="application/json">false</script>
-  </amp-state>
-  <amp-state id="faqOpen">
-    <script type="application/json">""</script>
-  </amp-state>
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
 
-  <a id="top"></a>
+  <!-- Sidebar (no brand text on top as requested) -->
+  <aside class="sidebar" id="sidebar" aria-hidden="true" aria-label="Main menu">
+    <div class="sidebar-header">
+      <button class="close-btn" id="closeSidebar" aria-label="Đóng menu">×</button>
+    </div>
 
-  <header class="site-header" [class]="scrolled ? 'site-header shrink' : 'site-header'">
-    <button class="menu-toggle" on="tap:AMP.setState({menuOpen: !menuOpen}), sidebar1.toggle" aria-label="Mở Menu">
-      <span [class]="menuOpen ? 'bar top active' : 'bar top'"></span>
-      <span [class]="menuOpen ? 'bar mid active' : 'bar mid'"></span>
-      <span [class]="menuOpen ? 'bar bot active' : 'bar bot'"></span>
+    <nav class="sidebar-nav" id="navList" aria-label="Primary navigation">
+      <!-- menu items: keep your original links, no brand text -->
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/" class="nav-stagger"><span class="ico">🏠</span> Trang chủ</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/gioithieu.html" class="nav-stagger"><span class="ico">ℹ️</span> Giới thiệu</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html" class="nav-stagger"><span class="ico">🛵</span> Dịch vụ</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/lienhe.html" class="nav-stagger"><span class="ico">📞</span> Liên hệ</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dieukhoansudung.html" class="nav-stagger"><span class="ico">📜</span> Điều khoản</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/chinhsachbaomat.html" class="nav-stagger"><span class="ico">🔒</span> Chính sách</a>
+    </nav>
+  </aside>
+
+  <!-- Header -->
+  <header class="site-header" id="header" role="banner">
+    <button class="menu-toggle" id="menuBtn" aria-label="Mở menu" aria-haspopup="true" aria-controls="sidebar" aria-expanded="false">
+      <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
     </button>
 
-    <div class="site-title">Thuê Xe Máy 50cc Hà Nội - Thu Hà</div>
+    <div class="site-title" aria-hidden="true">Thuê Xe Máy 50cc Hà Nội - Thu Hà</div>
 
-    </header>
+    <button class="theme-toggle" id="themeToggle" aria-label="Chuyển chế độ sáng/tối">☀️</button>
+  </header>
 
-  <div style="height:1px">
-    <amp-position-observer
-      on="exit:AMP.setState({scrolled:true});enter:AMP.setState({scrolled:false})"
-      layout="nodisplay">
-    </amp-position-observer>
-  </div>
+  <!-- Main content -->
+  <main>
+    <section class="container" id="top">
+      <figure class="hero-img" aria-hidden="true">
+        <img src="https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg" alt="Thuê xe máy Hà Nội - Thu Hà">
+      </figure>
 
-  <amp-sidebar id="sidebar1" layout="nodisplay" side="left" on="sidebarClose:AMP.setState({menuOpen:false})">
-    <div class="sidebar-overlay" on="tap:sidebar1.close" role="button" tabindex="0" aria-label="Đóng Menu"></div>
-    <div class="sidebar-content">
-      <div class="sidebar-header">
-        <h3>🚀 Thu Hà</h3>
-        <button on="tap:sidebar1.close" class="close-btn" aria-label="Đóng Menu">×</button>
-      </div>
-
-      <nav class="sidebar-nav">
-        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">🏠 Trang chủ</a>
-        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/gioithieu.html">ℹ️ Giới thiệu</a>
-        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html">🛵 Dịch vụ</a>
-        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/lienhe.html">📞 Liên hệ</a>
-        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dieukhoansudung.html">📜 Điều khoản sử dụng</a>
-        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/chinhsachbaomat.html">🔒 Chính sách bảo mật</a>
-      </nav>
-    </div>
-  </amp-sidebar>
-
-  <div class="container">
-
-    <amp-img src="https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg" width="800" height="533" layout="responsive" alt="Thuê xe máy Hà Nội - Thu Hà" class="responsive"></amp-img>
-
-    <section id="gioithieu">
-      <h2>Giới thiệu Thuê Xe Máy Hà Nội</h2>
+      <h1>Thuê Xe Máy Hà Nội - Thu Hà</h1>
       <p>Thu Hà chuyên <strong>thuê xe máy Hà Nội</strong>, <strong>thuê xe máy Long Biên</strong> và <strong>thuê xe máy tháng Hà Nội</strong>. Cung cấp xe 50cc, Honda Vision, Honda Air Blade, giao tận nơi, giá rẻ, thủ tục nhanh, thuận tiện di chuyển.</p>
-    </section>
 
-    <section id="dichvu">
-      <h2>Dịch vụ Thuê Xe Máy Tại Hà Nội</h2>
-      <p>Dịch vụ uy tín, giá rẻ, đặc biệt ở Long Biên, gần bến xe Gia Lâm, phố cổ và trung tâm Hoàn Kiếm. Hỗ trợ thuê theo ngày, tuần hoặc tháng. Giao xe tận nơi, hành trình thuận tiện và tiết kiệm chi phí.</p>
-      <h3>Dịch vụ giao xe tận nơi</h3>
-      <p>Giao xe tận nơi (có phí) tại Long Biên, Hoàn Kiếm, Gia Lâm, Ba Đình.</p>
-      <h3>Thủ tục thuê xe</h3>
-      <p>Chỉ cần CCCD và cọc từ 2–5 triệu đồng, thuê xe nhanh chóng.</p>
-      <h3>Giá thuê xe máy</h3>
-      <p>Thuê theo ngày: 150.000 – 200.000đ, thuê theo tháng: 1 – 2 triệu đồng.</p>
-    </section>
+      <section id="dichvu" aria-labelledby="dichvu-title">
+        <h2 id="dichvu-title">Dịch vụ Thuê Xe Máy Tại Hà Nội</h2>
+        <p>Dịch vụ uy tín, giá rẻ, đặc biệt ở Long Biên, gần bến xe Gia Lâm, phố cổ và trung tâm Hoàn Kiếm. Hỗ trợ thuê theo ngày, tuần hoặc tháng. Giao xe tận nơi, hành trình thuận tiện và tiết kiệm chi phí.</p>
+      </section>
 
-    <section class="review-slider">
-      <amp-carousel width="800" height="200" layout="responsive" type="carousel" autoplay delay="4000" loop>
+      <section class="review-slider" aria-label="Đánh giá khách hàng">
         <div class="review">⭐️⭐️⭐️⭐️⭐️ “Xe tốt, giao tận nơi đúng hẹn. Rất hài lòng!” – Minh, Hà Nội</div>
+        <div style="height:14px"></div>
         <div class="review">⭐️⭐️⭐️⭐️⭐️ “Thủ tục nhanh gọn, chị chủ thân thiện, giá hợp lý.” – Hương, Gia Lâm</div>
-        <div class="review">⭐️⭐️⭐️⭐️⭐️ “Xe 50cc mới, đi ổn, tiết kiệm xăng. Sẽ thuê lại!” – Tuấn, Long Biên</div>
-      </amp-carousel>
+      </section>
+
+      <section class="faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">Câu hỏi thường gặp</h2>
+        <div class="faq-item">
+          <button class="faq-question" data-q="q1">Thuê xe máy ở Hà Nội có giao tận nơi không?</button>
+          <div class="faq-answer" data-a="q1"><p>Chúng tôi có giao tận nơi (có tính phí) tại Long Biên, Ba Đình, Hoàn Kiếm, Phố Cổ, Gia Lâm.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" data-q="q2">Thuê xe máy có cần cọc không?</button>
+          <div class="faq-answer" data-a="q2"><p>Thuê xe cần đặt cọc từ 2 – 5 triệu đồng tùy loại xe.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" data-q="q3">Giá thuê xe máy tháng bao nhiêu?</button>
+          <div class="faq-answer" data-a="q3"><p>Từ 1 – 2 triệu đồng/tháng tùy từng loại xe.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" data-q="q4">Giờ làm việc?</button>
+          <div class="faq-answer" data-a="q4"><p>Từ 8h00 đến 21h00 hàng ngày.</p></div>
+        </div>
+      </section>
     </section>
+  </main>
 
-    <section class="faq">
-      <h2>Câu hỏi thường gặp</h2>
-      <div class="faq-item">
-        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q1' ? '' : 'q1'})" aria-expanded="false" [attr.aria-expanded]="faqOpen=='q1'">Thuê xe máy ở Hà Nội có giao tận nơi không?</button>
-        <div class="faq-answer" [class]="faqOpen=='q1'?'open':'closed'"><p>Chúng tôi có giao tận nơi (có tính phí) tại Long Biên, Ba Đình, Hoàn Kiếm, Phố Cổ, Gia Lâm.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q2' ? '' : 'q2'})" aria-expanded="false" [attr.aria-expanded]="faqOpen=='q2'">Thuê xe máy có cần cọc không?</button>
-        <div class="faq-answer" [class]="faqOpen=='q2'?'open':'closed'"><p>Thuê xe cần đặt cọc từ 2 – 5 triệu đồng tùy loại xe.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q3' ? '' : 'q3'})" aria-expanded="false" [attr.aria-expanded]="faqOpen=='q3'">Giá thuê xe máy tháng bao nhiêu?</button>
-        <div class="faq-answer" [class]="faqOpen=='q3'?'open':'closed'"><p>Từ 1 – 2 triệu đồng/tháng tùy từng loại xe.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q4' ? '' : 'q4'})" aria-expanded="false" [attr.aria-expanded]="faqOpen=='q4'">Giờ làm việc?</button>
-        <div class="faq-answer" [class]="faqOpen=='q4'?'open':'closed'"><p>Từ 8h00 đến 21h00 hàng ngày.</p></div>
-      </div>
-    </section>
-
-  </div>
-
-  <footer class="mini-footer" id="lienhe">
+  <!-- Footer -->
+  <footer class="mini-footer" id="lienhe" role="contentinfo">
     <div class="links">
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">Trang chủ</a>
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html">Dịch vụ</a>
@@ -343,18 +271,120 @@
     <div class="copy">© Thu Hà Motorbike Rental – Hà Nội</div>
   </footer>
 
-  <a href="tel:+84334699969" class="call-btn" aria-label="Gọi điện">📞</a>
-  <a href="https://zalo.me/84334699969" class="zalo-btn" target="_blank" aria-label="Zalo">Z</a>
-  <a href="https://share.google/8NaCZJ82JU92sVTGl" class="map-btn" target="_blank" aria-label="Bản đồ">🗺</a>
+  <!-- Floating action buttons -->
+  <a class="fab call" href="tel:+84334699969" aria-label="Gọi điện">📞</a>
+  <a class="fab zalo" href="https://zalo.me/84334699969" target="_blank" aria-label="Zalo">Z</a>
+  <a class="fab map" href="https://share.google/8NaCZJ82JU92sVTGl" target="_blank" aria-label="Bản đồ">🗺</a>
 
-  <a id="backToTop"
-     [hidden]="!scrolled"
-     href="#top"
-     class="back-to-top"
-     role="button"
-     aria-label="Lên đầu trang">
-    ⬆
-  </a>
+  <!-- Back to top -->
+  <button id="backToTop" class="back-to-top" aria-label="Lên đầu trang">⬆</button>
 
+  <!-- ================= JS: Menu, Staggered Animation, Dark Mode, UX ================= -->
+  <script>
+    (function(){
+      const html = document.documentElement;
+      const body = document.body;
+      const menuBtn = document.getElementById('menuBtn');
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      const closeSidebarBtn = document.getElementById('closeSidebar');
+      const navLinks = Array.from(document.querySelectorAll('.sidebar-nav a'));
+      const themeToggle = document.getElementById('themeToggle');
+      const backToTop = document.getElementById('backToTop');
+      const header = document.getElementById('header') || document.querySelector('.site-header');
+      const faqBtns = document.querySelectorAll('.faq-question');
+
+      // Load theme
+      try {
+        const saved = localStorage.getItem('thuha_theme');
+        if(saved === 'dark') html.classList.add('dark'), themeToggle.textContent = '🌙';
+        else { html.classList.remove('dark'); themeToggle.textContent = '☀️'; }
+      } catch(e){ themeToggle.textContent = '☀️' }
+
+      // utility: open/close
+      function openMenu(){
+        sidebar.classList.add('open');
+        overlay.classList.add('show');
+        menuBtn.classList.add('active');
+        menuBtn.setAttribute('aria-expanded','true');
+        sidebar.setAttribute('aria-hidden','false');
+        overlay.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        // stagger animation
+        navLinks.forEach((a, i) => {
+          a.style.transitionDelay = `${i * 55}ms`;
+          a.style.opacity = '1';
+          a.style.transform = 'translateX(0)';
+        });
+        // focus first link for accessibility
+        setTimeout(()=>{ navLinks[0] && navLinks[0].focus(); }, 250);
+      }
+      function closeMenu(){
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+        menuBtn.classList.remove('active');
+        menuBtn.setAttribute('aria-expanded','false');
+        sidebar.setAttribute('aria-hidden','true');
+        overlay.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        // reset stagger styles quickly
+        navLinks.forEach((a)=>{ a.style.transitionDelay = ''; a.style.opacity = ''; a.style.transform = ''; });
+        menuBtn.focus();
+      }
+
+      menuBtn.addEventListener('click', function(){
+        if(sidebar.classList.contains('open')) closeMenu(); else openMenu();
+      });
+      closeSidebarBtn && closeSidebarBtn.addEventListener('click', closeMenu);
+      overlay.addEventListener('click', closeMenu);
+
+      // close on ESC
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' && sidebar.classList.contains('open')) closeMenu();
+      });
+
+      // Close sidebar when clicking a nav link (better UX)
+      navLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+      // Theme toggle
+      themeToggle.addEventListener('click', function(){
+        const isDark = html.classList.toggle('dark');
+        themeToggle.textContent = isDark ? '🌙' : '☀️';
+        try { localStorage.setItem('thuha_theme', isDark ? 'dark' : 'light'); } catch(e){}
+      });
+
+      // header shrink + backToTop
+      function onScroll(){
+        const y = window.scrollY || window.pageYOffset;
+        if(y > 80) header.classList.add('shrink'); else header.classList.remove('shrink');
+        if(y > 320) backToTop.classList.add('show'); else backToTop.classList.remove('show');
+      }
+      window.addEventListener('scroll', onScroll, {passive:true});
+      onScroll();
+
+      // backToTop
+      backToTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+      // FAQ toggles (accordion)
+      faqBtns.forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const q = btn.getAttribute('data-q');
+          const answer = document.querySelector('.faq-answer[data-a="'+q+'"]');
+          if(!answer) return;
+          const isOpen = answer.classList.contains('open');
+          // close all
+          document.querySelectorAll('.faq-answer').forEach(a=>a.classList.remove('open'));
+          if(!isOpen) answer.classList.add('open');
+        });
+      });
+
+      // ensure keyboard focus styles if user tabs
+      document.addEventListener('keydown', function(e){ if(e.key === 'Tab') document.body.classList.add('user-is-tabbing'); });
+
+      // small ARIA enhancement: mark overlay clickable
+      overlay.setAttribute('role','button');
+      overlay.setAttribute('tabindex','-1');
+    })();
+  </script>
 </body>
 </html>
