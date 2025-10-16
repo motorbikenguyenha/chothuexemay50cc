@@ -45,21 +45,56 @@
 
     /* ============== HEADER ============== */
     header.site-header{
-      position:fixed;left:0;right:0;top:0;z-index:2000;display:flex;align-items:center;justify-content:center;
+      position:fixed;left:0;right:0;top:0;z-index:2000;display:flex;align-items:center;justify-content:space-between; /* Đã thay đổi */
       padding:18px 20px;background:linear-gradient(180deg,var(--glass),transparent);backdrop-filter:blur(10px) saturate(140%);
       box-shadow:var(--shadow);border-bottom:1px solid rgba(0,0,0,0.04);
       transition:padding .28s var(--ease),box-shadow .28s var(--ease);
     }
     header.site-header.shrink{padding:8px 20px;box-shadow:0 16px 42px rgba(0,0,0,0.08)}
-    .site-title{font-weight:700;font-size:18px;color:var(--text);pointer-events:none}
+    
+    /* LOGO CONTAINER MỚI */
+    .header-logo {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        height: 40px; 
+        z-index: 2100; 
+        transition: height .28s var(--ease);
+    }
+    .header-logo img {
+        height: 40px; 
+        width: auto;
+        display: block;
+        border-radius: 8px; 
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05); 
+        transition: height .28s var(--ease), transform 0.2s ease;
+    }
+    .header-logo:hover img {
+        transform: scale(1.05);
+    }
+    header.site-header.shrink .header-logo {
+        height: 30px; 
+    }
+    header.site-header.shrink .header-logo img {
+        height: 30px; 
+    }
+    
+    .site-title{ /* Ẩn title văn bản vì đã có logo */
+      /* font-weight:700;font-size:18px;color:var(--text);pointer-events:none */
+      display: none;
+    }
 
     /* hamburger */
     .menu-toggle{
-      position:absolute;left:18px;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:12px;border:none;background:transparent;
+      position:relative; /* Đã thay đổi */
+      left: auto; top: auto; transform: none;
+      margin-right: auto; /* Đã thay đổi */
+      width:48px;height:48px;border-radius:12px;border:none;background:transparent;
       display:grid;place-items:center;z-index:2600;cursor:pointer;outline:none;padding:0;
       transition:transform .12s ease;
     }
-    .menu-toggle:active{transform:translateY(-50%) scale(.97)}
+    .menu-toggle:active{transform:scale(.97)}
     .hamburger{width:26px;height:20px;position:relative;display:inline-block}
     .hamburger span{position:absolute;left:0;width:100%;height:3px;border-radius:4px;background:var(--text);
       transition: transform .36s var(--ease), top .28s var(--ease), opacity .28s var(--ease), background .28s var(--ease);
@@ -75,11 +110,14 @@
 
     /* ripple border effect wrapper */
     .menu-toggle .ripple-wrap{ position:absolute; inset: -6px; border-radius:14px; pointer-events:none; overflow:hidden }
-    .menu-toggle .ripple{ position:absolute; width:0;height:0;border-radius:50%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); opacity:.18; transform:scale(0); transition: transform .6s cubic-bezier(.2,.9,.3,1), opacity .4s ease }
+    .menu-toggle .ripple{ position:absolute; width:0;height:0;border-radius:50%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); opacity:.18; transform:scale(0); transition: transform .6s cubic-bezier(.18,.9,.3,1), opacity .4s ease }
 
     /* theme toggle */
     .theme-toggle{
-      position:absolute;right:18px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:10px;border:none;background:transparent;display:grid;place-items:center;font-size:18px;cursor:pointer;z-index:2600;outline:none;
+      position:relative; /* Đã thay đổi */
+      right: auto; top: auto; transform: none;
+      margin-left: auto; /* Đã thay đổi */
+      width:44px;height:44px;border-radius:10px;border:none;background:transparent;display:grid;place-items:center;font-size:18px;cursor:pointer;z-index:2600;outline:none;
     }
 
     /* ============== SIDEBAR ============== */
@@ -181,34 +219,63 @@
     /* ============== SERVICE CARD STYLES ============== */
     .service-card {
       padding:14px;border-radius:12px;
-      /* Các thuộc tính thay đổi theo Dark Mode sẽ được định nghĩa trong :root[data-theme="dark"] */
       background:linear-gradient(180deg,rgba(249,249,249,0.9),rgba(245,245,245,0.9));
       box-shadow: 0 4px 12px rgba(0,0,0,0.02);
     }
     :root[data-theme="dark"] .service-card {
-      /* Màu nền tối cho các card dịch vụ */
       background: linear-gradient(180deg, rgba(28,28,28,0.9), rgba(38,38,38,0.9));
     }
-    /* ============== FAQ ============== */
+    
+    /* ============== FAQ NÂNG CẤP (TỪ CODE CŨ) ============== */
     .faq{ margin-top:32px; padding-top:8px; border-top:3px solid rgba(244,197,66,0.12) }
-    .faq-question{ width:100%; background:var(--accent); color:#000; border:none; padding:12px; border-radius:8px; font-weight:700; cursor:pointer }
-    .faq-answer{ max-height:0; overflow:hidden; transition:max-height .34s var(--ease), padding .28s var(--ease) }
-    .faq-answer.open{ max-height:240px; padding:10px 12px; background: linear-gradient(180deg, rgba(249,249,249,0.6), rgba(245,245,245,0.5)); border-radius:0 0 8px 8px }
-    :root[data-theme="dark"] .faq-answer.open{ background: linear-gradient(180deg, rgba(20,20,20,0.8), rgba(30,30,30,0.8)); } /* FIX Dark mode cho FAQ Answer */
+    /* Sử dụng lại kiểu dáng FAQ từ code Trang chủ */
+    .faq-item{
+      /* Thay thế kiểu dáng FAQ từ code Trang chủ bằng kiểu dáng từ code FAQ cũ (hiệu ứng đẹp hơn) */
+      background:var(--bg); 
+      border:1px solid rgba(0,0,0,0.05);
+      border-radius:10px;
+      margin:14px 0;
+      overflow:hidden;
+      box-shadow:0 2px 5px rgba(0,0,0,0.05);
+      opacity:1; /* Bỏ hiệu ứng fade-in vì nó xung đột với JS khác */
+      transition:all 0.3s ease;
+    }
+    :root[data-theme="dark"] .faq-item{background:#1c1c1c;border-color:#333;}
 
-    /* ============== Back to top & FABs ============== */
-    .back-to-top{ position:fixed; right:18px; bottom:22px; width:54px;height:54px;border-radius:50%;
-      display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff5e6,#f9e5b6);
-      box-shadow:0 12px 30px rgba(244,197,66,0.18); font-size:20px;color:#111;border:1px solid rgba(244,197,66,0.22);
-      z-index:2300;cursor:pointer;transform:translateY(8px);opacity:0;transition:transform .28s var(--ease),opacity .28s var(--ease) }
-    .back-to-top.show{ transform:translateY(0); opacity:1 }
-
-    .fab{ position:fixed; right:16px; border-radius:50%; padding:12px 14px; color:#fff; font-weight:bold; text-align:center; font-size:16px; box-shadow:0 10px 30px rgba(0,0,0,0.12); z-index:2200; cursor:pointer }
-    .fab.call{ bottom:18px; background:#28a745 }
-    .fab.zalo{ bottom:86px; background:#0078ff }
-    .fab.map{ bottom:154px; background:var(--accent); color:#000 }
-
-    /* responsive */
+    .faq-question{ 
+      width:100%;
+      text-align:left;
+      padding:14px 18px;
+      font-weight:700;
+      font-size:16px;
+      border:none;
+      background:none;
+      cursor:pointer;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      color:var(--text);
+      transition:color 0.3s ease;
+    }
+    .faq-question:hover{color:var(--accent);}
+    
+    .faq-answer{ 
+      max-height:0; 
+      overflow:hidden; 
+      transition:max-height 0.4s ease-in-out, padding 0.3s ease; 
+      padding:0 18px;
+      line-height:1.6;
+      color:var(--muted);
+      background:transparent;
+    }
+    .faq-item.open .faq-answer{
+      max-height:300px;
+      padding:12px 18px 18px;
+      background: linear-gradient(180deg, rgba(249,249,249,0.9), rgba(245,245,245,0.95)); /* nền nhẹ hơn */
+    }
+    :root[data-theme="dark"] .faq-item.open .faq-answer{background:#111; color:var(--text);}
+    
+    /* Responsive */
     @media (max-width:900px){
       .container{ margin-top:92px }
       .menu-toggle{ left:12px }
@@ -216,9 +283,14 @@
       .sidebar{ width:86vw; --menu-w:86vw }
     }
     @media (max-width:540px){
-      .site-title{ font-size:15px }
+      /* .site-title{ font-size:15px } */ /* Đã ẩn */
       .back-to-top{ right:12px; bottom:12px }
       .headline{ font-size:22px }
+      .faq-question{ font-size:15px }
+      .header-logo { height: 36px; }
+      .header-logo img { height: 36px; }
+      header.site-header.shrink .header-logo,
+      header.site-header.shrink .header-logo img { height: 28px; }
     }
 
     /* accessibility focus visible */
@@ -253,7 +325,12 @@
       <span class="ripple-wrap" aria-hidden="true"><span class="ripple" id="menuRipple"></span></span>
     </button>
 
-    <div class="site-title" aria-hidden="true">Thuê Xe Máy 50cc Hà Nội</div>
+    <div class="header-logo" aria-hidden="true">
+        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/" aria-label="Trang chủ Thu Hà Motorbike Rental">
+            <img src="https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg" alt="Thu Hà Logo">
+        </a>
+    </div>
+    <div class="site-title visually-hidden" aria-hidden="true">Thuê Xe Máy 50cc Hà Nội</div>
 
     <button id="themeToggle" class="theme-toggle" aria-label="Chuyển chế độ sáng/tối">☀️</button>
   </header>
@@ -312,27 +389,28 @@
       <section class="faq" aria-labelledby="faq-title" style="margin-top:32px">
         <h2 id="faq-title">Câu hỏi thường gặp</h2>
 
-        <div style="max-width:760px;margin:10px auto">
+        <div style="max-width:760px;margin:10px auto" id="faqList">
           <div class="faq-item">
-            <button class="faq-question" data-q="q1">Thuê xe máy ở Hà Nội có giao tận nơi không?</button>
-            <div class="faq-answer" data-a="q1"><p>Chúng tôi có giao tận nơi (có tính phí) tại Long Biên, Ba Đình, Hoàn Kiếm, Phố Cổ, Gia Lâm.</p></div>
+            <button class="faq-question" data-q="q1">Giá thuê xe máy theo ngày Hà Nội bao nhiêu? <span>+</span></button>
+            <div class="faq-answer" data-a="q1"><p>Giá thuê xe máy từ <strong>150k – 200k/ngày</strong>, tuỳ loại xe (xe số, tay ga, 50cc) và thời điểm thuê. Vui lòng liên hệ để có giá chính xác nhất.</p></div>
           </div>
-
           <div class="faq-item">
-            <button class="faq-question" data-q="q2">Thuê xe máy có cần cọc không?</button>
-            <div class="faq-answer" data-a="q2"><p>Thuê xe cần đặt cọc từ 2 – 5 triệu đồng tùy loại xe.</p></div>
+            <button class="faq-question" data-q="q2">Giá thuê xe máy theo tuần?<span>+</span></button>
+            <div class="faq-answer" data-a="q2"><p>Thuê 1 tuần thường dao động từ **600.000 VNĐ – 900.000 VNĐ**, tiết kiệm hơn thuê lẻ từng ngày. Có ưu đãi cho khách thuê dài hạn.</p></div>
           </div>
-
           <div class="faq-item">
-            <button class="faq-question" data-q="q3">Giá thuê xe máy tháng bao nhiêu?</button>
-            <div class="faq-answer" data-a="q3"><p>Từ 1 – 2 triệu đồng/tháng tùy từng loại xe.</p></div>
+            <button class="faq-question" data-q="q3">Giá thuê xe máy tháng bao nhiêu?<span>+</span></button>
+            <div class="faq-answer" data-a="q3"><p>Giá thuê theo tháng **từ 1 – 2 triệu đồng/tháng** tùy từng loại xe. Đây là mức giá ưu đãi nhất, phù hợp với khách du lịch dài ngày hoặc người đi làm.</p></div>
           </div>
-
           <div class="faq-item">
-            <button class="faq-question" data-q="q4">Giờ làm việc?</button>
-            <div class="faq-answer" data-a="q4"><p>Từ 8h00 đến 21h00 hàng ngày.</p></div>
+            <button class="faq-question" data-q="q4">Thủ tục thuê xe máy là gì?<span>+</span></button>
+            <div class="faq-answer" data-a="q4"><p>Cần có **CCCD/CMND hoặc hộ chiếu** và đặt cọc từ **1 – 5 triệu đồng** (tùy loại xe). Xe sẽ được giao tận nơi theo yêu cầu của bạn.</p></div>
           </div>
-        </div>
+          <div class="faq-item">
+            <button class="faq-question" data-q="q5">Thuê xe máy Hà Nội có giao tận nơi không?<span>+</span></button>
+            <div class="faq-answer" data-a="q5"><p>Có, chúng tôi hỗ trợ giao xe tận nơi (có tính phí nhỏ) tại các khu vực: **Phố Cổ, Hoàn Kiếm, Long Biên, Gia Lâm, Tây Hồ, Ba Đình** và các khu vực lân cận khác.</p></div>
+          </div>
+          </div>
       </section>
     </section>
   </main>
@@ -366,8 +444,7 @@
       const themeToggle = document.getElementById('themeToggle');
       const backToTop = document.getElementById('backToTop');
       const header = document.getElementById('header');
-      const faqBtns = document.querySelectorAll('.faq-question');
-      const faqAnswers = document.querySelectorAll('.faq-answer');
+      const faqItems = document.querySelectorAll('.faq-item');
       const ariaAnnounce = document.getElementById('ariaAnnounce');
 
       /* ---------- THEME init (auto + localStorage) ---------- */
@@ -512,17 +589,26 @@
       window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
       backToTop.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}) );
 
-      /* ---------- FAQ accordion ---------- */
-      faqBtns.forEach(btn=>{
+      /* ---------- FAQ accordion & logic from old code ---------- */
+      faqItems.forEach(item=>{
+        const btn = item.querySelector('.faq-question');
+        const span = btn.querySelector('span'); // + / -
         btn.addEventListener('click', ()=>{
-          const key = btn.getAttribute('data-q');
-          const ans = document.querySelector('.faq-answer[data-a="'+key+'"]');
-          if(!ans) return;
-          const isOpen = ans.classList.contains('open');
-          // Đóng tất cả
-          document.querySelectorAll('.faq-answer').forEach(a=>a.classList.remove('open'));
+          const isOpen = item.classList.contains('open');
+          
+          // Đóng tất cả và reset dấu
+          document.querySelectorAll('.faq-item').forEach(i => {
+            i.classList.remove('open');
+            // Đảm bảo dấu đóng là '+'
+            const closeSpan = i.querySelector('.faq-question span');
+            if(closeSpan && closeSpan.textContent !== '+') closeSpan.textContent = '+'; 
+          });
+          
           // Mở mục hiện tại nếu nó chưa mở
-          if(!isOpen) ans.classList.add('open');
+          if(!isOpen) {
+            item.classList.add('open');
+            span.textContent = '−';
+          }
         });
       });
 
