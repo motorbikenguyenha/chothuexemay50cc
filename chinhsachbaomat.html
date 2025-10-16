@@ -15,45 +15,6 @@
   <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
   <script async custom-element="amp-position-observer" src="https://cdn.ampproject.org/v0/amp-position-observer-0.1.js"></script>
 
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@graph":[
-      {
-        "@type":"WebPage",
-        "name":"Thuê Xe Máy Hà Nội - Thu Hà",
-        "description":"Thuê xe máy Hà Nội, Long Biên và thuê xe máy tháng tại Thu Hà. Xe 50cc, Vision, Air Blade, giao tận nơi, giá rẻ, thủ tục nhanh.",
-        "url":"https://motorbikenguyenha.github.io/chothuexemay50cc/",
-        "inLanguage":"vi",
-        "breadcrumb":{
-          "@type":"BreadcrumbList",
-          "itemListElement":[
-            {"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://motorbikenguyenha.github.io/chothuexemay50cc/"},
-            {"@type":"ListItem","position":2,"name":"Giới thiệu","item":"https://motorbikenguyenha.github.io/chothuexemay50cc/#gioithieu"},
-            {"@type":"ListItem","position":3,"name":"Dịch vụ","item":"https://motorbikenguyenha.github.io/chothuexemay50cc/#dichvu"},
-            {"@type":"ListItem","position":4,"name":"Liên hệ","item":"https://motorbikenguyenha.github.io/chothuexemay50cc/#lienhe"}
-          ]
-        }
-      },
-      {
-        "@type":"LocalBusiness",
-        "name":"Thu Hà Motorbike Rental",
-        "image":"https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg",
-        "@id":"https://motorbikenguyenha.github.io/chothuexemay50cc/",
-        "url":"https://motorbikenguyenha.github.io/chothuexemay50cc/",
-        "telephone":"+84334699969",
-        "address":{"@type":"PostalAddress","streetAddress":"108 Nguyễn Văn Cừ, Bồ Đề","addressLocality":"Long Biên","addressRegion":"Hà Nội","postalCode":"100000","addressCountry":"VN"},
-        "geo":{"@type":"GeoCoordinates","latitude":21.0409243,"longitude":105.8691297},
-        "priceRange":"₫150.000–₫2.000.000",
-        "openingHours":"Mo-Su 08:00-21:00",
-        "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"120"},
-        "sameAs":["https://m.facebook.com/chothuexemayohanoigiare/","https://wa.me/84334699969","https://zalo.me/0334699969"],
-        "description":"Thu Hà chuyên cho thuê xe máy 50cc, Honda Vision, Air Blade tại Long Biên – Hà Nội, giao tận nơi, xe mới, giá rẻ, thủ tục nhanh gọn."
-      }
-    ]
-  }
-  </script>
-
   <style amp-custom>
     /* ===== Reset & body ===== */
     body{font-family:'Roboto',sans-serif;margin:0;padding:0;line-height:1.6;background:#fff;color:#000;scroll-behavior:smooth;}
@@ -116,29 +77,17 @@
     .bar.mid.active { opacity:0; transform:scaleX(0.2); }
     .bar.bot.active { transform:translateY(-9px) rotate(-45deg); background:#f4c542; }
 
-    /* ---------- Dark Mode Toggle (right) ---------- */
-    .dark-toggle {
-      position:absolute;
-      right:16px;
-      background:none;
-      border:none;
-      font-size:22px;
-      cursor:pointer;
-      transition:transform 0.3s ease;
-      z-index:1100;
-    }
-    .dark-toggle:hover { transform:scale(1.15) rotate(10deg); }
+    /* Đã loại bỏ Dark Mode Toggle CSS tại đây */
 
     /* ---------- Sidebar (glass + gold accents) ---------- */
     amp-sidebar {
       width:300px;
-      /* Đảm bảo nền sáng mặc định cho sidebar */
       background:linear-gradient(180deg, rgba(255,255,255,0.94), rgba(250,250,250,0.92));
       backdrop-filter:blur(22px) saturate(150%);
       -webkit-backdrop-filter:blur(22px) saturate(150%);
       box-shadow:2px 0 30px rgba(0,0,0,0.22);
       border-right:1px solid rgba(0,0,0,0.05);
-      transition: background 0.5s ease; /* Thêm transition cho sidebar */
+      transition: background 0.5s ease;
     }
     /* overlay to blur page behind */
     .sidebar-overlay {
@@ -221,59 +170,14 @@
       text-align:center;
       color:#222;
       font-size:14px;
-      transition:background 0.5s ease, color 0.5s ease; /* Thêm transition cho footer */
+      transition:background 0.5s ease, color 0.5s ease;
     }
     .mini-footer .links { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:8px; }
     .mini-footer a { text-decoration:none; color:#111; font-weight:600; padding:6px 8px; border-radius:6px; transition:background .2s ease; }
     .mini-footer a:hover { background:rgba(244,197,66,0.08); }
     .mini-footer .copy { color:#666; font-size:13px; margin-top:6px; }
 
-    /* ---------- Dark Mode Styles (applied when .dark on <html>) ---------- */
-    /* SỬA LỖI DARK MODE TOÀN TRANG: Áp dụng Dark Mode cho body */
-    .dark body { 
-        background: #1a1a1a; 
-        color: #ddd; 
-    }
-    .dark .site-header {
-      background:rgba(30,30,30,0.85);
-      border-bottom:1px solid rgba(244,197,66,0.2);
-    }
-    .dark .site-header.shrink {
-      background:rgba(25,25,25,0.9);
-      box-shadow:0 8px 22px rgba(0,0,0,0.4);
-    }
-    .dark .site-title { color:#f4c542; }
-    .dark .bar { background:#f4c542 !important; }
-    
-    /* FIX: Dark Mode cho amp-sidebar (đã có ở trên nhưng tôi thêm lại selector chính xác) */
-    .dark amp-sidebar {
-        background: #1a1a1a; 
-        color: #f4c542;
-    }
-    
-    /* FIX: Dark Mode cho sidebar header/close button */
-    .dark .sidebar-header h3, .dark .close-btn { color:#f4c542; }
-
-    .dark .sidebar-nav a {
-      color:#f4c542;
-      background:linear-gradient(90deg, transparent 0%, transparent 92%, rgba(244,197,66,0.1) 100%);
-    }
-    .dark .sidebar-nav a:hover {
-      background:linear-gradient(90deg, rgba(244,197,66,0.3), rgba(244,197,66,0.9));
-      box-shadow:0 6px 18px rgba(244,197,66,0.35);
-      color:#fff;
-    }
-    .dark .mini-footer {
-      background:rgba(22,22,22,0.95);
-      border-top:1px solid rgba(244,197,66,0.25);
-      color:#ddd;
-    }
-    .dark .mini-footer a { color:#f4c542; }
-    
-    /* SỬA LỖI DARK MODE TOÀN TRANG: Áp dụng cho các thành phần nội dung chính */
-    .dark h1, .dark h2, .dark h3 { color: #f4c542; }
-    .dark .review { background: #222; box-shadow: 0 2px 5px rgba(244,197,66,0.15); }
-    .dark .faq-answer { background: #2a2a2a; }
+    /* Đã loại bỏ toàn bộ Dark Mode Styles tại đây */
 
     /* Smooth global transition */
     body, .site-header, .sidebar-nav a, .mini-footer {
@@ -284,7 +188,6 @@
     header{margin:0;padding:0}
     .container{width:90%;max-width:1000px;margin:20px auto;}
     amp-img.responsive{width:100%;height:auto;border-radius:6px;margin:20px 0;}
-    /* FIX: Thiết lập màu mặc định cho headings */
     h1,h2,h3{text-align:center;color:#000;margin:15px 0;}
     footer{background:#111;color:#fff;text-align:center;padding:20px 10px;}
     .faq{margin-top:40px;border-top:2px solid #f4c542;padding-top:20px;}
@@ -328,11 +231,8 @@
   <noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 
 </head>
-<body [class]="dark ? 'dark' : ''">
+<body>
 
-  <amp-state id="dark">
-    <script type="application/json">false</script>
-  </amp-state>
   <amp-state id="menuOpen">
     <script type="application/json">false</script>
   </amp-state>
@@ -354,10 +254,7 @@
 
     <div class="site-title">Thuê Xe Máy 50cc Hà Nội - Thu Hà</div>
 
-    <button class="dark-toggle" on="tap:AMP.setState({dark: !dark})" title="Chuyển chế độ sáng/tối" aria-label="Chuyển chế độ sáng/tối">
-      <span class="icon" [text]="dark ? '🌙' : '☀️'"></span>
-    </button>
-  </header>
+    </header>
 
   <div style="height:1px">
     <amp-position-observer
@@ -366,7 +263,7 @@
     </amp-position-observer>
   </div>
 
-  <amp-sidebar id="sidebar1" layout="nodisplay" side="left" [class]="dark ? 'dark' : ''" on="sidebarClose:AMP.setState({menuOpen:false})">
+  <amp-sidebar id="sidebar1" layout="nodisplay" side="left" on="sidebarClose:AMP.setState({menuOpen:false})">
     <div class="sidebar-overlay" on="tap:sidebar1.close" role="button" tabindex="0" aria-label="Đóng Menu"></div>
     <div class="sidebar-content">
       <div class="sidebar-header">
