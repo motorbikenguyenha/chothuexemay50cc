@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>Thuê Xe Máy Hà Nội | Thu Hà Motorbike Rental</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Thuê xe máy Hà Nội, Long Biên, thuê xe tháng, xe 50cc, Vision, Air Blade. Giao tận nơi, thủ tục nhanh, giá rẻ." />
+  <meta name="keywords" content="thuê xe máy Hà Nội, thuê xe máy Long Biên, thuê xe máy tháng Hà Nội, thuê xe máy 50cc, thuê xe Vision, thuê xe Air Blade" />
+  <link rel="canonical" href="https://motorbikenguyenha.github.io/chothuexemay50cc/" />
+
+  <!-- ====== STYLES (full UI) ====== -->
+  <style>
+    /* ---------- Variables ---------- */
+    :root{
+      --bg:#ffffff;
+      --text:#0b0b0b;
+      --muted:#666;
+      --accent:#f4c542; /* vàng ánh kim */
+      --glass: rgba(255,255,255,0.75);
+      --glass-dark: rgba(20,20,20,0.86);
+      --shadow: 0 8px 24px rgba(12,12,12,0.08);
+      --radius:12px;
+      --max-w:1100px;
+      --ease: cubic-bezier(.2,.9,.3,1);
+    }
+
+    /* Dark theme vars */
+    :root.dark{
+      --bg:#0b0b0b;
+      --text:#f6f1e6;
+      --muted:#cfc6b3;
+      --accent:#f4c542;
+      --glass: rgba(18,18,18,0.88);
+      --glass-dark: rgba(255,255,255,0.02);
+      --shadow: 0 12px 30px rgba(0,0,0,0.45);
+    }
+
+    /* ---------- Base ---------- */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, "Roboto", system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      transition:background .45s var(--ease), color .45s var(--ease);
+    }
+    a{color:inherit}
+    img{max-width:100%;height:auto;display:block}
+
+    .container{width:92%;max-width:var(--max-w);margin:92px auto 48px auto}
+
+    /* ---------- Header ---------- */
+    header.site-header{
+      position:fixed;left:0;right:0;top:0;z-index:1200;
+      display:flex;align-items:center;justify-content:center;
+      padding:18px 18px;
+      background:linear-gradient(180deg, var(--glass), transparent);
+      backdrop-filter: blur(10px) saturate(140%);
+      box-shadow:var(--shadow);
+      transition: padding .28s var(--ease), box-shadow .28s var(--ease), background .28s var(--ease);
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    header.site-header.shrink{
+      padding:8px 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transform: translateY(0);
+    }
+    .site-title{
+      font-weight:700;font-size:18px;letter-spacing:0.2px;color:var(--text);
+      text-align:center;
+    }
+
+    /* ---------- Hamburger (left) ---------- */
+    .menu-toggle{
+      position:absolute;left:18px;top:50%;transform:translateY(-50%);
+      width:40px;height:40px;border-radius:10px;border:none;background:transparent;
+      display:flex;align-items:center;justify-content:center;cursor:pointer;
+      z-index:1300;
+      transition:transform .18s ease, background .18s ease;
+      outline:none;
+    }
+    .menu-toggle:focus{box-shadow:0 4px 14px rgba(0,0,0,0.12)}
+    .hamburger{
+      width:22px;height:18px;display:inline-block;position:relative;
+    }
+    .hamburger span{
+      position:absolute;left:0;width:100%;height:3px;background:var(--text);
+      border-radius:3px;transition: transform .36s var(--ease), top .28s var(--ease), opacity .28s var(--ease), background .28s var(--ease);
+      box-shadow:0 1px 0 rgba(0,0,0,0.06);
+    }
+    .hamburger span:nth-child(1){top:0}
+    .hamburger span:nth-child(2){top:7.5px}
+    .hamburger span:nth-child(3){top:15px}
+
+    .menu-toggle:hover .hamburger span{background:var(--accent)}
+    .menu-toggle.active .hamburger span:nth-child(1){transform:translateY(7.5px) rotate(45deg); background:var(--accent)}
+    .menu-toggle.active .hamburger span:nth-child(2){opacity:0;transform:scaleX(.2)}
+    .menu-toggle.active .hamburger span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg); background:var(--accent)}
+
+    /* ---------- Dark toggle (right) ---------- */
+    .theme-toggle{
+      position:absolute;right:18px;top:50%;transform:translateY(-50%);
+      width:40px;height:40px;border-radius:10px;border:none;background:transparent;
+      display:flex;align-items:center;justify-content:center;cursor:pointer;
+      font-size:18px;z-index:1300;outline:none;
+    }
+    .theme-toggle:focus{box-shadow:0 4px 14px rgba(0,0,0,0.12)}
+
+    /* ---------- Sidebar (glass) ---------- */
+    .sidebar{
+      position:fixed;left:0;top:0;height:100vh;width:320px;max-width:86vw;
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,250,0.90));
+      box-shadow: 2px 0 40px rgba(0,0,0,0.22);
+      transform: translateX(-110%);
+      transition: transform .42s var(--ease), background .3s var(--ease);
+      z-index:1250;
+      display:flex;flex-direction:column;
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      backdrop-filter: blur(16px) saturate(140%);
+      border-right:1px solid rgba(0,0,0,0.04);
+    }
+    :root.dark .sidebar{
+      background: linear-gradient(180deg, rgba(12,12,12,0.96), rgba(18,18,18,0.96));
+      color:var(--text);
+    }
+    .sidebar.open{ transform: translateX(0) }
+
+    .sidebar .sidebar-header{
+      display:flex;align-items:center;justify-content:space-between;padding:20px 18px;border-bottom:1px solid rgba(0,0,0,0.04);
+    }
+    .sidebar h3{margin:0;font-size:18px;font-weight:700;color:var(--text)}
+    .sidebar .close-btn{font-size:26px;border:none;background:transparent;cursor:pointer;color:var(--text)}
+    .sidebar .close-btn:hover{color:var(--accent)}
+
+    .sidebar-nav{padding:16px 18px;display:flex;flex-direction:column;gap:8px;overflow:auto}
+    .sidebar-nav a{
+      display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;color:var(--text);
+      text-decoration:none;font-weight:600;position:relative;overflow:hidden;transition: transform .28s var(--ease), box-shadow .28s var(--ease), background .28s var(--ease)
+    }
+    .sidebar-nav a .ico{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;background:rgba(0,0,0,0.04)}
+    :root.dark .sidebar-nav a .ico{background:rgba(255,255,255,0.03)}
+    .sidebar-nav a:hover{ transform: translateX(8px); box-shadow:0 8px 24px rgba(0,0,0,0.08); background: linear-gradient(90deg, rgba(244,197,66,0.08), rgba(244,197,66,0.18))}
+    /* glow effect */
+    .sidebar-nav a::after{
+      content:'';position:absolute;left:-110%;top:0;width:120%;height:100%;
+      background: linear-gradient(120deg, transparent, rgba(244,197,66,0.45), transparent);
+      transform:skewX(-12deg);transition:left .55s var(--ease);pointer-events:none;
+    }
+    .sidebar-nav a:hover::after{ left:100% }
+
+    /* ---------- Overlay ---------- */
+    .overlay{
+      position:fixed;inset:0;background:rgba(0,0,0,0.32);backdrop-filter:blur(6px);
+      opacity:0;pointer-events:none;transition:opacity .32s var(--ease);z-index:1230;
+    }
+    .overlay.show{opacity:1;pointer-events:auto}
+
+    /* ---------- Content ---------- */
+    .hero-img{border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+    h1,h2,h3{text-align:center;margin:16px 0;color:var(--text)}
+    p{color:var(--muted);margin:0 0 14px 0}
+
+    /* ---------- Review slider (simple) ---------- */
+    .review-slider{overflow:hidden;margin:30px auto;max-width:800px}
+    .review{background: linear-gradient(180deg, rgba(249,249,249,0.9), rgba(245,245,245,0.9)); padding:16px;border-radius:10px;box-shadow:0 6px 22px rgba(0,0,0,0.06)}
+    :root.dark .review{background:linear-gradient(180deg, rgba(18,18,18,0.9), rgba(28,28,28,0.9))}
+
+    /* ---------- FAQ ---------- */
+    .faq{margin-top:40px;padding-top:6px;border-top:3px solid rgba(244,197,66,0.12)}
+    .faq-item{margin-bottom:12px}
+    .faq-question{width:100%;background:var(--accent);color:#000;border:none;padding:12px;border-radius:8px;font-weight:700;cursor:pointer}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .36s var(--ease), padding .28s var(--ease;background .28s);background:transparent}
+    .faq-answer.open{max-height:260px;padding:10px 12px;background:linear-gradient(180deg, rgba(249,249,249,0.6), rgba(245,245,245,0.5));border-radius:0 0 8px 8px}
+
+    /* ---------- Back to top ---------- */
+    .back-to-top{
+      position:fixed;right:18px;bottom:22px;width:54px;height:54px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff5e6,#f9e5b6);
+      box-shadow:0 10px 22px rgba(244,197,66,0.18),0 2px 6px rgba(0,0,0,0.12);
+      font-size:20px;color:#111;border:1px solid rgba(244,197,66,0.22);cursor:pointer;z-index:1300;transform:translateY(10px);opacity:0;transition:transform .28s var(--ease),opacity .28s var(--ease)
+    }
+    .back-to-top.show{transform:translateY(0);opacity:1}
+
+    /* ---------- Mini Footer ---------- */
+    footer.mini-footer{
+      margin-top:36px;padding:18px 12px;background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,250,0.96));
+      border-top:1px solid rgba(244,197,66,0.12);text-align:center;color:var(--text)
+    }
+    :root.dark footer.mini-footer{background:linear-gradient(180deg, rgba(12,12,12,0.95), rgba(10,10,10,0.96));color:var(--muted);border-top-color:rgba(244,197,66,0.18)}
+
+    .mini-footer .links{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:8px}
+    .mini-footer a{color:var(--text);text-decoration:none;font-weight:600;padding:6px 8px;border-radius:6px}
+    .mini-footer a:hover{background:rgba(244,197,66,0.06)}
+
+    /* ---------- Floating action buttons ---------- */
+    .fab{position:fixed;right:16px;border-radius:50%;padding:12px 14px;color:#fff;font-weight:bold;text-align:center;font-size:16px;box-shadow:0 6px 18px rgba(0,0,0,0.12);z-index:1300;cursor:pointer}
+    .fab.call{bottom:18px;background:#28a745}
+    .fab.zalo{bottom:88px;background:#0078ff}
+    .fab.map{bottom:158px;background:var(--accent);color:#000}
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:768px){
+      .container{margin-top:78px}
+      .site-title{font-size:15px}
+      .sidebar{width:86vw}
+      .menu-toggle{left:12px}
+      .theme-toggle{right:12px}
+      .hamburger span{height:2.8px}
+      .back-to-top{right:12px;bottom:12px}
+    }
+
+    @media (min-width:1400px){
+      :root{--max-w:1300px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar" aria-hidden="true" aria-label="Main menu">
+    <div class="sidebar-header">
+      <h3>🚀 Thu Hà</h3>
+      <button class="close-btn" id="closeSidebar" aria-label="Đóng menu">×</button>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Primary">
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/"><span class="ico">🏠</span> Trang chủ</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/gioithieu.html"><span class="ico">ℹ️</span> Giới thiệu</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html"><span class="ico">🛵</span> Dịch vụ</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/lienhe.html"><span class="ico">📞</span> Liên hệ</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dieukhoansudung.html"><span class="ico">📜</span> Điều khoản sử dụng</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/chinhsachbaomat.html"><span class="ico">🔒</span> Chính sách bảo mật</a>
+    </nav>
+  </aside>
+
+  <!-- Header -->
+  <header class="site-header" id="header" role="banner">
+    <button class="menu-toggle" id="menuBtn" aria-label="Mở menu" aria-haspopup="true" aria-controls="sidebar">
+      <span class="hamburger" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+
+    <div class="site-title">Thuê Xe Máy 50cc Hà Nội - Thu Hà</div>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="Chuyển chế độ sáng/tối" title="Chuyển chế độ sáng/tối">☀️</button>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <section class="container" id="top">
+      <figure class="hero-img" aria-hidden="true">
+        <img src="https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg" alt="Thuê xe máy Hà Nội - Thu Hà" />
+      </figure>
+
+      <h1>Thuê Xe Máy Hà Nội - Thu Hà</h1>
+      <p>Thu Hà chuyên <strong>thuê xe máy Hà Nội</strong>, <strong>thuê xe máy Long Biên</strong> và <strong>thuê xe máy tháng Hà Nội</strong>. Cung cấp xe 50cc, Honda Vision, Honda Air Blade, giao tận nơi, giá rẻ, thủ tục nhanh, thuận tiện di chuyển.</p>
+
+      <section id="dichvu" aria-labelledby="dichvu-title">
+        <h2 id="dichvu-title">Dịch vụ Thuê Xe Máy Tại Hà Nội</h2>
+        <p>Dịch vụ uy tín, giá rẻ, đặc biệt ở Long Biên, gần bến xe Gia Lâm, phố cổ và trung tâm Hoàn Kiếm. Hỗ trợ thuê theo ngày, tuần hoặc tháng. Giao xe tận nơi, hành trình thuận tiện và tiết kiệm chi phí.</p>
+
+        <h3>Dịch vụ giao xe tận nơi</h3>
+        <p>Giao xe tận nơi (có phí) tại Long Biên, Hoàn Kiếm, Gia Lâm, Ba Đình.</p>
+
+        <h3>Thủ tục thuê xe</h3>
+        <p>Chỉ cần CCCD và cọc từ 2–5 triệu đồng, thuê xe nhanh chóng.</p>
+
+        <h3>Giá thuê xe máy</h3>
+        <p>Thuê theo ngày: 150.000 – 200.000đ, thuê theo tháng: 1 – 2 triệu đồng.</p>
+      </section>
+
+      <section class="review-slider" aria-label="Đánh giá khách hàng">
+        <div class="review">⭐️⭐️⭐️⭐️⭐️ “Xe tốt, giao tận nơi đúng hẹn. Rất hài lòng!” – Minh, Hà Nội</div>
+        <div style="height:14px"></div>
+        <div class="review">⭐️⭐️⭐️⭐️⭐️ “Thủ tục nhanh gọn, chị chủ thân thiện, giá hợp lý.” – Hương, Gia Lâm</div>
+      </section>
+
+      <section class="faq" aria-labelledby="faq-title">
+        <h2 id="faq-title">Câu hỏi thường gặp</h2>
+        <div class="faq-item">
+          <button class="faq-question" data-q="q1">Thuê xe máy ở Hà Nội có giao tận nơi không?</button>
+          <div class="faq-answer" data-a="q1"><p>Chúng tôi có giao tận nơi (có tính phí) tại Long Biên, Ba Đình, Hoàn Kiếm, Phố Cổ, Gia Lâm.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" data-q="q2">Thuê xe máy có cần cọc không?</button>
+          <div class="faq-answer" data-a="q2"><p>Thuê xe cần đặt cọc từ 2 – 5 triệu đồng tùy loại xe.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" data-q="q3">Giá thuê xe máy tháng bao nhiêu?</button>
+          <div class="faq-answer" data-a="q3"><p>Từ 1 – 2 triệu đồng/tháng tùy từng loại xe.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" data-q="q4">Giờ làm việc?</button>
+          <div class="faq-answer" data-a="q4"><p>Từ 8h00 đến 21h00 hàng ngày.</p></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Mini Footer -->
+  <footer class="mini-footer" id="lienhe" role="contentinfo">
+    <div class="links">
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">Trang chủ</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html">Dịch vụ</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/lienhe.html">Liên hệ</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dieukhoansudung.html">Điều khoản</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/chinhsachbaomat.html">Chính sách</a>
+    </div>
+    <div class="copy">© Thu Hà Motorbike Rental – Hà Nội</div>
+  </footer>
+
+  <!-- Floating action buttons -->
+  <a class="fab call" href="tel:+84334699969" aria-label="Gọi điện">📞</a>
+  <a class="fab zalo" href="https://zalo.me/84334699969" target="_blank" aria-label="Zalo">Z</a>
+  <a class="fab map" href="https://share.google/8NaCZJ82JU92sVTGl" target="_blank" aria-label="Bản đồ">🗺</a>
+
+  <!-- Back to top -->
+  <button id="backToTop" class="back-to-top" aria-label="Lên đầu trang">⬆</button>
+
+  <!-- ====== SCRIPTS (menu, dark mode, UI behaviors) ====== -->
+  <script>
+    (function(){
+      // Elements
+      const body = document.documentElement;
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      const menuBtn = document.getElementById('menuBtn');
+      const closeBtn = document.getElementById('closeSidebar');
+      const themeToggle = document.getElementById('themeToggle');
+      const backToTop = document.getElementById('backToTop');
+      const header = document.getElementById('header') || document.querySelector('.site-header');
+      const faqButtons = document.querySelectorAll('.faq-question');
+      const faqAnswers = document.querySelectorAll('.faq-answer');
+
+      // Init state from localStorage
+      const savedTheme = localStorage.getItem('thuha_theme'); // 'dark' | 'light'
+      if(savedTheme === 'dark') body.classList.add('dark'), themeToggle.textContent = '🌙';
+      else body.classList.remove('dark'), themeToggle.textContent = '☀️';
+
+      // Accessibility helpers
+      function trapFocus(container) {
+        const focusables = container.querySelectorAll('a,button,input,textarea,[tabindex]:not([tabindex="-1"])');
+        if(!focusables.length) return;
+        focusables[0].focus();
+      }
+
+      // Open / close sidebar
+      function openSidebar(){
+        sidebar.classList.add('open');
+        overlay.classList.add('show');
+        menuBtn.classList.add('active');
+        sidebar.setAttribute('aria-hidden','false');
+        overlay.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden'; // prevent body scroll
+        trapFocus(sidebar);
+      }
+      function closeSidebar(){
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+        menuBtn.classList.remove('active');
+        sidebar.setAttribute('aria-hidden','true');
+        overlay.setAttribute('aria-hidden','true');
+        document.body.style.overflow = ''; // restore
+        menuBtn.focus();
+      }
+
+      menuBtn.addEventListener('click', function(e){
+        if(sidebar.classList.contains('open')) closeSidebar();
+        else openSidebar();
+      });
+      closeBtn && closeBtn.addEventListener('click', closeSidebar);
+      overlay.addEventListener('click', closeSidebar);
+
+      // close on ESC
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' && sidebar.classList.contains('open')) closeSidebar();
+      });
+
+      // Theme toggle
+      themeToggle.addEventListener('click', function(){
+        const isDark = body.classList.toggle('dark');
+        themeToggle.textContent = isDark ? '🌙' : '☀️';
+        try{ localStorage.setItem('thuha_theme', isDark ? 'dark' : 'light'); }catch(e){}
+      });
+
+      // header shrink on scroll + back to top visibility
+      function onScroll(){
+        const y = window.scrollY || window.pageYOffset;
+        if(y > 80) header.classList.add('shrink'); else header.classList.remove('shrink');
+        if(y > 300) backToTop.classList.add('show'); else backToTop.classList.remove('show');
+      }
+      window.addEventListener('scroll', onScroll, {passive:true});
+      onScroll();
+
+      // back to top
+      backToTop.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+
+      // FAQ toggle
+      faqButtons.forEach(btn=>{
+        btn.addEventListener('click', function(){
+          const key = btn.getAttribute('data-q');
+          faqAnswers.forEach(a => {
+            if(a.getAttribute('data-a') === key) a.classList.toggle('open');
+            else a.classList.remove('open');
+          });
+        });
+      });
+
+      // Prevent focus loss when clicking inside sidebar on mobile
+      sidebar.addEventListener('touchstart', function(){});
+
+      // ensure theme toggle text consistent on load
+      (function setThemeIcon(){
+        const isDark = body.classList.contains('dark');
+        themeToggle.textContent = isDark ? '🌙' : '☀️';
+      })();
+
+      // Link focus visible for accessibility
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Tab') document.body.classList.add('user-is-tabbing');
+      });
+
+      // Optional: Close sidebar on internal link click (better UX)
+      sidebar.querySelectorAll('a').forEach(a=>{
+        a.addEventListener('click', function(){ closeSidebar(); });
+      });
+    })();
+  </script>
+
+  <!-- End -->
+</body>
+</html>
