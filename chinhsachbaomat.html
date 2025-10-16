@@ -1,7 +1,6 @@
 <!doctype html>
 <html ⚡ lang="vi">
 <head>
-  <!-- Google site verification -->
   <meta name="google-site-verification" content="gocezGhK3SBEOimOs_AkFYyLHQx3aRzIj4EtedcdYAs" />
   <meta charset="utf-8">
   <title>Thuê Xe Máy Hà Nội | Thuê Xe Máy Long Biên & Thuê Xe Máy Tháng Hà Nội - Thu Hà</title>
@@ -12,13 +11,10 @@
 
   <script async src="https://cdn.ampproject.org/v0.js"></script>
   <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.2.js"></script>
-
-  <!-- AMP components used -->
   <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
   <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
   <script async custom-element="amp-position-observer" src="https://cdn.ampproject.org/v0/amp-position-observer-0.1.js"></script>
 
-  <!-- Schema JSON-LD -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -298,6 +294,14 @@
       amp-sidebar{ width:86vw; }
       .back-to-top{ width:46px; height:46px; font-size:20px; right:14px; bottom:18px; }
     }
+
+    /* Thêm style cho FAQ answer khi mở */
+    .faq-answer.open { max-height: 200px; padding: 12px; }
+    /* Dark mode for general text/headings */
+    .dark h1, .dark h2, .dark h3 { color: #f4c542; }
+    .dark body { background: #1a1a1a; color: #ddd; }
+    .dark .review { background: #222; box-shadow: 0 2px 5px rgba(244,197,66,0.15); }
+    .dark .faq-answer { background: #2a2a2a; }
   </style>
 
   <style amp-boilerplate>
@@ -317,17 +321,23 @@
 </head>
 <body [class]="dark ? 'dark' : ''">
 
-  <!-- AMP state for dark mode -->
   <amp-state id="dark">
     <script type="application/json">false</script>
   </amp-state>
+  <amp-state id="menuOpen">
+    <script type="application/json">false</script>
+  </amp-state>
+  <amp-state id="scrolled">
+    <script type="application/json">false</script>
+  </amp-state>
+  <amp-state id="faqOpen">
+    <script type="application/json">""</script>
+  </amp-state>
 
-  <!-- top anchor for Back-to-Top -->
   <a id="top"></a>
 
-  <!-- ===== HEADER + MENU (replace old nav/header) ===== -->
   <header class="site-header" [class]="scrolled ? 'site-header shrink' : 'site-header'">
-    <button class="menu-toggle" on="tap:AMP.setState({menuOpen: !menuOpen}), sidebar1.toggle">
+    <button class="menu-toggle" on="tap:AMP.setState({menuOpen: !menuOpen}), sidebar1.toggle" aria-label="Mở Menu">
       <span [class]="menuOpen ? 'bar top active' : 'bar top'"></span>
       <span [class]="menuOpen ? 'bar mid active' : 'bar mid'"></span>
       <span [class]="menuOpen ? 'bar bot active' : 'bar bot'"></span>
@@ -335,13 +345,11 @@
 
     <div class="site-title">Thuê Xe Máy 50cc Hà Nội - Thu Hà</div>
 
-    <!-- Dark Mode Toggle - single button with icon -->
-    <button class="dark-toggle" on="tap:AMP.setState({dark: !dark})" title="Chuyển chế độ sáng/tối">
+    <button class="dark-toggle" on="tap:AMP.setState({dark: !dark})" title="Chuyển chế độ sáng/tối" aria-label="Chuyển chế độ sáng/tối">
       <span class="icon" [text]="dark ? '🌙' : '☀️'"></span>
     </button>
   </header>
 
-  <!-- position observer sentinel: when header leaves viewport -> scrolled=true -->
   <div style="height:1px">
     <amp-position-observer
       on="exit:AMP.setState({scrolled:true});enter:AMP.setState({scrolled:false})"
@@ -349,13 +357,12 @@
     </amp-position-observer>
   </div>
 
-  <!-- AMP Sidebar (menu) -->
   <amp-sidebar id="sidebar1" layout="nodisplay" side="left" on="sidebarClose:AMP.setState({menuOpen:false})">
-    <div class="sidebar-overlay" on="tap:sidebar1.close"></div>
+    <div class="sidebar-overlay" on="tap:sidebar1.close" role="button" tabindex="0" aria-label="Đóng Menu"></div>
     <div class="sidebar-content">
       <div class="sidebar-header">
         <h3>🚀 Thu Hà</h3>
-        <button on="tap:sidebar1.close" class="close-btn">×</button>
+        <button on="tap:sidebar1.close" class="close-btn" aria-label="Đóng Menu">×</button>
       </div>
 
       <nav class="sidebar-nav">
@@ -369,7 +376,6 @@
     </div>
   </amp-sidebar>
 
-  <!-- ===== Main container (keeps your original content) ===== -->
   <div class="container">
 
     <amp-img src="https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg" width="800" height="533" layout="responsive" alt="Thuê xe máy Hà Nội - Thu Hà" class="responsive"></amp-img>
@@ -390,7 +396,6 @@
       <p>Thuê theo ngày: 150.000 – 200.000đ, thuê theo tháng: 1 – 2 triệu đồng.</p>
     </section>
 
-    <!-- Review Slider AMP -->
     <section class="review-slider">
       <amp-carousel width="800" height="200" layout="responsive" type="carousel" autoplay delay="4000" loop>
         <div class="review">⭐️⭐️⭐️⭐️⭐️ “Xe tốt, giao tận nơi đúng hẹn. Rất hài lòng!” – Minh, Hà Nội</div>
@@ -399,30 +404,28 @@
       </amp-carousel>
     </section>
 
-    <!-- FAQ Accordion AMP -->
-    <section class="faq" [class]="faqOpen?'open':'closed'">
+    <section class="faq">
       <h2>Câu hỏi thường gặp</h2>
       <div class="faq-item">
-        <button class="faq-question" on="tap:AMP.setState({faqOpen:'q1'})">Thuê xe máy ở Hà Nội có giao tận nơi không?</button>
+        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q1' ? '' : 'q1'})" aria-expanded="false" [attr.aria-expanded]="faqOpen=='q1'">Thuê xe máy ở Hà Nội có giao tận nơi không?</button>
         <div class="faq-answer" [class]="faqOpen=='q1'?'open':'closed'"><p>Chúng tôi có giao tận nơi (có tính phí) tại Long Biên, Ba Đình, Hoàn Kiếm, Phố Cổ, Gia Lâm.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" on="tap:AMP.setState({faqOpen:'q2'})">Thuê xe máy có cần cọc không?</button>
+        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q2' ? '' : 'q2'})" aria-expanded="false" [attr.aria-expanded]="faqOpen=='q2'">Thuê xe máy có cần cọc không?</button>
         <div class="faq-answer" [class]="faqOpen=='q2'?'open':'closed'"><p>Thuê xe cần đặt cọc từ 2 – 5 triệu đồng tùy loại xe.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" on="tap:AMP.setState({faqOpen:'q3'})">Giá thuê xe máy tháng bao nhiêu?</button>
+        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q3' ? '' : 'q3'})" aria-expanded="false" [attr.aria-expanded]="faqOpen=='q3'">Giá thuê xe máy tháng bao nhiêu?</button>
         <div class="faq-answer" [class]="faqOpen=='q3'?'open':'closed'"><p>Từ 1 – 2 triệu đồng/tháng tùy từng loại xe.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question" on="tap:AMP.setState({faqOpen:'q4'})">Giờ làm việc?</button>
+        <button class="faq-question" on="tap:AMP.setState({faqOpen: faqOpen=='q4' ? '' : 'q4'})" aria-expanded="false" [attr.aria-expanded]="faqOpen=='q4'">Giờ làm việc?</button>
         <div class="faq-answer" [class]="faqOpen=='q4'?'open':'closed'"><p>Từ 8h00 đến 21h00 hàng ngày.</p></div>
       </div>
     </section>
 
   </div>
 
-  <!-- Mini Footer (white mờ viền vàng) -->
   <footer class="mini-footer" id="lienhe">
     <div class="links">
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">Trang chủ</a>
@@ -434,12 +437,10 @@
     <div class="copy">© Thu Hà Motorbike Rental – Hà Nội</div>
   </footer>
 
-  <!-- Floating action buttons -->
-  <a href="tel:+84334699969" class="call-btn">Gọi</a>
-  <a href="https://zalo.me/84334699969" class="zalo-btn" target="_blank">Z</a>
-  <a href="https://share.google/8NaCZJ82JU92sVTGl" class="map-btn" target="_blank">🗺 Đến nơi</a>
+  <a href="tel:+84334699969" class="call-btn" aria-label="Gọi điện">📞</a>
+  <a href="https://zalo.me/84334699969" class="zalo-btn" target="_blank" aria-label="Zalo">Z</a>
+  <a href="https://share.google/8NaCZJ82JU92sVTGl" class="map-btn" target="_blank" aria-label="Bản đồ">🗺</a>
 
-  <!-- Back to top button (visible when scrolled via AMP state) -->
   <a id="backToTop"
      [hidden]="!scrolled"
      href="#top"
