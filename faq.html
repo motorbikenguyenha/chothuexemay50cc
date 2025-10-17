@@ -255,8 +255,61 @@
     
     /* Media Queries for better mobile spacing */
     @media(max-width:960px){
-      .top-info{ display: none; } /* Ẩn Top Info Bar trên mobile */
+      /* Tối ưu hiển thị Top Info trên Mobile */
+      .top-info{
+        display: flex; /* Đảm bảo nó được hiển thị */
+        gap: 8px; /* Giảm khoảng cách giữa 2 phần tử */
+        justify-self: end; /* Đẩy nó sang phải gần theme toggle (phía bên phải) */
+        font-size: 0.9em; /* Cỡ chữ nhỏ hơn để gọn hơn */
+        order: 3; /* Đảm bảo nó nằm bên phải logo */
+        align-items: center;
+      }
+      .top-info.left {
+          justify-self: end; /* Quan trọng để đưa nó về phía theme toggle */
+      }
+
+      /* QUAN TRỌNG: Ẩn chữ trong link email và giữ lại icon */
+      .top-info a {
+        display: flex;
+        align-items: center;
+        gap: 0; /* Bỏ khoảng cách giữa icon và chữ */
+      }
+      /* Chỉ hiển thị icon email */
+      .top-info a span:not([aria-hidden="true"]) {
+        display: none; /* Ẩn phần chữ 'nguyenthuha203@gmail.com' */
+      }
+      
+      /* Giữ nguyên giờ làm việc ⏰ 9h - 21h */
+      .top-info span[title="Giờ làm việc"] {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px; /* Giữ icon và chữ */
+        font-size: 1em; /* Cỡ chữ cơ bản cho giờ làm việc trên mobile */
+        /* Đảm bảo chỉ hiện chữ và icon, không cần ẩn */
+      }
+      
+      /* Cân bằng icon email (lớn hơn mặc định) */
+      .top-info a span[aria-hidden="true"] {
+          font-size: 1.2em; /* Tăng cỡ icon email lên một chút */
+      }
+
+      .top-info .info-divider {
+        display: none; /* Ẩn dấu chia */
+      }
+      
+      /* Tối ưu header grid để căn chỉnh 3 cột */
+      header.site-header{
+          grid-template-columns: auto 1fr auto; /* [Menu] [Logo (center)] [Info + Theme] */
+      }
     }
+    
+    /* Cỡ chữ nhỏ hơn trên mobile siêu nhỏ */
+    @media(max-width:480px){
+      /* Giảm cỡ chữ giờ làm việc để gọn hơn */
+      .top-info { font-size: 0.85em; gap: 8px;} 
+      .top-info a span[aria-hidden="true"] { font-size: 1.1em; }
+    }
+
     @media(max-width:600px){
       .container{width: 95%; margin-top: 80px;}
       header.site-header{padding: 8px 15px;}
@@ -299,7 +352,7 @@
     </button>
     
     <div class="top-info left">
-        <a href="mailto:nguyenthuha203@gmail.com" title="Gửi email"><span aria-hidden="true">✉️</span> nguyenthuha203@gmail.com</a>
+        <a href="mailto:nguyenthuha203@gmail.com" title="Gửi email"><span aria-hidden="true">✉️</span> <span class="visually-hidden-on-mobile">nguyenthuha203@gmail.com</span></a>
         <span class="info-divider" aria-hidden="true"></span>
         <span title="Giờ làm việc"><span aria-hidden="true">⏰</span> 9h - 21h</span>
     </div>
@@ -393,7 +446,7 @@
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">🏠 Trang chủ</a>
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html">🛵 Dịch vụ</a>
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/faq.html">❓ FAQ</a>
-      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/lienhe.html" target="_blank" rel="noopener noreferrer">📞 Liên hệ</a>
+      <a href="#">📞 Liên hệ</a>
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dieukhoansudung.html">📜 Điều khoản</a>
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/chinhsachbaomat.html">🔒 Chính sách</a>
     </div>
