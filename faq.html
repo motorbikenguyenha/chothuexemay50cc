@@ -1162,6 +1162,25 @@
       0% { opacity: 0; transform: translateX(20px); }
       100% { opacity: 1; transform: translateX(0); }
     }
+
+    /* === FIX HERO + MAP MOBILE === */
+    .hero {
+      /* Đảm bảo padding-top được set đúng cho desktop */
+      padding-top: 64px; 
+    }
+    @media (max-width: 600px) {
+      .hero { 
+        /* Ghi đè padding-top cho mobile để không bị thanh header đè lên nội dung */
+        padding-top: 56px; 
+      }
+    }
+
+    .map-container iframe {
+      /* Đảm bảo chiều cao tối thiểu cho bản đồ và hiển thị dạng block */
+      min-height: 360px;
+      display: block;
+    }
+    /* === END FIX HERO + MAP MOBILE === */
   </style>
 </head>
 
@@ -1558,11 +1577,6 @@
       }
       backTopBtn.style.display = 'none';
       window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-
-
-      /* ---------- FAQ accordion (Đã loại bỏ khỏi trang Liên hệ) ---------- */
-      
-      /* ---------- REVIEW CAROUSEL (Đã loại bỏ khỏi trang Liên hệ) ---------- */
 
 
       /* ---------- MINI APP FAB LOGIC (Tối ưu hóa) ---------- */
