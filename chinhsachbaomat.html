@@ -52,7 +52,11 @@
 
     /* ============== HEADER ============== */
     header.site-header{
-      position:fixed;left:0;right:0;top:0;z-index:2000;display:flex;align-items:center;justify-content:space-between; 
+      position:fixed;left:0;right:0;top:0;z-index:2000;
+      /* Thay đổi: Dùng grid để căn chỉnh menu, info và theme */
+      display:grid;grid-template-columns: auto 1fr auto; 
+      align-items:center;
+      gap: 15px; /* Khoảng cách giữa các cột */
       padding:16px 20px; /* Giảm padding */
       background:linear-gradient(180deg,var(--glass),var(--glass)); /* Đảm bảo nền rõ ràng hơn */
       -webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);
@@ -60,6 +64,24 @@
       transition:padding .28s var(--ease),box-shadow .28s var(--ease);
     }
     header.site-header.shrink{padding:8px 20px;box-shadow:0 8px 24px rgba(0,0,0,0.08)} /* Giảm shadow khi shrink */
+    
+    /* BỔ SUNG: Top Info Bar */
+    .top-info{
+      /* Vị trí nằm ở hai bên logo/menu */
+      display:flex;align-items:center;gap:15px;
+      font-size:.9em;font-weight:600;
+      white-space:nowrap;
+      z-index:2600; /* Đảm bảo nó nằm trên các phần khác nhưng dưới toggle */
+    }
+    .top-info a{
+      color:var(--text);transition:color .2s ease;
+      display:flex;align-items:center;gap:6px;
+    }
+    .top-info a:hover{color:var(--accent);}
+    .top-info .info-divider{
+      width:1px;height:14px;background:rgba(120,120,120,0.4);
+    }
+    .top-info.left{ justify-self: start; }
     
     .header-logo {
         /* Đơn giản hóa vị trí logo */
@@ -81,8 +103,8 @@
       display:grid;place-items:center;z-index:2600;cursor:pointer;outline:none;padding:0;
       transition:transform .12s ease;
     }
-    .menu-toggle{ margin-right: auto; } /* đẩy menu sang trái */
-    .theme-toggle{ margin-left: auto; font-size: 1.1em;} /* đẩy theme sang phải */
+    .menu-toggle{ margin-right: 0; } /* bỏ margin auto cũ */
+    .theme-toggle{ margin-left: 0; font-size: 1.1em;} /* bỏ margin auto cũ */
     .menu-toggle:active, .theme-toggle:active{transform:scale(.97)}
 
     /* hamburger icon style */
@@ -232,6 +254,9 @@
     :root[data-theme="dark"] .fab.backtop{background:rgba(255,255,255,0.12);color:#fff;}
     
     /* Media Queries for better mobile spacing */
+    @media(max-width:960px){
+      .top-info{ display: none; } /* Ẩn Top Info Bar trên mobile */
+    }
     @media(max-width:600px){
       .container{width: 95%; margin-top: 80px;}
       header.site-header{padding: 8px 15px;}
@@ -272,6 +297,12 @@
       <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
       <span class="ripple-wrap" aria-hidden="true"><span class="ripple" id="menuRipple"></span></span>
     </button>
+    
+    <div class="top-info left">
+        <a href="mailto:nguyenthuha203@gmail.com" title="Gửi email"><span aria-hidden="true">✉️</span> nguyenthuha203@gmail.com</a>
+        <span class="info-divider" aria-hidden="true"></span>
+        <span title="Giờ làm việc"><span aria-hidden="true">⏰</span> 9h - 21h</span>
+    </div>
 
     <div class="header-logo" aria-hidden="true">
         <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/" aria-label="Trang chủ Thu Hà Motorbike Rental">
@@ -366,7 +397,7 @@
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dieukhoansudung.html">📜 Điều khoản</a>
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/chinhsachbaomat.html">🔒 Chính sách</a>
     </div>
-    <div class="copy">© Thu Hà Motorbike Rental – Hà Nội | ⏰ 9h - 21h | ✉️ nguyenthuha203@gmail.com</div>
+    <div class="copy">© Thu Hà Motorbike Rental – Hà Nội</div>
   </footer>
 
   <div id="miniAppFooter" class="mini-app-footer" aria-label="Mini App Actions">
