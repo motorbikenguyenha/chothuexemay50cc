@@ -21,7 +21,7 @@
       --radius:12px;
       --ease: cubic-bezier(.18,.9,.28,1);
       --max-w:1200px;
-      --menu-w:300px; /* Giảm chiều rộng menu sidebar cho thiết bị nhỏ hơn */
+      --menu-w:300px;
     }
     :root[data-theme="dark"]{
       --bg:#0b0b0b;
@@ -31,9 +31,9 @@
       --shadow: 0 18px 48px rgba(0,0,0,0.6);
     }
 
-    /* ============== BASE ============== */
+    /* ============== BASE & UTILS ============== */
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth;} /* Thêm scroll mượt */
+    html{scroll-behavior:smooth;}
     body{
       margin:0;font-family:Inter, "Roboto", system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial;
       background:var(--bg);color:var(--text);line-height:1.5;
@@ -41,37 +41,126 @@
     }
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block;height:auto}
-    .container{width:92%;max-width:var(--max-w);margin:110px auto 48px auto} /* Giảm margin-top nhẹ */
-
-    /* Visually Hidden */
+    .container{width:92%;max-width:var(--max-w);margin:110px auto 48px auto} 
     .visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);border:0;}
-
-    /* Typography */
     .headline{font-size:2.2em;margin:0 0 .2em 0;line-height:1.2;font-weight:900;}
     .sub{font-size:1.1em;margin-bottom:1.5em;color:var(--muted);}
 
-    /* ============== HEADER ============== */
+    /* ============== HERO SECTION (Nâng cấp) ============== */
+    .hero {
+      position: relative;
+      height: 88vh;
+      min-height: 520px;
+      /* Dùng biến cho URL ảnh nền */
+      background: url('https://i.postimg.cc/Njttjcbb/hanoi-bike-bg.jpg') center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+      /* Đảm bảo Hero nằm ngay dưới header */
+      margin-top: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      /* Tăng độ tối và blur nhẹ cho chữ nổi bật hơn */
+      background: rgba(0, 0, 0, 0.45); 
+      backdrop-filter: blur(2px);
+      z-index: 0;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding: 0 20px;
+      max-width: 880px;
+      /* Hiệu ứng zoom nhẹ khi load */
+      animation: heroZoomIn 1.2s cubic-bezier(0.2, 0.8, 0.4, 1);
+    }
+    @keyframes heroZoomIn { 0% { opacity: 0; transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
+    .hero h1 {
+      font-size: 3.2em; /* Tăng cỡ chữ nhẹ */
+      font-weight: 900;
+      line-height: 1.25;
+      margin: 0 0 0.4em;
+      text-shadow: 0 4px 14px rgba(0,0,0,0.5); /* Tăng shadow */
+    }
+    .hero h1 span {
+      color: var(--accent);
+      /* Hiệu ứng lấp lánh nhẹ */
+      background-image: linear-gradient(90deg, #fff, var(--accent));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 2s infinite alternate;
+      text-shadow: none;
+      display: inline-block;
+    }
+    .hero p {
+      font-size: 1.3em; /* Tăng cỡ chữ nhẹ */
+      max-width: 680px;
+      margin: 0 auto 2em; /* Tăng khoảng cách nút */
+      color: #f0f0f0;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px; /* Tăng khoảng cách nút */
+    }
+    .btn-primary, .btn-secondary {
+      padding: 16px 32px; /* Tăng kích thước nút */
+      border-radius: 12px; /* Tăng bo tròn */
+      font-weight: 700;
+      font-size: 1.1em;
+      text-decoration: none;
+      transition: all .3s var(--ease);
+      border: none; /* Đảm bảo không có border thừa */
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg,var(--accent),var(--accent-2));
+      color: #111;
+      box-shadow: 0 10px 24px rgba(244,197,66,0.5); /* Tăng shadow */
+    }
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 36px rgba(244,197,66,0.8);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.15); /* Nền hơi trong suốt */
+      border: 2px solid var(--accent);
+      color: #fff;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.35);
+    }
+    .btn-secondary:hover {
+      background: var(--accent);
+      color: #111;
+      box-shadow: 0 8px 20px rgba(244,197,66,0.5);
+    }
+    
+    /* ============== HEADER & NAVIGATION ============== */
     header.site-header{
       position:fixed;left:0;right:0;top:0;z-index:2000;
-      /* Thay đổi: Dùng grid để căn chỉnh menu, info và theme */
       display:grid;grid-template-columns: auto 1fr auto; 
       align-items:center;
-      gap: 15px; /* Khoảng cách giữa các cột */
-      padding:16px 20px; /* Giảm padding */
-      background:linear-gradient(180deg,var(--glass),var(--glass)); /* Đảm bảo nền rõ ràng hơn */
+      gap: 15px;
+      padding:16px 20px;
+      background:var(--glass);
       -webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);
       box-shadow:var(--shadow);border-bottom:1px solid rgba(0,0,0,0.04);
       transition:padding .28s var(--ease),box-shadow .28s var(--ease);
     }
-    header.site-header.shrink{padding:8px 20px;box-shadow:0 8px 24px rgba(0,0,0,0.08)} /* Giảm shadow khi shrink */
+    :root[data-theme="dark"] header.site-header{ border-bottom:1px solid rgba(255,255,255,0.04); }
+    header.site-header.shrink{padding:8px 20px;box-shadow:0 8px 24px rgba(0,0,0,0.08)}
     
-    /* BỔ SUNG: Top Info Bar */
+    /* Top Info Bar */
     .top-info{
-      /* Vị trí nằm ở hai bên logo/menu */
       display:flex;align-items:center;gap:15px;
       font-size:.9em;font-weight:600;
-      white-space:nowrap;
-      z-index:2600; /* Đảm bảo nó nằm trên các phần khác nhưng dưới toggle */
+      white-space:nowrap;z-index:2600;
     }
     .top-info a{
       color:var(--text);transition:color .2s ease;
@@ -84,7 +173,6 @@
     .top-info.left{ justify-self: start; }
     
     .header-logo {
-        /* Đơn giản hóa vị trí logo */
         position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
         height: 40px; z-index: 2650;
         transition: height .28s var(--ease);
@@ -95,7 +183,7 @@
         transition: height .28s var(--ease), transform 0.2s ease;
     }
     .header-logo:hover img { transform: scale(1.05); }
-    header.site-header.shrink .header-logo { height: 32px; } /* Giảm nhẹ kích thước khi shrink */
+    header.site-header.shrink .header-logo { height: 32px; }
     header.site-header.shrink .header-logo img { height: 32px; }
     
     .menu-toggle, .theme-toggle{
@@ -103,8 +191,6 @@
       display:grid;place-items:center;z-index:2600;cursor:pointer;outline:none;padding:0;
       transition:transform .12s ease;
     }
-    .menu-toggle{ margin-right: 0; } /* bỏ margin auto cũ */
-    .theme-toggle{ margin-left: 0; font-size: 1.1em;} /* bỏ margin auto cũ */
     .menu-toggle:active, .theme-toggle:active{transform:scale(.97)}
 
     /* hamburger icon style */
@@ -141,11 +227,8 @@
     .sidebar-nav .nav-item{
       padding:12px 20px;font-size:1.05em;font-weight:600;color:var(--muted);
       display:flex;align-items:center;gap:12px;
-      transition:background .2s ease, color .2s ease, transform .2s ease, opacity .2s ease; /* Thêm opacity/transform */
+      transition:background .2s ease, color .2s ease, transform .2s ease, opacity .2s ease;
       opacity:0;transform:translateX(20px);
-    }
-    .sidebar.open .sidebar-nav .nav-item{
-      opacity:1;transform:translateX(0); /* Sẽ được đặt bởi JS */
     }
     .sidebar-nav .nav-item:hover{background:rgba(244,197,66,0.1);color:var(--text);}
     .sidebar-nav .nav-item.active{
@@ -161,9 +244,7 @@
     }
     .overlay.show{ opacity:1; pointer-events:auto }
     
-    /* ============== SECTIONS (Tối ưu) ============== */
-    .hero{text-align:center;padding:28px 0;}
-
+    /* ============== MAIN SECTIONS ============== */
     /* Service Card */
     .service-card{
       padding:20px;border-radius:var(--radius);text-align:center;
@@ -172,7 +253,7 @@
     }
     :root[data-theme="dark"] .service-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06);}
     .service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
-    .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px} /* Đổi inline style thành class */
+    .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
 
     /* Carousel */
     .carousel{
@@ -180,6 +261,7 @@
       background:rgba(0,0,0,0.03);border-radius:var(--radius);padding:20px;
       border:1px solid rgba(0,0,0,0.06);
     }
+    :root[data-theme="dark"] .carousel{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06);}
     .carousel-track{display:flex;transition:transform .4s var(--ease);}
     .slide{
       min-width:100%;text-align:center;padding:10px 0;font-style:italic;
@@ -227,12 +309,12 @@
     .mini-footer .links a:hover{color:var(--accent);}
     .mini-footer .copy{font-size:.85em;color:var(--muted);margin-top:12px;padding-top:12px;border-top:1px solid rgba(244,197,66,0.12);}
 
-    /* ================= FAB BUTTONS (Nâng cấp) ================= */
+    /* ================= FAB BUTTONS ================= */
     .mini-app-footer{
       position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;align-items:flex-end;z-index:2800;
     }
     .mini-app-toggle{
-      width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#f4c542,#e8c44a);
+      width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));
       border:none;color:#111;font-size:24px;cursor:pointer;display:grid;place-items:center;
       box-shadow:0 10px 24px rgba(0,0,0,0.18);transition:transform .2s ease, box-shadow .2s ease;
     }
@@ -253,77 +335,57 @@
     .fab.backtop{background:rgba(0,0,0,0.08);color:var(--text);}
     :root[data-theme="dark"] .fab.backtop{background:rgba(255,255,255,0.12);color:#fff;}
     
-    /* Media Queries for better mobile spacing */
+    /* ============== MEDIA QUERIES (Tối ưu Mobile) ============== */
     @media(max-width:960px){
-      /* Tối ưu hiển thị Top Info trên Mobile */
+      /* Hero */
+      .hero h1 { font-size: 2.8em; }
+      .hero p { font-size: 1.15em; }
+      
+      /* Top Info Bar: Ẩn chữ, giữ icon */
       .top-info{
-        display: flex; /* Đảm bảo nó được hiển thị */
-        gap: 8px; /* Giảm khoảng cách giữa 2 phần tử */
-        justify-self: end; /* Đẩy nó sang phải gần theme toggle (phía bên phải) */
-        font-size: 0.9em; /* Cỡ chữ nhỏ hơn để gọn hơn */
-        order: 3; /* Đảm bảo nó nằm bên phải logo */
-        align-items: center;
+        gap: 8px; justify-self: end; font-size: 0.9em; order: 3; align-items: center;
       }
-      .top-info.left {
-          justify-self: end; /* Quan trọng để đưa nó về phía theme toggle */
-      }
-
-      /* QUAN TRỌNG: Ẩn chữ trong link email và giữ lại icon */
-      .top-info a {
-        display: flex;
-        align-items: center;
-        gap: 0; /* Bỏ khoảng cách giữa icon và chữ */
-      }
-      /* Chỉ hiển thị icon email */
-      .top-info a span:not([aria-hidden="true"]) {
-        display: none; /* Ẩn phần chữ 'nguyenthuha203@gmail.com' */
-      }
-      
-      /* Giữ nguyên giờ làm việc ⏰ 9h - 21h */
-      .top-info span[title="Giờ làm việc"] {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px; /* Giữ icon và chữ */
-        font-size: 1em; /* Cỡ chữ cơ bản cho giờ làm việc trên mobile */
-        /* Đảm bảo chỉ hiện chữ và icon, không cần ẩn */
-      }
-      
-      /* Cân bằng icon email (lớn hơn mặc định) */
-      .top-info a span[aria-hidden="true"] {
-          font-size: 1.2em; /* Tăng cỡ icon email lên một chút */
-      }
-
-      .top-info .info-divider {
-        display: none; /* Ẩn dấu chia */
-      }
-      
-      /* Tối ưu header grid để căn chỉnh 3 cột */
-      header.site-header{
-          grid-template-columns: auto 1fr auto; /* [Menu] [Logo (center)] [Info + Theme] */
-      }
+      .top-info.left { justify-self: end; }
+      .top-info a { gap: 0; }
+      .top-info a span:not([aria-hidden="true"]) { display: none; }
+      .top-info a span[aria-hidden="true"] { font-size: 1.2em; }
+      .top-info span[title="Giờ làm việc"] { display: inline-flex; align-items: center; gap: 4px; font-size: 1em; }
+      .top-info .info-divider { display: none; }
+      header.site-header{ grid-template-columns: auto 1fr auto; }
     }
     
-    /* Cỡ chữ nhỏ hơn trên mobile siêu nhỏ */
-    @media(max-width:480px){
-      /* Giảm cỡ chữ giờ làm việc để gọn hơn */
-      .top-info { font-size: 0.85em; gap: 8px;} 
-      .top-info a span[aria-hidden="true"] { font-size: 1.1em; }
+    @media(max-width:768px){
+      /* Hero */
+      .hero { height: 80vh; min-height: 480px;}
+      .hero h1 { font-size: 2.2em; }
+      .hero p { font-size: 1em; }
+      .btn-primary, .btn-secondary { padding: 14px 28px; font-size: 1em;}
+      .hero-actions { gap: 14px; }
     }
-
+    
     @media(max-width:600px){
       .container{width: 95%; margin-top: 80px;}
       header.site-header{padding: 8px 15px;}
       header.site-header.shrink{padding: 4px 15px;}
       .mini-app-footer{right:12px;bottom:12px}
       .mini-app-buttons{gap:8px}
+      .mini-app-toggle{width:48px;height:48px;font-size:22px;}
       .fab{width:44px;height:44px;font-size:18px;}
       .fab.zalo{font-size:18px;}
       .fab:hover, .fab:focus{transform:scale(1.05) translateY(-1px); box-shadow:0 8px 18px rgba(0,0,0,0.22);}
     }
-    @media(max-width:400px){
-      .sidebar{width: 100%;} /* Full width sidebar on very small screens */
+    
+    @media(max-width:480px){
+      /* Hero */
+      .hero h1 { font-size: 1.8em; }
+      .hero p { margin-bottom: 1.5em; }
+      .btn-primary, .btn-secondary { padding: 12px 22px; font-size: .95em; border-radius: 8px; }
+      .top-info { font-size: 0.85em; gap: 8px;} 
     }
-
+    
+    @media(max-width:400px){
+      .sidebar{width: 100%;}
+    }
   </style>
 </head>
 
@@ -367,6 +429,18 @@
   </header>
 
   <main>
+    <section class="hero" id="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-inner">
+        <h1>Thuê Xe Máy Hà Nội<br><span>Uy Tín – Giá Rẻ – Giao Tận Nơi</span></h1>
+        <p>Hơn 500+ khách du lịch tin tưởng. Giao xe nhanh chỉ trong 15 phút – hỗ trợ 24/7 toàn Hà Nội.</p>
+        <div class="hero-actions">
+          <a href="https://zalo.me/0334699969" target="_blank" rel="noopener noreferrer" class="btn-primary">💬 Thuê xe ngay</a>
+          <a href="dichvu.html" class="btn-secondary">📋 Xem bảng giá</a>
+        </div>
+      </div>
+    </section>
+    
     <section class="container" id="top">
       <section id="dichvu" aria-labelledby="dichvu-title" style="margin-top:28px;text-align:center;">
         <h2 id="dichvu-title" class="headline">Dịch vụ Thuê Xe Máy Tại Hà Nội</h2>
@@ -446,7 +520,7 @@
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">🏠 Trang chủ</a>
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html">🛵 Dịch vụ</a>
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/faq.html">❓ FAQ</a>
-      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/lienhe.html" target="_blank" rel="noopener noreferrer">📞 Liên hệ</a>
+      <a href="#">📞 Liên hệ</a>
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dieukhoansudung.html">📜 Điều khoản</a>
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/chinhsachbaomat.html">🔒 Chính sách</a>
     </div>
@@ -497,7 +571,7 @@
 
           if(window.matchMedia){
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)=>{
-              if(!localStorage.getItem('thuha_theme')){ // Chỉ thay đổi nếu user chưa set theme
+              if(!localStorage.getItem('thuha_theme')){
                 const autoTheme = e.matches ? 'dark' : 'light';
                 html.setAttribute('data-theme', autoTheme);
                 themeToggle.textContent = autoTheme === 'dark' ? '🌙' : '☀️';
@@ -548,10 +622,9 @@
           if(e.key === 'Escape') closeMenu();
         };
 
-        container.setAttribute('tabindex', '-1'); // Đảm bảo sidebar có thể nhận focus
+        container.setAttribute('tabindex', '-1');
         container.addEventListener('keydown', handleTrap);
         
-        // Remove listener when menu closes
         function cleanUp(){ container.removeEventListener('keydown', handleTrap); container.removeAttribute('tabindex'); }
         sidebar.addEventListener('transitionend', function transitionEnd(e){
           if(e.propertyName === 'transform' && !sidebar.classList.contains('open')){
@@ -705,9 +778,9 @@
         track.addEventListener('touchstart', e=> { startX = e.touches[0].clientX; clearInterval(timer); }, {passive:true});
         track.addEventListener('touchend', e=> {
           const endX = e.changedTouches[0].clientX;
-          if(Math.abs(startX - endX) > 40) { // Check for a significant swipe
-             if(startX - endX > 40) next(); // Swiped left
-             else if(endX - startX > 40) goTo(idx-1); // Swiped right
+          if(Math.abs(startX - endX) > 40) {
+             if(startX - endX > 40) next();
+             else if(endX - startX > 40) goTo(idx-1);
           }
           startX = 0;
           resetTimer();
