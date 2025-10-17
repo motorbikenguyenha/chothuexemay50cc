@@ -139,8 +139,6 @@
       opacity:0;pointer-events:none;transition:opacity .36s var(--ease);z-index:2400;
     }
     .overlay.show{ opacity:1; pointer-events:auto }
-
-    /* NOTE: .hero-miniapp section V1 (old) has been removed from HTML body */
     
     /* ============== SECTIONS (V2) ============== */
     .hero{text-align:center;padding:28px 0;}
@@ -213,7 +211,7 @@
     .mini-footer .copy{font-size:.85em;color:var(--muted);margin-top:12px;padding-top:12px;border-top:1px solid rgba(244,197,66,0.12);}
 
 
-    /* ================= FAB BUTTONS (Nâng cấp) - Removed old FABs/BackToTop and kept new MINI-APP FAB logic only ================= */
+    /* ================= FAB BUTTONS (Nâng cấp) ================= */
     /* MINI APP UX COMBINED (FOOTER VERSION) CSS */
     .mini-app-footer{
       position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;align-items:flex-end;z-index:2800;
@@ -256,10 +254,6 @@
       .theme-toggle{width: 40px; height: 40px;}
     }
 
-    /* ========================================================= */
-    /* === FOOTER KIỂU MESSENGER NÂNG CẤP (Đã BỊ XÓA) === */
-    /* ========================================================= */
-
   </style>
 </head>
 
@@ -275,7 +269,7 @@
       <a class="nav-item" href="https://motorbikenguyenha.github.io/chothuexemay50cc/gioithieu.html"><span class="ico">ℹ️</span><span class="txt">Giới thiệu</span></a>
       <a class="nav-item" href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html"><span class="ico">🛵</span><span class="txt">Dịch vụ</span></a>
       <a class="nav-item" href="https://motorbikenguyenha.github.io/chothuexemay50cc/faq.html"><span class="ico">❓</span><span class="txt">Câu hỏi thường gặp</span></a>
-      <a class="nav-item" href="https://motorbikenguyenha.github.io/chothuexemay50cc/lienhe.html"><span class="ico">📞</span><span class="txt">Liên hệ</span></a>
+      <a class="nav-item" href="https://motorbikenguyenha.github.io/chothuexemay50cc/lienhe.html" target="_blank" rel="noopener noreferrer"><span class="ico">📞</span><span class="txt">Liên hệ</span></a> 
       <a class="nav-item" href="https://motorbikenguyenha.github.io/chothuexemay50cc/dieukhoansudung.html"><span class="ico">📜</span><span class="txt">Điều khoản</span></a>
       <a class="nav-item" href="https://motorbikenguyenha.github.io/chothuexemay50cc/chinhsachbaomat.html"><span class="ico">🔒</span><span class="txt">Chính sách</span></a>
     </nav>
@@ -376,7 +370,7 @@
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">🏠 Trang chủ</a>
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html">🛵 Dịch vụ</a>
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/faq.html">❓ FAQ</a>
-      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/lienhe.html">📞 Liên hệ</a>
+      <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/lienhe.html" target="_blank" rel="noopener noreferrer">📞 Liên hệ</a>
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dieukhoansudung.html">📜 Điều khoản</a>
       <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/chinhsachbaomat.html">🔒 Chính sách</a>
     </div>
@@ -393,23 +387,8 @@
       <button class="fab backtop" id="miniBackToTop" aria-label="Lên đầu trang">⬆</button>
     </div>
   </div>
+  
   <script>
-    /* ========================================================= */
-    /* === JAVASCRIPT FOOTER MESSENGER NÂNG CẤP (ĐÃ BỊ XÓA) === */
-    /* ========================================================= */
-    // Đã loại bỏ toàn bộ khối mã JS này:
-    /*
-    (function(){
-      const footer = document.getElementById('messengerFooter');
-      const miniApp = document.getElementById('miniAppFooter');
-      if(!footer || !miniApp) return;
-      // ... (toàn bộ logic cho mini-footer-messenger đã bị loại bỏ)
-    })();
-    */
-    /* ========================================================= */
-    /* === KẾT THÚC JAVASCRIPT FOOTER MESSENGER NÂNG CẤP === */
-    /* ========================================================= */
-    
     // JS for the new MINI APP
     (function(){
       const miniApp = document.getElementById('miniAppFooter');
@@ -476,11 +455,9 @@
       const closeSidebarBtn = document.getElementById('closeSidebar');
       const navItems = Array.from(document.querySelectorAll('.sidebar-nav .nav-item'));
       const themeToggle = document.getElementById('themeToggle');
-      // const backToTop = document.getElementById('backToTop'); // Removed
       const header = document.getElementById('header');
       const faqItems = document.querySelectorAll('.faq-item');
       const ariaAnnounce = document.getElementById('ariaAnnounce');
-      // const miniBackTop = document.querySelector('.mini-backtop'); // Removed. Logic moved to new FAB JS
 
 
       /* ---------- ANNOUNCE for accessibility ---------- */
@@ -625,11 +602,10 @@
       function onScroll(){
         const y = window.scrollY || window.pageYOffset;
         if(y > 80) header.classList.add('shrink'); else header.classList.remove('shrink');
-        // REMOVED backToTop.classList.add/remove('show') logic as it's no longer used.
+        // BackToTop logic is now handled in the new Mini App JS
       }
       window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-      // REMOVED backToTop.addEventListener('click')
-      // REMOVED miniBackTop.addEventListener('click') - Logic is now in new FAB JS
+
 
       /* ---------- FAQ accordion ---------- */
       faqItems.forEach(item=>{
