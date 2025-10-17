@@ -1,3 +1,5 @@
+Lưu lại code này
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -486,7 +488,7 @@
     .faq-item.open .faq-answer{max-height:500px;padding-bottom:15px;} 
     .faq-answer p{margin-top:0;padding-left:10px;font-size:.95em;color:var(--muted);}
 
-    /* ============== FOOTER ĐẸP (Nâng cấp V3 - Cập nhật) ============== */
+    /* ============== FOOTER ĐẸP (Nâng cấp V2) ============== */
     .mini-footer{
       position: relative; 
       padding: 40px 20px 20px;
@@ -513,7 +515,7 @@
       50% { transform: translate(-50%, -10px) scale(1.05); opacity: 1; }
       100% { transform: translate(-50%, 0) scale(1); opacity: 0.8; }
     }
-    .footer-container, .footer-bottom, .footer-map-embed { position: relative; z-index: 2; }
+    .footer-container, .footer-bottom { position: relative; z-index: 2; }
     :root[data-theme="dark"] .mini-footer{
       background: linear-gradient(180deg, var(--dark-footer-bg) 0%, var(--dark-bg) 90%);
       color: var(--dark-muted);
@@ -560,57 +562,6 @@
     }
     .footer-bottom p { margin: 5px 0; }
     :root[data-theme="dark"] .footer-bottom { border-color: rgba(255, 255, 255, 0.15); color: var(--dark-muted); }
-    
-    /* [NEW] Thời gian hoạt động */
-    .footer-opening-hours {
-        margin-top: 20px;
-        padding-top: 15px;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
-        text-align: left; /* Căn trái trên desktop */
-    }
-    .footer-opening-hours h4 {
-        color: #000;
-        font-size: 1em;
-        margin-bottom: 8px;
-    }
-    .footer-opening-hours p {
-        margin: 4px 0;
-        font-size: 0.9em;
-    }
-    :root[data-theme="dark"] .footer-opening-hours {
-        border-top: 1px solid rgba(255, 255, 255, 0.15);
-    }
-    :root[data-theme="dark"] .footer-opening-hours h4 {
-        color: var(--dark-text);
-    }
-    
-    /* [NEW] Embed Map */
-    .footer-map-embed {
-        max-width: var(--max-w);
-        margin: 30px auto 0;
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        transition: box-shadow .3s var(--ease);
-    }
-    .footer-map-embed:hover {
-        box-shadow: 0 6px 25px rgba(244,197,66,0.3);
-    }
-    .footer-map-embed iframe {
-        display: block;
-        width: 100%;
-        min-height: 200px; /* Đảm bảo chiều cao tối thiểu */
-    }
-    .footer-contact .footer-map-link {
-        font-weight: 700;
-        color: var(--accent);
-        text-decoration: underline;
-        margin-top: 4px;
-        display: inline-flex; /* Bỏ icon */
-    }
-    .footer-contact .footer-map-link:hover {
-        color: var(--text);
-    }
 
     /* ================= FAB BUTTONS ================= */
     .mini-app-footer{
@@ -666,21 +617,11 @@
       .hero p { font-size: 1em; }
       .btn-primary, .btn-secondary { padding: 14px 28px; font-size: 1em;}
       .hero-actions { gap: 14px; }
-      
-      /* Footer Mobile Nâng cấp V3 */
       .footer-container { justify-content: space-around; gap: 20px; }
       .footer-brand { flex-basis: 100%; text-align: center; }
       .footer-links, .footer-policy, .footer-contact { flex-basis: 40%; }
       .footer-brand p { margin-left: auto; margin-right: auto; }
       .social-links { justify-content: center; }
-      
-      /* Căn giữa lại Giờ hoạt động trên mobile */
-      .footer-opening-hours {
-        text-align: center;
-        width: 80%; /* Giới hạn độ rộng để trông gọn hơn */
-        margin-left: auto;
-        margin-right: auto;
-      }
     }
     
     /* ================== FIX: iPhone Dọc (<= 600px) - HIỆN ICON INFO ================== */
@@ -750,22 +691,11 @@
         order: 2; /* Đặt sau Info */
       }
       
-      /* Footer Mobile Nâng cấp V3 */
+      /* Footer */
       .footer-container { flex-direction: column; text-align: center; gap: 30px; }
       .footer-brand, .footer-links, .footer-policy, .footer-contact { flex-basis: auto; width: 100%; text-align: center; }
       .footer-links, .footer-policy, .footer-contact { align-items: center; }
       .footer-links a, .footer-policy a, .footer-contact a { justify-content: center; }
-      
-      .footer-opening-hours {
-        width: 100%;
-      }
-      .footer-opening-hours h4, .footer-opening-hours p {
-        text-align: center;
-      }
-      .footer-map-embed {
-          margin-top: 20px;
-      }
-
 
       /* Mini App */
       .mini-app-footer{right:12px;bottom:12px}
@@ -986,52 +916,36 @@
   <footer class="mini-footer fade-right" id="lienhe" role="contentinfo">
     <div class="footer-container">
       <div class="footer-brand">
-        <h3>🏍️ Thu Hà Motorbike Rental</h3>
+        <h3>🏍️ Thu Hà Cho Thuê Xe Máy Hà Nội</h3>
         <p>Chuyên <strong>cho thuê xe máy 50cc Hà Nội</strong> – Uy tín, giá rẻ. Giao xe tận nơi tại <strong>Long Biên, Gia Lâm, Hoàn Kiếm, Phố Cổ</strong>. Xe đời mới, tiết kiệm xăng, phục vụ 24/7.</p>
-        
-        <div class="footer-opening-hours">
-            <h4>Giờ hoạt động</h4>
-            <p><strong>⏰ Đặt xe:</strong> 24/7 qua Zalo/Hotline</p>
-            <p><strong>📍 Giao nhận:</strong> 9:00 - 21:00 (Hàng ngày)</p>
-        </div>
-        
-        <div class="social-links" aria-label="Mạng xã hội và Bản đồ">
+        <div class="social-links" aria-label="Mạng xã hội">
           <a href="https://www.facebook.com/thuexemay50cc.hanoi" target="_blank" rel="noopener noreferrer" title="Facebook"><span aria-hidden="true">📘</span></a>
           <a href="https://zalo.me/0334699969" target="_blank" rel="noopener noreferrer" title="Zalo"><span aria-hidden="true">💬</span></a>
-          <a href="https://goo.gl/maps/8NaCZJ82JU92sVTGl" target="_blank" rel="noopener noreferrer" title="Google Maps - Cơ sở chính"><span aria-hidden="true">🗺️</span></a>
+          <a href="https://goo.gl/maps/8NaCZJ82JU92sVTGl" target="_blank" rel="noopener noreferrer" title="Google Maps"><span aria-hidden="true">📍</span></a>
         </div>
       </div>
-      
       <div class="footer-links">
-        <h4>Dịch vụ chính</h4>
-        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">🏠 Trang chủ</a>
+        <h4>Dịch vụ</h4>
+        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">🏠 Cho thuê xe máy Hà Nội</a>
         <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html">🛵 Thuê xe máy giao tận nơi</a>
-        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/faq.html">❓ Câu hỏi thường gặp</a>
+        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html">⚙️ Xe 50cc – Vision – Air Blade</a>
       </div>
-      
       <div class="footer-contact">
-        <h4>Liên hệ nhanh</h4>
-        <a href="tel:+84334699969">📞 Hotline: 0334 699 969</a>
-        <a href="mailto:nguyenthuha203@gmail.com">✉️ Email: nguyenthuha203@gmail.com</a>
-        <a href="https://goo.gl/maps/8NaCZJ82JU92sVTGl" target="_blank" rel="noopener noreferrer">📍 Địa chỉ: 116 Ngõ 106 Hoàng Quốc Việt</a>
-        <a href="#map-embed" class="footer-map-link">🌐 Xem bản đồ</a>
+        <h4>Liên hệ</h4>
+        <a href="tel:+84334699969">📞 0334 699 969</a>
+        <a href="mailto:nguyenthuha203@gmail.com">✉️ nguyenthuha203@gmail.com</a>
+        <a href="https://goo.gl/maps/8NaCZJ82JU92sVTGl" target="_blank" rel="noopener noreferrer">📍 108 Nguyễn Văn Cừ, Bồ Đề, Long Biên, Hà Nội</a>
+        <p style="margin-top:8px; font-weight: 500;">⏰ 9h - 21h hàng ngày</p>
       </div>
-      
       <div class="footer-policy">
         <h4>Chính sách</h4>
-        <a href="dieukhoansudung.html">📜 Điều khoản sử dụng</a>
-        <a href="chinhsachbaomat.html">🔒 Chính sách bảo mật</a>
+        <a href="dieukhoansudung.html">📜 Điều khoản</a>
+        <a href="chinhsachbaomat.html">🔒 Bảo mật</a>
         <a href="lienhe.html">📧 Hỗ trợ khách hàng</a>
-        <a href="gioithieu.html">ℹ️ Về chúng tôi</a>
       </div>
     </div>
-    
-    <div class="footer-map-embed" id="map-embed">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.864350171658!2d105.7958591!3d21.0379659!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab4cd4a0b5f1%3A0x289736c567840134!2zMTE2IE5nLiAxMDYgSG_DoG5nIFF14buRYyBWaeG7h3QsIE5naMSpYSBUw6FuLCBD4bqndSBHaeG6pXksIEjDoCBO4buZaSwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bản đồ vị trí Thu Hà Motorbike Rental"></iframe>
-    </div>
-    
     <div class="footer-bottom">
-      <p>Bản quyền © 2025 Thu Hà Motorbike Rental – Dịch vụ <strong>thuê xe máy Hà Nội</strong> uy tín. All Rights Reserved.</p>
+      <p>Bản quyền © 2025 Thu Hà <strong>Cho thuê xe máy Hà Nội</strong> uy tín. All Rights Reserved.</p>
     </div>
   </footer>
 
