@@ -254,8 +254,22 @@
     :root[data-theme="dark"] .fab.backtop{background:rgba(255,255,255,0.12);color:#fff;}
     
     /* Media Queries for better mobile spacing */
+    /* --- Tối ưu hiển thị Top Info trên mobile --- */
     @media(max-width:960px){
-      .top-info{ display: none; } /* Ẩn Top Info Bar trên mobile */
+      .top-info{
+        gap: 12px;
+        font-size: 1em;
+      }
+      .top-info a span:last-child,
+      .top-info span:not([aria-hidden="true"]) {
+        display: none; /* Ẩn phần text, chỉ giữ icon */
+      }
+      .top-info a, .top-info span {
+        font-size: 1.3em;
+      }
+      .top-info .info-divider {
+        display: none;
+      }
     }
     @media(max-width:600px){
       .container{width: 95%; margin-top: 80px;}
