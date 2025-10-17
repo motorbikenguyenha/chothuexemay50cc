@@ -174,6 +174,10 @@
       --ease: cubic-bezier(.18,.9,.28,1);
       --max-w:1200px;
       --menu-w:300px;
+      
+      /* 💎 BIẾN CSS CHO HIỆU ỨNG PARALLAX LIGHT */
+      --x: 50%;
+      --y: 50%;
     }
     
     /* === DARK MODE SELECTOR === */
@@ -1134,6 +1138,120 @@
       0% { opacity: 0; transform: translateX(20px); }
       100% { opacity: 1; transform: translateX(0); }
     }
+
+    /* 💎 Luxury Portal Section CSS - Cập nhật cho Live Light */
+    .luxury-portal {
+      position: relative;
+      margin: 100px auto 80px;
+      padding: 60px 20px;
+      max-width: 1200px;
+      border-radius: 28px;
+      background: radial-gradient(circle at center, rgba(255, 243, 200, 0.25), rgba(255,255,255,0.05) 70%);
+      backdrop-filter: blur(18px) saturate(180%);
+      box-shadow: 0 0 40px rgba(244,197,66,0.3);
+      border: 1px solid rgba(244,197,66,0.3);
+      overflow: hidden;
+    }
+    /* 🌟 Hiệu ứng ÁNH SÁNG ĐỘNG (Parallax Light) */
+    .luxury-portal::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      /* Dùng biến CSS --x và --y để định vị tâm ánh sáng */
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), 
+                                  rgba(255,243,200,0.5), /* Ánh sáng vàng mờ */
+                                  transparent 60%); /* Vùng mờ dần */
+      opacity: 0.85; /* Độ trong suốt nhẹ nhàng */
+      /* Loại bỏ transition background-position 
+         để JS điều khiển trực tiếp (nhẹ hơn) */
+      z-index: 1; 
+      pointer-events: none;
+    }
+
+    /* ánh sáng nền quay nhẹ */
+    .luxury-portal::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg at 50% 50%, rgba(244,197,66,0.15), transparent, rgba(244,197,66,0.1), transparent);
+      animation: spinGlow 14s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+    @keyframes spinGlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .portal-inner {
+      position: relative;
+      z-index: 2; /* Đảm bảo nội dung luôn nằm trên ánh sáng */
+    }
+    .portal-title {
+      color: #f4c542;
+      text-shadow: 0 0 15px rgba(244,197,66,0.6);
+      animation: pulseGold 3s ease-in-out infinite;
+    }
+    @keyframes pulseGold {
+      0%, 100% { text-shadow: 0 0 10px rgba(244,197,66,0.5); }
+      50% { text-shadow: 0 0 25px rgba(255,223,100,0.9); }
+    }
+    .portal-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .portal-grid a {
+      position: relative;
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.15);
+      color: #111;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      z-index: 2; /* Quan trọng: Đảm bảo nút nằm trên nền */
+    }
+    .portal-grid a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -80%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,200,0.7) 50%, transparent 100%);
+      transform: skewX(-25deg);
+      transition: all 0.8s ease;
+    }
+    .portal-grid a:hover::before {
+      left: 140%;
+    }
+    .portal-grid a:hover {
+      background: linear-gradient(135deg, #fff8b0, #f4c542);
+      color: #000;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 22px rgba(244,197,66,0.5);
+    }
+    :root[data-theme="dark"] .luxury-portal {
+      background: radial-gradient(circle at center, rgba(0,0,0,0.6), rgba(15,15,15,0.9));
+      border: 1px solid rgba(244,197,66,0.15);
+    }
+    :root[data-theme="dark"] .portal-grid a {
+      background: rgba(255,255,255,0.08);
+      color: #eee;
+    }
+    :root[data-theme="dark"] .portal-grid a:hover {
+      background: linear-gradient(135deg, #f4c542, #d9a500);
+      color: #000;
+    }
   </style>
 </head>
 
@@ -1277,7 +1395,22 @@
           </div>
       </section>
     </section>
-  </main>
+
+    <section class="luxury-portal text-center py-5 fade-left">
+      <div class="portal-inner">
+        <h2 class="fw-bold mb-4 portal-title">Khám phá thêm ✨</h2>
+        <div class="portal-grid">
+          <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">🏠 Trang chủ</a>
+          <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/gioithieu.html">ℹ️ Giới thiệu</a>
+          <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html">🛵 Dịch vụ</a>
+          <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/faq.html">❓ FAQ</a>
+          <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/lienhe.html">📞 Liên hệ</a>
+          <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dieukhoansudung.html">📜 Điều khoản</a>
+          <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/chinhsachbaomat.html">🔒 Chính sách</a>
+        </div>
+      </div>
+    </section>
+    </main>
 
   <footer class="mini-footer fade-right footer-sunlight" id="lienhe" role="contentinfo">
     <div class="footer-container footer-content">
@@ -1346,6 +1479,33 @@
   </div>
 
   <script>
+    /* ✨ Parallax light script */
+    document.addEventListener('mousemove', function(e) {
+      const portal = document.querySelector('.luxury-portal');
+      if (!portal) return;
+
+      // Lấy kích thước và vị trí của phần tử portal
+      const rect = portal.getBoundingClientRect();
+
+      // Kiểm tra xem con trỏ chuột có nằm trong vùng portal không
+      if (e.clientX >= rect.left && e.clientX <= rect.right &&
+          e.clientY >= rect.top && e.clientY <= rect.bottom) {
+        
+        // Tính toán vị trí tương đối (từ 0 đến 100%)
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        
+        // Cập nhật biến CSS để di chuyển ánh sáng
+        portal.style.setProperty('--x', `${x}%`);
+        portal.style.setProperty('--y', `${y}%`);
+
+      } else {
+        // Khi rời chuột, đưa ánh sáng về vị trí trung tâm (50% 50%)
+        portal.style.setProperty('--x', `50%`);
+        portal.style.setProperty('--y', `50%`);
+      }
+    });
+
     document.addEventListener('DOMContentLoaded', () => {
 
       const html = document.documentElement;
