@@ -41,8 +41,6 @@
   <meta name="geo.position" content="21.0410605;105.8691562">
   <meta name="ICBM" content="21.0410605, 105.8691562">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -545,9 +543,13 @@
     .dot{width:10px;height:10px;border-radius:50%;background:var(--muted);border:none;cursor:pointer;padding:0;transition:background .3s ease;}
     .dot.active{background:var(--accent);}
 
-    /* ============== FAQ ACCORDION BOOTSTRAP STYLE OVERRIDE (Tối ưu hóa) ============== */
+    /* ============== FAQ ACCORDION BOOTSTRAP STYLE OVERRIDE (Dành cho nội dung FAQ mới) ============== */
     /* Nền nhẹ cho toàn bộ section FAQ */
     .bg-light { background-color: var(--bg) !important; }
+
+    /* Tiêu đề section */
+    .mb-5 h2 { color: var(--text) !important; }
+    .mb-5 p { color: var(--muted) !important; }
 
     /* Accordion Item */
     .accordion-item {
@@ -556,14 +558,13 @@
         overflow: hidden;
         transition: box-shadow .3s ease, border-color .3s ease;
         background-color: var(--bg);
-        margin-bottom: 12px; 
     }
     :root[data-theme="dark"] .accordion-item {
         border-color: rgba(255, 255, 255, 0.1);
         background-color: var(--dark-bg);
     }
     .accordion-item:hover {
-        box-shadow: 0 6px 20px rgba(0,0,0,0.08); /* Shadow rõ hơn khi hover */
+        box-shadow: 0 4px 18px rgba(0,0,0,0.05);
         border-color: var(--accent);
     }
 
@@ -575,56 +576,31 @@
         font-size: 1.05em;
         padding: 18px 20px;
         transition: background-color .3s ease, color .3s ease;
-        box-shadow: none !important; 
+        box-shadow: none !important; /* Loại bỏ shadow mặc định */
         border: none;
     }
-
-    /* --- HIỆU ỨNG + / - ĐÃ FIX VÀ TỐI ƯU --- */
-    .accordion-button::after {
-      content: '+';
-      font-weight: 700;
-      font-size: 1.5em;
-      color: var(--accent);
-      transform: none;
-      /* Vô hiệu hóa icon mặc định của Bootstrap */
-      background-image: none !important; 
-      margin-left: auto;
-      transition: transform 0.25s ease, color 0.3s ease;
-    }
-
     .accordion-button:not(.collapsed) {
         color: var(--accent) !important;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-        background-color: rgba(244,197,66,0.1) !important; /* Light accent background */
-        box-shadow: inset 0 -1px 0 rgba(0,0,0,0.08); /* Thêm shadow nhẹ */
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        background-color: rgba(244,197,66,0.1) !important;
     }
     :root[data-theme="dark"] .accordion-button:not(.collapsed) {
         color: var(--accent) !important;
         border-bottom-color: rgba(255, 255, 255, 0.1);
-        background-color: rgba(244,197,66,0.25) !important; /* Dark accent background */
-        box-shadow: inset 0 -1px 0 rgba(255,255,255,0.05);
+        background-color: rgba(244,197,66,0.2) !important;
     }
-
+    .accordion-button::after {
+        filter: invert(1); /* Đảo ngược màu icon */
+        color: var(--text);
+        transition: transform 0.3s ease;
+    }
     .accordion-button:not(.collapsed)::after {
-      content: '−'; /* Dấu trừ (Minus Sign) */
-      transform: rotate(0deg); /* Không cần xoay, chỉ dùng nội dung */
-      color: #d9a500; /* Màu vàng đậm hơn khi mở */
+        transform: rotate(-180deg);
+        filter: invert(0) sepia(1) saturate(1000%) hue-rotate(0deg) brightness(80%) contrast(150%); /* Icon vàng khi mở */
     }
-    /* --- KẾT THÚC HIỆU ỨNG + / - ĐÃ FIX VÀ TỐI ƯU --- */
-
-
-    /* Hiệu ứng mượt hơn khi mở/đóng (Cubic-bezier) */
-    .accordion-collapse {
-      transition: height 0.35s cubic-bezier(.25,.8,.25,1);
+    :root[data-theme="dark"] .accordion-button::after {
+        filter: invert(1);
     }
-
-    /* Cải thiện focus để truy cập bằng bàn phím */
-    .accordion-button:focus {
-      box-shadow: 0 0 0 0.25rem var(--accent-glow);
-      border-color: var(--accent);
-      outline: none; /* Tắt outline mặc định */
-    }
-
 
     /* Accordion Body (Answer) */
     .accordion-body {
@@ -1227,8 +1203,8 @@
         </div>
 
         <div class="accordion" id="faqAccordion">
-            
-          <div class="accordion-item">
+
+          <div class="accordion-item mb-3">
             <h2 class="accordion-header" id="q1">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="true" aria-controls="a1">
                 Giá thuê xe máy theo ngày ở Hà Nội là bao nhiêu?
@@ -1242,7 +1218,7 @@
             </div>
           </div>
 
-          <div class="accordion-item">
+          <div class="accordion-item mb-3">
             <h2 class="accordion-header" id="q2">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2" aria-expanded="false" aria-controls="a2">
                 Thuê xe máy theo tuần có ưu đãi không?
@@ -1256,7 +1232,7 @@
             </div>
           </div>
 
-          <div class="accordion-item">
+          <div class="accordion-item mb-3">
             <h2 class="accordion-header" id="q3">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3" aria-expanded="false" aria-controls="a3">
                 Thuê xe máy theo tháng giá bao nhiêu?
@@ -1270,7 +1246,7 @@
             </div>
           </div>
 
-          <div class="accordion-item">
+          <div class="accordion-item mb-3">
             <h2 class="accordion-header" id="q4">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a4" aria-expanded="false" aria-controls="a4">
                 Thủ tục thuê xe máy tại Thu Hà có phức tạp không?
@@ -1284,7 +1260,7 @@
             </div>
           </div>
 
-          <div class="accordion-item">
+          <div class="accordion-item mb-3">
             <h2 class="accordion-header" id="q5">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a5" aria-expanded="false" aria-controls="a5">
                 Thuê xe máy Hà Nội có giao tận nơi không?
@@ -1298,7 +1274,7 @@
             </div>
           </div>
 
-          <div class="accordion-item">
+          <div class="accordion-item mb-3">
             <h2 class="accordion-header" id="q6">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a6" aria-expanded="false" aria-controls="a6">
                 Không có bằng lái xe, có thể thuê xe được không?
@@ -1312,7 +1288,7 @@
             </div>
           </div>
 
-          <div class="accordion-item">
+          <div class="accordion-item mb-3">
             <h2 class="accordion-header" id="q7">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a7" aria-expanded="false" aria-controls="a7">
                 Nếu xe gặp sự cố khi đang đi thì sao?
@@ -1326,7 +1302,7 @@
             </div>
           </div>
 
-          <div class="accordion-item">
+          <div class="accordion-item mb-3">
             <h2 class="accordion-header" id="q8">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a8" aria-expanded="false" aria-controls="a8">
                 Có hỗ trợ thuê xe buổi tối hoặc ban đêm không?
@@ -1340,7 +1316,7 @@
             </div>
           </div>
 
-          <div class="accordion-item">
+          <div class="accordion-item mb-3">
             <h2 class="accordion-header" id="q9">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a9" aria-expanded="false" aria-controls="a9">
                 Có thể thanh toán bằng hình thức nào?
@@ -1354,7 +1330,7 @@
             </div>
           </div>
 
-          <div class="accordion-item">
+          <div class="accordion-item mb-3">
             <h2 class="accordion-header" id="q10">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a10" aria-expanded="false" aria-controls="a10">
                 Làm sao đảm bảo an toàn khi thuê xe tại Thu Hà?
@@ -1441,9 +1417,7 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-          integrity="sha384-ENjdO4Dr2bkBIFxQpeoYQeM+vF0pA0F6Ck8aZgD9KK1QpGpG5n9QFjG1KQjH8D9Z" 
-          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdi/1n7p63nN+oK61C7tH5d" crossorigin="anonymous"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -1457,7 +1431,6 @@
       const themeToggle = document.getElementById('themeToggle');
       const header = document.getElementById('header');
       const logoEl = document.querySelector('.header-logo img'); // Dùng lại cho hiệu ứng Shine
-      // const faqItems = document.querySelectorAll('.faq-item'); // Không cần nữa vì dùng Bootstrap
       const ariaAnnounce = document.getElementById('ariaAnnounce');
       
       const toggleBtn = document.getElementById('miniAppToggle');
