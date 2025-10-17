@@ -254,23 +254,58 @@
     :root[data-theme="dark"] .fab.backtop{background:rgba(255,255,255,0.12);color:#fff;}
     
     /* Media Queries for better mobile spacing */
-    /* --- Tối ưu hiển thị Top Info trên mobile --- */
     @media(max-width:960px){
+      /* KHÔNG ẨN - Giữ nguyên Top Info để hiển thị thông tin quan trọng */
       .top-info{
-        gap: 12px;
-        font-size: 1em;
+        display: flex; /* Đảm bảo nó được hiển thị */
+        gap: 12px; /* Khoảng cách giữa Email và Giờ làm việc */
+        justify-self: end; /* Đẩy nó sang phải gần theme toggle (phía bên phải) */
+        font-size: 1em; /* Cỡ chữ cơ bản */
+        order: 3; /* Đảm bảo nó nằm bên phải logo */
       }
-      .top-info a span:last-child,
-      .top-info span:not([aria-hidden="true"]) {
-        display: none; /* Ẩn phần text, chỉ giữ icon */
+      .top-info.left {
+          justify-self: end; /* Quan trọng để đưa nó về phía theme toggle */
       }
-      .top-info a, .top-info span {
-        font-size: 1.3em;
+
+      /* Ẩn chữ trong link email và giữ lại icon */
+      .top-info a {
+        display: flex;
+        align-items: center;
+        gap: 0; /* Bỏ khoảng cách giữa icon và chữ */
       }
+      .top-info a span:not([aria-hidden="true"]) {
+        display: none; /* Ẩn phần chữ 'nguyenthuha203@gmail.com' */
+      }
+      
+      /* Giữ nguyên giờ làm việc ⏰ 9h - 21h */
+      .top-info span[title="Giờ làm việc"] {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px; /* Giữ icon và chữ */
+        font-size: 0.9em; /* Giảm nhẹ cỡ chữ giờ làm việc trên mobile */
+      }
+      
+      /* Cân bằng icon email (lớn hơn mặc định) */
+      .top-info a span[aria-hidden="true"] {
+          font-size: 1.2em;
+      }
+
       .top-info .info-divider {
-        display: none;
+        display: none; /* Ẩn dấu chia */
+      }
+      
+      /* Tối ưu header grid để căn chỉnh 3 cột */
+      header.site-header{
+          grid-template-columns: auto 1fr auto; /* [Menu] [Logo (center)] [Info + Theme] */
       }
     }
+    
+    /* Cỡ chữ nhỏ hơn trên mobile siêu nhỏ */
+    @media(max-width:480px){
+      .top-info { font-size: 0.8em; gap: 8px;}
+      .top-info a span[aria-hidden="true"] { font-size: 1.1em; }
+    }
+
     @media(max-width:600px){
       .container{width: 95%; margin-top: 80px;}
       header.site-header{padding: 8px 15px;}
