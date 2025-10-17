@@ -891,7 +891,7 @@
       .footer-links, .footer-policy, .footer-contact { flex-basis: 40%; }
       .footer-brand p { margin-left: auto; margin-right: auto; }
       .social-links { justify-content: center; }
-      
+
       main {padding: 40px 15px;}
     }
 
@@ -900,8 +900,8 @@
       .container{width: 95%; margin-top: 80px;}
       header.site-header{padding: 8px 15px; height: 56px;}
       header.site-header.scrolled{height: 48px;}
-      
-      .hero { 
+
+      .hero {
         padding-top: 56px; /* Ghi đè padding-top cho mobile */
       }
 
@@ -1056,6 +1056,160 @@
         padding-top: 56px;
       }
     }
+
+    /* =================== LUXURY PORTAL STYLE (Tích hợp) =================== */
+    .luxury-portal {
+      position: relative;
+      margin: 100px auto 80px;
+      padding: 60px 20px;
+      max-width: 1100px;
+      border-radius: 26px;
+      /* Nền kính mờ: màu vàng nhạt/trắng ngọc trai + blur */
+      background: radial-gradient(circle at center, rgba(255,243,200,0.18), rgba(255,255,255,0.04) 75%);
+      backdrop-filter: blur(18px) saturate(180%);
+      /* Viền vàng đồng nhẹ, bóng mờ tinh tế */
+      box-shadow: 0 0 35px rgba(244,197,66,0.25);
+      border: 1px solid rgba(244,197,66,0.25);
+      overflow: hidden;
+      /* Hiệu ứng fade-in-up ban đầu */
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s cubic-bezier(0.2, 0.8, 0.4, 1);
+      will-change: transform, opacity;
+      isolation: isolate; /* Quan trọng để ::before/::after không bị thoát ra ngoài */
+    }
+    .fade-in-up.show { opacity: 1; transform: translateY(0); }
+
+    /* Ánh sáng vàng phản chiếu theo chuột (parallax light) */
+    .luxury-portal::before {
+      content: "";
+      position: absolute;
+      inset: -10%;
+      /* Dùng var(--x) và var(--y) từ JS */
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,255,200,0.25), transparent 70%);
+      transition: background-position 0.15s ease, opacity 0.3s ease;
+      z-index: 0;
+      opacity: var(--light-opacity, 1); /* Điều chỉnh độ sáng */
+    }
+
+    /* Vòng sáng quay nhẹ (Ánh sáng vàng đồng) */
+    .luxury-portal::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      /* Gradient xoắn ốc vàng đồng */
+      background: conic-gradient(from 0deg at 50% 50%, rgba(244,197,66,0.1), transparent 30%, rgba(244,197,66,0.05) 50%, transparent 80%);
+      animation: spinGlow 18s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+    }
+    @keyframes spinGlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Watermark “Thu Hà” - Yêu cầu 2 */
+    .portal-signature {
+      position: absolute;
+      bottom: 5%; /* Căn chéo dưới bên phải */
+      right: 5%;
+      font-size: clamp(2.5rem, 8vw, 6rem); /* Responsive font size */
+      font-weight: 900;
+      color: rgba(244,197,66,0.08); /* Màu vàng nhạt, mờ */
+      transform: rotate(-15deg); /* Nghiêng -15 độ */
+      text-shadow: 0 0 25px rgba(244,197,66,0.2);
+      animation: signatureGlow 6s ease-in-out infinite; /* Phát sáng chậm */
+      z-index: 1;
+      pointer-events: none; /* Không ảnh hưởng click */
+      user-select: none;
+      white-space: nowrap;
+    }
+    @keyframes signatureGlow {
+      0%,100% { opacity: 0.08; text-shadow: 0 0 10px rgba(244,197,66,0.1); }
+      50% { opacity: 0.15; text-shadow: 0 0 30px rgba(255, 235, 150, 0.4); }
+    }
+
+    .portal-inner { position: relative; z-index: 2; }
+    .portal-title {
+      color: #f4c542;
+      text-shadow: 0 0 12px rgba(244,197,66,0.5);
+      animation: pulseGold 4s ease-in-out infinite;
+      font-size: 2.5rem;
+      font-weight: 900 !important;
+    }
+    .portal-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 30px;
+    }
+    .portal-grid a {
+      position: relative;
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 14px;
+      /* Nền mặc định: bán trong suốt */
+      background: rgba(255,255,255,0.1);
+      color: #111;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(.18,.9,.28,1);
+      /* Viền/Shadow vàng nhạt */
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      will-change: transform, box-shadow;
+      z-index: 2; /* Đảm bảo link nằm trên watermark */
+    }
+    /* Hiệu ứng ánh sáng quét (Shine Sweep) */
+    .portal-grid a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -80%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,200,0.7) 50%, transparent 100%);
+      transform: skewX(-25deg);
+      transition: all 0.8s ease;
+    }
+    .portal-grid a:hover::before { left: 140%; }
+    .portal-grid a:hover {
+      background: linear-gradient(135deg, #fff8b0, #f4c542);
+      color: #000;
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 6px 22px rgba(244,197,66,0.5);
+    }
+    .portal-grid a:active { transform: translateY(0); }
+
+    /* Dark mode override */
+    :root[data-theme="dark"] .luxury-portal {
+      /* Nền kính mờ tối */
+      background: radial-gradient(circle at center, rgba(30,25,15,0.75), rgba(0,0,0,0.85));
+      border: 1px solid rgba(244,197,66,0.15);
+      box-shadow: 0 0 40px rgba(244,197,66,0.1);
+    }
+    :root[data-theme="dark"] .portal-grid a {
+      background: rgba(255,255,255,0.08);
+      color: #eee;
+      border: 1px solid rgba(244,197,66,0.2);
+    }
+    :root[data-theme="dark"] .portal-grid a:hover {
+      background: linear-gradient(135deg, #f4c542, #d9a500);
+      color: #000;
+    }
+
+    @media (max-width: 600px) {
+        .luxury-portal { margin: 60px 10px 60px; padding: 40px 15px; border-radius: 20px; }
+        .portal-grid { gap: 10px; }
+        .portal-grid a { padding: 10px 18px; font-size: 0.9em; border-radius: 10px; }
+        .portal-signature { font-size: 2.5rem; bottom: 8%; }
+    }
   </style>
 </head>
 
@@ -1115,7 +1269,7 @@
   </header>
 
   <main>
-    <section class="hero fade-left" id="hero" style="min-height: 480px; height: 60vh;"> 
+    <section class="hero fade-left" id="hero" style="min-height: 480px; height: 60vh;">
       <div class="hero-overlay"></div>
       <div class="hero-inner">
         <h1>Giới thiệu <span>Thu Hà </span></h1>
@@ -1179,6 +1333,23 @@
       </p>
     </section>
   </main>
+
+  <section class="luxury-portal text-center py-5 fade-in-up" aria-label="Khám phá thêm các liên kết chính của Thu Hà">
+
+    <div class="portal-inner">
+      <h2 class="fw-bold mb-4 portal-title">Khám phá thêm ✨</h2>
+      <div class="portal-grid">
+        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">🏠 Trang chủ</a>
+        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/gioithieu.html">ℹ️ Giới thiệu</a>
+        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html">🛵 Dịch vụ</a>
+        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/faq.html">❓ Câu hỏi thường gặp</a>
+        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/lienhe.html">📞 Liên hệ</a>
+        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dieukhoansudung.html">📜 Điều khoản</a>
+        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/chinhsachbaomat.html">🔒 Chính sách bảo mật</a>
+      </div>
+    </div>
+    <div class="portal-signature">Thu Hà</div>
+  </section>
 
   <footer class="mini-footer fade-right footer-sunlight" id="lienhe" role="contentinfo">
     <div class="footer-container footer-content">
@@ -1247,6 +1418,28 @@
   </div>
 
   <script>
+    // ================== LUXURY PORTAL SCRIPT (Bổ sung vào Script cũ) ==================
+    document.addEventListener('mousemove', e => {
+      const portal = document.querySelector('.luxury-portal');
+      if (!portal) return;
+
+      const rect = portal.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      
+      portal.style.setProperty('--x', `${x}%`);
+      portal.style.setProperty('--y', `${y}%`);
+    });
+
+    window.addEventListener('scroll', () => {
+      const el = document.querySelector('.fade-in-up');
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 150) el.classList.add('show');
+      }
+    });
+    // ================== END LUXURY PORTAL SCRIPT ==================
+
     document.addEventListener('DOMContentLoaded', () => {
 
       const html = document.documentElement;
