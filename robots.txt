@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://motorbikenguyenha.github.io/chothuexemay50cc/sitemap_index.xml
+
+# SEO Friendly
+User-agent: Googlebot
+Crawl-delay: 2
+
+User-agent: Bingbot
+Crawl-delay: 5
+
+# Disallow private folders (if any in future)
+Disallow: /temp/
+Disallow: /draft/
