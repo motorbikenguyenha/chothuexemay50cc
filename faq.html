@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
-  <title>Cho thuê xe máy 50cc Hà Nội - Thu Hà Motorbike Rental | Giao tận nơi Long Biên, Gia Lâm, Hoàn Kiếm, Phố Cổ</title>
+  <title>Cho thuê xe máy 50cc Hà Nội - Thu Hà | Giao tận nơi Long Biên, Gia Lâm, Hoàn Kiếm, Phố Cổ</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Cho thuê xe máy 50cc Hà Nội - Thu Hà Motorbike Rental. Dịch vụ thuê xe máy Hà Nội uy tín, giao tận nơi Long Biên, Gia Lâm, Hoàn Kiếm, Phố Cổ. Xe 50cc, Vision, Air Blade đời mới, giá rẻ, giao nhanh 15 phút.">
   <link rel="canonical" href="https://motorbikenguyenha.github.io/chothuexemay50cc/" />
@@ -561,31 +561,260 @@
     .footer-bottom p { margin: 5px 0; }
     :root[data-theme="dark"] .footer-bottom { border-color: rgba(255, 255, 255, 0.15); color: var(--dark-muted); }
 
-    /* ================= FAB BUTTONS ================= */
+    /* ================== SUNRISE REVEAL PREMIUM FOOTER ================== */
+    .footer-sunlight {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      padding: 48px 16px 28px;
+      border-top: 3px solid var(--accent);
+      background: linear-gradient(180deg, #fff9dc 0%, #fff3c4 40%, #f4c542 100%);
+      transition: background 1s ease, color 0.6s ease;
+    }
+    :root[data-theme="dark"] .footer-sunlight {
+      background: linear-gradient(180deg, #14110a 0%, #1a1508 40%, #0d0d0d 100%);
+      border-top-color: var(--accent);
+    }
+
+    .footer-sunlight::before {
+      content: "";
+      position: absolute;
+      top: -60%;
+      left: -60%;
+      width: 220%;
+      height: 220%;
+      background: conic-gradient(
+        from 180deg,
+        rgba(255, 220, 120, 0.25),
+        rgba(255, 240, 190, 0.45),
+        rgba(255, 220, 120, 0.25)
+      );
+      transform: rotate(0deg) scale(0.8);
+      filter: blur(100px);
+      opacity: 0;
+      z-index: -1;
+      pointer-events: none;
+      transition: opacity 1.6s ease, transform 2.4s cubic-bezier(.25,1,.3,1);
+    }
+
+    .footer-sunlight.sunrise-active::before {
+      opacity: 0.9;
+      transform: rotate(360deg) scale(1);
+      animation: sunlightRotate 20s linear infinite;
+    }
+
+    @keyframes sunlightRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Social Icons (Cập nhật cho Sunrise Footer) */
+    .footer-social {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      transition: all 0.4s ease;
+      font-size: 1.2em;
+    }
+    .social-icon:hover {
+      background: linear-gradient(135deg, #ffd45b, #ffcc33);
+      color: #222;
+      box-shadow: 0 0 16px rgba(255, 220, 120, 0.8);
+      transform: translateY(-4px) scale(1.08);
+    }
+    :root[data-theme="dark"] .social-icon {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--dark-muted);
+    }
+    :root[data-theme="dark"] .social-icon:hover {
+      background: linear-gradient(135deg, #f4c542, #d9a500);
+      color: #000;
+      box-shadow: 0 0 14px rgba(255, 210, 90, 0.8);
+    }
+
+
+    /* ================= FAB BUTTONS PREMIUM GLOW (Nâng cấp V3) ================= */
     .mini-app-footer{
       position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;align-items:flex-end;z-index:2800;
     }
-    .mini-app-toggle{
-      width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      border:none;color:#111;font-size:24px;cursor:pointer;display:grid;place-items:center;
-      box-shadow:0 10px 24px rgba(0,0,0,0.18);transition:transform .2s ease, box-shadow .2s ease;
+    /* === 🌟 PREMIUM MINI APP GLOW (Thu Hà Edition V2) === */
+    .mini-app-toggle {
+      position: relative;
+      width:52px;height:52px;border-radius:50%;
+      background: linear-gradient(135deg, #ffeb99, #f4c542, #d9a500);
+      color: #222;
+      border: none;
+      overflow: hidden;
+      cursor: pointer;
+      display:grid;place-items:center;
+      animation: premiumGlow 3s infinite ease-in-out;
+      box-shadow:
+        0 0 20px rgba(255, 230, 100, 0.8),
+        0 0 40px rgba(244,197,66,0.6),
+        inset 0 0 10px rgba(255,255,255,0.4);
+      transition: transform .3s ease, box-shadow .3s ease;
       will-change: transform, box-shadow;
     }
-    .mini-app-toggle:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,0.22);}
+
+    .mini-app-toggle:not(.open) i {
+      /* ⚡️ Icon Animation - Hiệu ứng Lắc nhẹ khi đóng */
+      animation: gentleShake 4s ease-in-out infinite alternate;
+      display: block;
+    }
+    @keyframes gentleShake {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-3deg); }
+      75% { transform: rotate(3deg); }
+    }
+
+    .mini-app-toggle:hover {
+      transform: scale(1.12) rotate(3deg);
+      box-shadow:
+        0 0 40px rgba(255, 235, 140, 0.9),
+        0 0 70px rgba(244,197,66,0.8),
+        inset 0 0 12px rgba(255,255,255,0.6);
+    }
+
+    /* 🌈 Vầng sáng xoay quanh */
+    .mini-app-toggle::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        rgba(255, 230, 120, 0.2),
+        rgba(255, 255, 200, 0.8),
+        rgba(244, 197, 66, 0.3),
+        rgba(255, 230, 120, 0.2)
+      );
+      filter: blur(12px);
+      animation: rotateAura 6s linear infinite;
+      z-index: 0;
+    }
+
+    /* ✨ Ánh sáng quét ngang mặt nút (shine sweep) */
+    .mini-app-toggle::after {
+      content: "";
+      position: absolute;
+      top: 0; left: -80%;
+      width: 60%; height: 100%;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-20deg);
+      animation: shineSweep 4.5s infinite ease-in-out;
+      z-index: 2;
+    }
+
+    /* Đảm bảo icon/text nằm trên lớp glow */
+    .mini-app-toggle i {
+      position: relative;
+      z-index: 3;
+      font-style: normal;
+      font-size: 24px;
+    }
+    
+    /* 💫 Keyframes */
+    @keyframes rotateAura {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes premiumGlow {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 16px rgba(255, 230, 100, 0.8),
+                    0 0 30px rgba(244,197,66,0.5),
+                    inset 0 0 8px rgba(255,255,255,0.4);
+      }
+      50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 32px rgba(255,255,180,0.9),
+                    0 0 60px rgba(255,215,100,0.7),
+                    inset 0 0 12px rgba(255,255,255,0.6);
+      }
+    }
+    @keyframes shineSweep {
+      0% { left: -80%; opacity: 0; }
+      50% { left: 120%; opacity: 1; }
+      100% { left: 120%; opacity: 0; }
+    }
+
+    /* 🌙 DARK MODE - vàng trầm ấm, vẫn long lanh */
+    :root[data-theme="dark"] .mini-app-toggle {
+      background: linear-gradient(135deg, #f4c542, #d9a500, #8b7500);
+      color: #fff;
+      box-shadow:
+        0 0 25px rgba(244,197,66,0.9),
+        0 0 50px rgba(255,230,140,0.4),
+        inset 0 0 8px rgba(255,255,255,0.15);
+    }
+    :root[data-theme="dark"] .mini-app-toggle::before {
+      background: conic-gradient(
+        from 0deg,
+        rgba(255, 240, 160, 0.25),
+        rgba(255, 200, 90, 0.5),
+        rgba(255, 240, 160, 0.25)
+      );
+      filter: blur(18px);
+    }
+    :root[data-theme="dark"] .mini-app-toggle::after {
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 240, 180, 0.7) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    }
+
+    /* 🚀 CẢI TIẾN HIỆU ỨNG MỞ/ĐÓNG MINI APP BUTTONS */
     .mini-app-buttons{
       display:flex;flex-direction:column;gap:12px;margin-top:10px;
       opacity:0;pointer-events:none;transform:translateY(10px);
-      transition:opacity .3s ease, transform .3s ease;
+      transition: none; /* Loại bỏ transition ban đầu */
     }
     .mini-app-footer.open .mini-app-buttons{
-      opacity:1;pointer-events:auto;transform:translateY(0);
+      opacity:1;
+      pointer-events:auto;
+      transform:translateY(0);
+      transition: opacity .4s ease-out; /* Thêm transition tổng thể khi mở */
     }
-    .fab{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:20px;box-shadow:0 8px 20px rgba(0,0,0,0.18);cursor:pointer;border:none;transition:transform .2s ease, box-shadow .2s ease;text-decoration:none; will-change: transform, box-shadow;}
+    
+    .fab{
+      width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:20px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.18);cursor:pointer;border:none;
+      transition: transform .4s cubic-bezier(.18,.9,.28,1), opacity .4s cubic-bezier(.18,.9,.28,1), box-shadow .2s ease; /* Nâng cấp transition */
+      text-decoration:none; 
+      will-change: transform, box-shadow, opacity;
+      /* Trạng thái ẩn ban đầu cho hiệu ứng trễ (staggered) */
+      opacity: 0; 
+      transform: scale(0.8) translateY(20px); 
+    }
+    .mini-app-footer.open .fab {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    
     .fab:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,0.22);}
     .fab.call{background:linear-gradient(135deg,#3ecf7e,#1ec96a);color:#fff;}
     .fab.zalo{background:#0068ff;color:#fff;font-weight:700;font-size:20px;}
     .fab.map{background:linear-gradient(135deg,#ff5f6d,#ffc371);color:#fff;}
     .fab.backtop{background:rgba(0,0,0,0.08);color:var(--text);}
+    .fab span:not(.visually-hidden-on-mobile) { line-height: 1; }
     :root[data-theme="dark"] .fab.backtop{background:rgba(255,255,255,0.12);color:#fff;}
     
     /* ============== MEDIA QUERIES (FIXED) ============== */
@@ -698,7 +927,8 @@
       /* Mini App */
       .mini-app-footer{right:12px;bottom:12px}
       .mini-app-buttons{gap:8px}
-      .mini-app-toggle{width:48px;height:48px;font-size:22px;}
+      .mini-app-toggle{width:48px;height:48px;}
+      .mini-app-toggle i {font-size: 22px;}
       .fab{width:44px;height:44px;font-size:18px;}
       .fab.zalo{font-size:18px;}
       .fab:hover, .fab:focus{transform:scale(1.05) translateY(-1px); box-shadow:0 8px 18px rgba(0,0,0,0.22);}
@@ -911,30 +1141,36 @@
     </section>
   </main>
 
-  <footer class="mini-footer fade-right" id="lienhe" role="contentinfo">
-    <div class="footer-container">
+  <footer class="mini-footer fade-right footer-sunlight" id="lienhe" role="contentinfo">
+    <div class="footer-container footer-content">
       <div class="footer-brand">
-        <h3>🏍️ Thu Hà Cho Thuê Xe Máy Hà Nội</h3>
+        <h3>🏍️ Địa điểm cho thuê xe máy Hà Nội - Thu Hà</h3>
         <p>Chuyên <strong>cho thuê xe máy 50cc Hà Nội</strong> – Uy tín, giá rẻ. Giao xe tận nơi tại <strong>Long Biên, Gia Lâm, Hoàn Kiếm, Phố Cổ</strong>. Xe đời mới, tiết kiệm xăng, phục vụ 24/7.</p>
-        <div class="social-links" aria-label="Mạng xã hội">
-          <a href="https://www.facebook.com/thuexemay50cc.hanoi" target="_blank" rel="noopener noreferrer" title="Facebook"><span aria-hidden="true">📘</span></a>
-          <a href="https://zalo.me/0334699969" target="_blank" rel="noopener noreferrer" title="Zalo"><span aria-hidden="true">💬</span></a>
-          <a href="https://goo.gl/maps/8NaCZJ82JU92sVTGl" target="_blank" rel="noopener noreferrer" title="Google Maps"><span aria-hidden="true">📍</span></a>
+
+        <div class="social-links footer-social" aria-label="Mạng xã hội">
+          <a href="https://m.facebook.com/chothuexemayohanoigiare/" class="social-icon" target="_blank" rel="noopener" title="Facebook">📘</a>
+          <a href="https://www.instagram.com/thuexemayhanoivanchinh/" class="social-icon" target="_blank" rel="noopener" title="Instagram">📸</a>
+          <a href="https://www.pinterest.com/chothuexemayohanoi/" class="social-icon" target="_blank" rel="noopener" title="Pinterest">📌</a>
+          <a href="https://www.tripadvisor.com.vn/Attraction_Review-g293924-d12829980-Reviews-Motorbike_Rental_Van_Chinh-Hanoi.html" class="social-icon" target="_blank" rel="noopener" title="TripAdvisor">🧭</a>
+          <a href="https://share.google/WJFaH8EeNipT8BXJd" class="social-icon" target="_blank" rel="noopener" title="Google Maps">📍</a>
         </div>
       </div>
+
       <div class="footer-links">
         <h4>Dịch vụ</h4>
         <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/">🏠 Cho thuê xe máy Hà Nội</a>
         <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html">🛵 Thuê xe máy giao tận nơi</a>
         <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html">⚙️ Xe 50cc – Vision – Air Blade</a>
       </div>
+
       <div class="footer-contact">
         <h4>Liên hệ</h4>
         <a href="tel:+84334699969">📞 0334 699 969</a>
         <a href="mailto:nguyenthuha203@gmail.com">✉️ nguyenthuha203@gmail.com</a>
-        <a href="https://goo.gl/maps/8NaCZJ82JU92sVTGl" target="_blank" rel="noopener noreferrer">📍 108 Nguyễn Văn Cừ, Bồ Đề, Long Biên, Hà Nội</a>
+        <a href="https://share.google/WJFaH8EeNipT8BXJd" target="_blank" rel="noopener">📍 108 Nguyễn Văn Cừ, Bồ Đề, Long Biên, Hà Nội</a>
         <p style="margin-top:8px; font-weight: 500;">⏰ 9h - 21h hàng ngày</p>
       </div>
+
       <div class="footer-policy">
         <h4>Chính sách</h4>
         <a href="dieukhoansudung.html">📜 Điều khoản</a>
@@ -942,19 +1178,32 @@
         <a href="lienhe.html">📧 Hỗ trợ khách hàng</a>
       </div>
     </div>
+
     <div class="footer-bottom">
-      <p>Bản quyền © 2025 Thu Hà <strong>Cho thuê xe máy Hà Nội</strong> uy tín. All Rights Reserved.</p>
+      <p>Bản quyền © 2025 Thu Hà <strong>thuê xe máy Hà Nội</strong> uy tín. All Rights Reserved.</p>
     </div>
   </footer>
 
   <div id="miniAppFooter" class="mini-app-footer" aria-label="Mini App Actions">
-    <button id="miniAppToggle" class="mini-app-toggle" aria-label="Mở menu nhanh">⚡</button>
+    <button id="miniAppToggle" class="mini-app-toggle" aria-label="Mở menu nhanh">
+      <i aria-hidden="true">⚡</i>
+    </button>
+    
     <div class="mini-app-buttons" aria-hidden="true">
       <span id="miniAppTyping" style="font-size:0.95em;font-weight:600;color:var(--text);display:block;text-align:center;margin-bottom:6px;"></span>
-      <a class="fab call" href="tel:+84334699969" aria-label="Gọi điện">📞</a>
-      <a class="fab zalo" href="https://zalo.me/0334699969" target="_blank" rel="noopener" aria-label="Zalo">💬</a>
-      <a class="fab map" href="https://goo.gl/maps/8NaCZJ82JU92sVTGl" target="_blank" rel="noopener" aria-label="Bản đồ">🗺</a>
-      <button class="fab backtop" id="miniBackToTop" aria-label="Lên đầu trang">⬆</button>
+      
+      <a class="fab call" href="tel:+84334699969" aria-label="Gọi điện">
+        <span aria-hidden="true">📞</span><span class="visually-hidden-on-mobile"> Gọi</span>
+      </a>
+      <a class="fab zalo" href="https://zalo.me/0334699969" target="_blank" rel="noopener" aria-label="Zalo">
+        <span aria-hidden="true">💬</span><span class="visually-hidden-on-mobile"> Zalo</span>
+      </a>
+      <a class="fab map" href="https://goo.gl/maps/8NaCZJ82JU92sVTGl" target="_blank" rel="noopener" aria-label="Bản đồ">
+        <span aria-hidden="true">🗺</span><span class="visually-hidden-on-mobile"> Bản đồ</span>
+      </a>
+      <button class="fab backtop" id="miniBackToTop" aria-label="Lên đầu trang">
+        <span aria-hidden="true">⬆</span><span class="visually-hidden-on-mobile"> Lên đầu</span>
+      </button>
     </div>
   </div>
 
@@ -972,9 +1221,11 @@
       const logoEl = document.querySelector('.header-logo img'); // Dùng lại cho hiệu ứng Shine
       const faqItems = document.querySelectorAll('.faq-item');
       const ariaAnnounce = document.getElementById('ariaAnnounce');
-      const miniApp = document.getElementById('miniAppFooter');
+      
       const toggleBtn = document.getElementById('miniAppToggle');
+      const miniApp = document.getElementById('miniAppFooter');
       const backTopBtn = document.getElementById('miniBackToTop');
+      const fabButtons = Array.from(miniApp.querySelectorAll('.fab'));
       const typingEl = document.getElementById('miniAppTyping');
 
       /* ---------- ANNOUNCE for accessibility ---------- */
@@ -1250,43 +1501,92 @@
       })();
 
 
-      /* ---------- MINI APP FAB LOGIC ---------- */
+      /* ---------- MINI APP FAB LOGIC (Tối ưu hóa) ---------- */
       (function miniAppInit(){
+        const TYPING_SPEED = 48, PAUSE = 1600;
+        let p = 0, i = 0, forward = true, typeTimer = null;
+
         // Toggle open/close mini app
         toggleBtn.addEventListener('click', ()=>{
           const isOpen = miniApp.classList.toggle('open');
+          toggleBtn.classList.toggle('open', isOpen); // Thêm class 'open' cho nút toggle để tắt hiệu ứng lắc
           miniApp.querySelector('.mini-app-buttons').setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+
+          if (isOpen) {
+              // Staggered slide-in effect
+              fabButtons.forEach((btn, i) => {
+                  btn.style.transitionDelay = (i * 50 + 50) + 'ms'; // 50ms delay
+              });
+          } else {
+              // Reset delay khi đóng
+              fabButtons.forEach(btn => {
+                  btn.style.transitionDelay = '0ms';
+              });
+          }
         });
 
         // Back to top
         backTopBtn.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
         
-        // TYPING animation in mini app
+        // TYPING animation 
         const phrases = [
           'Thuê Xe Máy Hà Nội – Nhanh, Rẻ, Tận Nơi.',
           'Xe 50cc • Vision • Air Blade – Giao Tận Nơi.',
           'Thuê theo ngày, tuần, tháng – Thủ tục nhanh.'
         ];
-        let p = 0, i = 0, forward = true;
-        const TYPING_SPEED = 48, PAUSE = 1600;
         function typeStep(){
-          const text = phrases[p];
-          if(forward){
-            i++;
-            typingEl.textContent = text.slice(0,i);
-            if(i >= text.length){ forward=false; setTimeout(typeStep, PAUSE); return; }
-          } else {
-            i--;
-            typingEl.textContent = text.slice(0,i);
-            if(i<=0){ forward=true; p=(p+1)%phrases.length; setTimeout(typeStep,240); return; }
-          }
-          // Dùng setTimeout thay vì requestAnimationFrame + setTimeout để tránh lỗi gọi lặp vô hạn (vì JS chạy single thread)
-          setTimeout(typeStep, TYPING_SPEED);
+            clearTimeout(typeTimer);
+            const text = phrases[p];
+            if(forward){
+              i++;
+              typingEl.textContent = text.slice(0,i);
+              if(i >= text.length){ forward=false; typeTimer = setTimeout(typeStep, PAUSE); return; }
+            } else {
+              i--;
+              typingEl.textContent = text.slice(0,i);
+              if(i<=0){ forward=true; p=(p+1)%phrases.length; typeTimer = setTimeout(typeStep,240); return; }
+            }
+            typeTimer = setTimeout(typeStep, TYPING_SPEED);
         }
         typeStep();
 
       })();
       
+      /* ---------- SUNRISE REVEAL FOOTER (UX Premium v3) ---------- */
+      (function footerRevealInit(){
+        const footer = document.querySelector('.footer-sunlight');
+        if (!footer) return;
+        
+        // Sử dụng Intersection Observer để tối ưu hóa thay vì lắng nghe sự kiện scroll
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                footer.classList.add('sunrise-active');
+                observer.unobserve(footer); // Ngừng theo dõi sau khi đã kích hoạt
+              }
+            });
+          }, { 
+            rootMargin: '0px 0px -100px 0px', // Kích hoạt sớm hơn 100px so với cuối màn hình
+            threshold: 0.1 
+          });
+
+          observer.observe(footer);
+        } else {
+          // Fallback cho trình duyệt cũ
+          const revealSunlight = () => {
+            const rect = footer.getBoundingClientRect();
+            const vh = window.innerHeight || document.documentElement.clientHeight;
+            if (rect.top <= vh * 0.9) {
+              footer.classList.add('sunrise-active');
+              window.removeEventListener('scroll', revealSunlight);
+            }
+          };
+          window.addEventListener('scroll', revealSunlight);
+          revealSunlight(); // Chạy lần đầu phòng trường hợp footer đã nằm trong tầm nhìn
+        }
+      })();
+
       /* ---------- FADE-IN TOÀN TRANG (GRAND ENTRY v3 - Smooth) ---------- */
       window.addEventListener('load', () => {
         // Chờ toàn bộ nội dung, ảnh và font tải xong rồi fade-in
