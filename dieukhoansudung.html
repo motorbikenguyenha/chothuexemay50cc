@@ -69,7 +69,7 @@
       backdrop-filter: blur(16px) saturate(180%);
       border-bottom: 1px solid rgba(255,255,255,0.25);
       display: grid; 
-      grid-template-columns: auto 1fr auto; /* Đảm bảo cấu trúc logo giữa */
+      grid-template-columns: auto 1fr auto auto; /* Đảm bảo cấu trúc logo giữa */
       align-items: center;
       gap: 15px;
       padding: 0 20px;
@@ -183,13 +183,13 @@
         font-size: 1.3em;
         margin-right: 5px; /* Tách khỏi cạnh */
         padding: 0;
-        border: none;
-        background: transparent;
-        backdrop-filter: none;
+        border: 2px solid rgba(255,255,255,0.3); /* Bổ sung lại border/background cho toggle */
+        background: rgba(255,255,255,0.2);
+        backdrop-filter: blur(8px);
     }
     .theme-toggle:active{transform:scale(.97)}
     /* Thay đổi thứ tự để theme toggle đứng cuối cùng */
-    .site-header { grid-template-columns: auto 1fr auto auto; }
+    /* .site-header { grid-template-columns: auto 1fr auto auto; } // Đã khai báo ở trên */
     
     /* ripple effect */
     .ripple-wrap{overflow:hidden;position:absolute;top:0;left:0;right:0;bottom:0;border-radius:inherit;pointer-events:none;}
@@ -632,6 +632,49 @@
     
     @media(max-width:400px){
       .sidebar{width: 100%;}
+    }
+
+    /* ================== FIX: Theme Toggle bị ẩn trên iPhone (màn dọc) ================== */
+    /* Áp dụng cho các màn hình có chiều rộng <= 600px (bao gồm iPhone màn dọc) */
+    @media (max-width: 600px) {
+      .site-header {
+        /* Bỏ 1 cột thừa (cột của .top-info) */
+        grid-template-columns: auto 1fr auto; 
+      }
+
+      .top-info {
+        display: none; /* Ẩn dòng email + giờ làm việc trên màn nhỏ */
+      }
+
+      .theme-toggle {
+        margin-right: 0;
+        justify-self: end;
+        width: 42px;
+        height: 42px;
+        font-size: 1.2em;
+        /* Đảm bảo lại style Glass cho nút toggle khi kích thước nhỏ */
+        border: 2px solid rgba(255,255,255,0.3);
+        background: rgba(255,255,255,0.2);
+        backdrop-filter: blur(8px);
+      }
+      /* Đảm bảo lại style Dark Mode cho nút toggle khi kích thước nhỏ */
+      :root[data-theme="dark"] .theme-toggle {
+        border-color: rgba(255,255,255,0.15);
+        background: rgba(15,15,15,0.35);
+      }
+
+      .menu-toggle {
+        width: 42px;
+        height: 42px;
+      }
+
+      .header-logo {
+        position: relative; /* Hủy bỏ căn giữa tuyệt đối */
+        left: auto;
+        top: auto;
+        transform: none;
+        justify-self: center; /* Đảm bảo logo nằm giữa cột 1fr mới */
+      }
     }
     
     /* ================== FADE-IN GRAND ENTRY v3 (Smooth Edition) - NÂNG CẤP MỚI ================== */
