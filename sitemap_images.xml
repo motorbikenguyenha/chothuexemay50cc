@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:image="https://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://motorbikenguyenha.github.io/chothuexemay50cc/</loc>
+    <image:image>
+      <image:loc>https://i.postimg.cc/zvH4Sh18/IMG-5028.jpg</image:loc>
+      <image:caption>Logo Thu Hà 50cc - Cho thuê xe máy Hà Nội</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://raw.githubusercontent.com/motorbikenguyenha/chothuexemay50cc/refs/heads/main/IMG_5303.png</image:loc>
+      <image:caption>Xe máy 50cc Hà Nội - Dịch vụ cho thuê uy tín</image:caption>
+    </image:image>
+  </url>
+</urlset>
