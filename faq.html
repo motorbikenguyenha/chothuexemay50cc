@@ -20,6 +20,8 @@
   <meta name="theme-color" content="#f4c542">
   <meta name="apple-mobile-web-app-title" content="Thu Hà 50cc Hà Nội">
   <meta name="application-name" content="Thu Hà 50cc">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <meta property="og:locale" content="vi_VN">
   <meta property="og:type" content="website">
@@ -589,18 +591,38 @@
         border-bottom-color: rgba(255, 255, 255, 0.1);
         background-color: rgba(244,197,66,0.2) !important;
     }
+    
+    /* === Hiệu ứng + / − TÙY CHỈNH (giữ nguyên CSS của bạn) === */
+    /* Icon mặc định của Bootstrap là dấu V. Ta cần tùy chỉnh lại để thành +/- */
     .accordion-button::after {
-        filter: invert(1); /* Đảo ngược màu icon */
+        /* Bỏ icon mặc định và thay bằng icon tùy chỉnh trong CSS */
+        background-image: none !important; 
+        content: '+'; /* Dấu + khi đóng */
+        width: auto;
+        height: auto;
+        font-size: 1.2em;
+        font-weight: 700;
+        line-height: 1;
+        transition: transform 0.3s ease, content 0.3s ease;
+        transform: rotate(0deg); /* Đặt lại mặc định để tránh xoay */
+        filter: none !important;
         color: var(--text);
-        transition: transform 0.3s ease;
     }
     .accordion-button:not(.collapsed)::after {
-        transform: rotate(-180deg);
-        filter: invert(0) sepia(1) saturate(1000%) hue-rotate(0deg) brightness(80%) contrast(150%); /* Icon vàng khi mở */
+        content: '−'; /* Dấu − khi mở */
+        transform: rotate(0deg);
+        color: var(--accent);
     }
+    /* Loại bỏ filter invert không cần thiết do đã dùng content +/- */
     :root[data-theme="dark"] .accordion-button::after {
-        filter: invert(1);
+        color: var(--dark-text);
+        filter: none; 
     }
+    :root[data-theme="dark"] .accordion-button:not(.collapsed)::after {
+        color: var(--accent);
+    }
+    /* === END Hiệu ứng + / − TÙY CHỈNH === */
+
 
     /* Accordion Body (Answer) */
     .accordion-body {
@@ -616,7 +638,59 @@
     .accordion-body strong {
         color: var(--accent);
     }
-
+    
+    /* ================== PHẦN CSS MỚI CHO RELATED LINKS ================== */
+    .related-links {
+        text-align: center;
+        margin: 40px auto;
+        padding: 20px 15px;
+        max-width: 900px;
+        border-radius: var(--radius);
+        background: rgba(244, 197, 66, 0.05); /* Nền vàng nhạt */
+        border: 1px solid rgba(244, 197, 66, 0.2);
+    }
+    :root[data-theme="dark"] .related-links {
+        background: rgba(244, 197, 66, 0.15); /* Nền vàng ấm hơn trong dark mode */
+        border: 1px solid rgba(244, 197, 66, 0.3);
+    }
+    .related-links h3 {
+        font-size: 1.3em;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 20px;
+    }
+    .links-group {
+        display: flex;
+        justify-content: center;
+        gap: 15px; /* Khoảng cách giữa các link */
+        flex-wrap: wrap;
+    }
+    .related-link-item {
+        display: inline-block;
+        padding: 10px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.05em;
+        color: var(--text);
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+    }
+    :root[data-theme="dark"] .related-link-item {
+        color: var(--dark-text);
+        background-color: rgba(30, 30, 30, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    /* Hiệu ứng hover theo yêu cầu */
+    .related-link-item:hover {
+        background-color: #f4c542; /* Màu vàng nhạt #f4c542 */
+        color: #111; /* Đổi màu chữ sang đen cho nổi bật */
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 8px 20px rgba(244, 197, 66, 0.4);
+    }
+    
     /* ============== FOOTER ĐẸP (Nâng cấp V2) ============== */
     .mini-footer{
       position: relative; 
@@ -1202,15 +1276,15 @@
           </p>
         </div>
 
-        <div class="accordion" id="faqAccordion">
+        <div class="accordion accordion-flush" id="faqAccordion">
 
           <div class="accordion-item mb-3">
             <h2 class="accordion-header" id="q1">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="true" aria-controls="a1">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="false" aria-controls="a1">
                 Giá thuê xe máy theo ngày ở Hà Nội là bao nhiêu?
               </button>
             </h2>
-            <div id="a1" class="accordion-collapse collapse show" aria-labelledby="q1" data-bs-parent="#faqAccordion">
+            <div id="a1" class="accordion-collapse collapse" aria-labelledby="q1" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
                 Giá thuê xe máy tại <strong>Thu Hà</strong> dao động từ <strong>150.000đ – 200.000đ/ngày</strong>,
                 tùy dòng xe (50cc, Vision, Air Blade…). Mức giá rõ ràng, không phụ phí ẩn.
@@ -1346,10 +1420,24 @@
           </div>
 
         </div>
+         </div>
+    </section>
+    
+    <section class="related-links fade-right" aria-label="Các liên kết nhanh khác">
+      <h3>Liên kết nhanh đến các trang quan trọng</h3>
+      <div class="links-group">
+        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dichvu.html" class="related-link-item">
+          🛵 Dịch vụ
+        </a>
+        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/lienhe.html" class="related-link-item">
+          📞 Liên hệ
+        </a>
+        <a href="https://motorbikenguyenha.github.io/chothuexemay50cc/dieukhoansudung.html" class="related-link-item">
+          📜 Điều khoản sử dụng
+        </a>
       </div>
     </section>
-
-  </main>
+    </main>
 
   <footer class="mini-footer fade-right footer-sunlight" id="lienhe" role="contentinfo">
     <div class="footer-container footer-content">
@@ -1417,7 +1505,7 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdi/1n7p63nN+oK61C7tH5d" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
