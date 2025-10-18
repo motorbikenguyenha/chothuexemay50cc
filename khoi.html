@@ -1,0 +1,146 @@
+<!-- KHỐI TIMELINE / STEP - THU HÀ MOTORBIKE -->
+<style>
+/* KHỐI */
+#timeline {
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 30px 20px;
+  text-align: center;
+  border-radius: 20px;
+  background: rgba(255,245,200,0.08);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 50px rgba(244,197,66,0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ÁNH SÁNG XOAY TOÀN KHỐI */
+#timeline::before {
+  content:"";
+  position:absolute;
+  top:-50%; left:-50%;
+  width:200%; height:200%;
+  background: conic-gradient(from 0deg, rgba(255,215,0,0.3), transparent 60%);
+  animation: rotateLight 8s linear infinite;
+  pointer-events: none;
+  border-radius:50%;
+  z-index:0;
+}
+
+@keyframes rotateLight{
+  from{transform:rotate(0);}
+  to{transform:rotate(360deg);}
+}
+
+/* TIÊU ĐỀ */
+#timeline h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, #FFD700, #FFEE58, #FFD700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 8px rgba(255,215,0,0.8), 0 0 12px rgba(255,215,0,0.6);
+  margin-bottom: 40px;
+}
+
+/* TIMELINE STEPS */
+.timeline-steps {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+  z-index:1;
+}
+
+.step {
+  flex: 1 1 200px;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 6px 20px rgba(244,197,66,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(255,215,0,0.35);
+}
+
+.step-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  display: inline-block;
+  color: #FFD700;
+  text-shadow: 0 0 6px rgba(255,215,0,0.6);
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.step:hover .step-icon {
+  transform: scale(1.3) rotate(15deg);
+  text-shadow: 0 0 12px rgba(255,215,0,1);
+}
+
+.step-text {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* DARK MODE */
+html[data-theme="dark"] #timeline {
+  background: rgba(20,20,20,0.6);
+  box-shadow: 0 10px 50px rgba(255,215,0,0.4);
+}
+html[data-theme="dark"] #timeline h2 {
+  text-shadow: 0 2px 12px rgba(255,215,0,0.8), 0 0 16px rgba(255,215,0,0.6);
+}
+html[data-theme="dark"] .step {
+  background: rgba(30,30,30,0.8);
+  box-shadow: 0 6px 20px rgba(255,215,0,0.2);
+}
+html[data-theme="dark"] .step-text {
+  color: #eee;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .timeline-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+  .step {
+    width: 90%;
+  }
+  #timeline h2 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+}
+</style>
+
+<section id="timeline">
+  <h2>Quy trình thuê xe máy - Thu Hà</h2>
+  <div class="timeline-steps">
+    <div class="step">
+      <span class="step-icon">📱</span>
+      <div class="step-text">Đặt xe online hoặc gọi điện thoại đặt trước.</div>
+    </div>
+    <div class="step">
+      <span class="step-icon">💰</span>
+      <div class="step-text">Đặt cọc từ 1 đến 5 triệu đồng, tuỳ loại xe.</div>
+    </div>
+    <div class="step">
+      <span class="step-icon">📝</span>
+      <div class="step-text">Cung cấp giấy tờ hợp lệ và tuân thủ quy định thuê.</div>
+    </div>
+    <div class="step">
+      <span class="step-icon">🏍️</span>
+      <div class="step-text">Nhận xe tại địa điểm, kiểm tra xe và giấy tờ.</div>
+    </div>
+    <div class="step">
+      <span class="step-icon">✅</span>
+      <div class="step-text">Trả xe đúng hạn, đảm bảo an toàn cho cả hai bên.</div>
+    </div>
+  </div>
+</section>
