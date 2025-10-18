@@ -1682,7 +1682,7 @@ html[data-theme="dark"] .pricing-container{
   border-collapse:collapse;
   z-index:2;
   position:relative;
-  table-layout: fixed; /* Cân bằng cột */
+  table-layout: fixed; /* Tự động cân bằng chiều rộng cột */
 }
 .pricing-table th{
   background:linear-gradient(135deg,#f4c542,#ffea9b);
@@ -1692,7 +1692,7 @@ html[data-theme="dark"] .pricing-container{
   font-size:.95rem;
   text-transform:uppercase;
   border-bottom:2px solid rgba(0,0,0,0.1);
-  word-wrap: break-word;
+  word-wrap: break-word; /* tránh tràn chữ */
 }
 html[data-theme="dark"] .pricing-table th{
   background:linear-gradient(135deg,#f4c542,#b58b0d);
@@ -1717,67 +1717,14 @@ html[data-theme="dark"] .pricing-table tr:hover td{
   to{opacity:1;transform:translateY(0);}
 }
 
-/* Responsive >768px giữ nguyên */
+/* Responsive */
 @media(max-width:768px){
-  .pricing-table, .pricing-table thead, .pricing-table tbody, .pricing-table th, .pricing-table td, .pricing-table tr{
-    display:block;
-  }
-
-  .pricing-table thead tr{
-    display:none; /* Ẩn header */
-  }
-
-  .pricing-table tr{
-    margin-bottom:16px;
-    border-radius:12px;
-    background:rgba(255,255,255,0.95);
-    box-shadow:0 5px 20px rgba(0,0,0,0.08);
-    padding:10px;
-  }
-
-  .pricing-table td{
-    display:flex;
-    justify-content:space-between;
-    padding:6px 10px;
-    border:none;
-    border-bottom:1px solid rgba(0,0,0,0.05);
+  .pricing-table th,.pricing-table td{
+    padding:10px 6px;
     font-size:.9rem;
-  }
-
-  .pricing-table td::before{
-    content:attr(data-label);
-    font-weight:600;
-    text-transform:uppercase;
-    color:#666;
-  }
-}
-
-/* Responsive cực nhỏ <400px */
-@media(max-width:400px){
-  .pricing-table td{
-    flex-direction:column;
-    align-items:flex-start;
-    padding:4px 8px;
-    font-size:.85rem;
-  }
-  .pricing-table td::before{
-    margin-bottom:2px;
-    font-size:.75rem;
   }
 }
 </style>
-
-<script>
-  // Gán nhãn data-label cho responsive
-  document.addEventListener("DOMContentLoaded", function(){
-    const headers = Array.from(document.querySelectorAll(".pricing-table thead th")).map(th => th.textContent);
-    document.querySelectorAll(".pricing-table tbody tr").forEach(tr => {
-      tr.querySelectorAll("td").forEach((td, i) => {
-        td.setAttribute("data-label", headers[i]);
-      });
-    });
-  });
-</script>
 
     <section class="container" id="top">
       <section id="dichvu" class="fade-right" aria-labelledby="dichvu-title" style="margin-top:28px;text-align:center;">
