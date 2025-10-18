@@ -473,119 +473,10 @@
     }
     .overlay.show { opacity: 1; pointer-events: auto; }
     
-    /* ============== HERO SECTION ============== */
-    .hero {
-      position: relative;
-      height: 88vh;
-      min-height: 520px;
-      background: radial-gradient(circle at 30% 20%, #fff7d1 0%, #fff3b4 35%, #fffbe7 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #fff;
-      overflow: hidden;
-      margin-top: 0;
-    }
-    :root[data-theme="dark"] .hero {
-       background: radial-gradient(circle at 30% 20%, #1a1a1a 0%, #111 40%, #000 100%);
-    }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45); 
-      backdrop-filter: blur(2px);
-      z-index: 0;
-    }
-    :root[data-theme="dark"] .hero-overlay { background: transparent; backdrop-filter: none; }
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      padding: 0 20px;
-      max-width: 880px;
-      animation: heroZoomIn 1.2s cubic-bezier(0.2, 0.8, 0.4, 1);
-      will-change: transform, opacity;
-    }
-    @keyframes heroZoomIn { 0% { opacity: 0; transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
-    .hero h1 {
-      font-size: 3.2em; 
-      font-weight: 900;
-      line-height: 1.25;
-      margin: 0 0 0.4em;
-      text-shadow: 0 4px 14px rgba(0,0,0,0.5); 
-      color: #111; 
-    }
-    .hero h1 span {
-      color: var(--accent);
-      background-image: linear-gradient(90deg, #d9a500, var(--accent), #d9a500);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-size: 200% auto;
-      animation: shine 3s infinite ease-in-out alternate;
-      text-shadow: none;
-      display: inline-block;
-      will-change: background-position;
-    }
-    @keyframes shine {
-      0% { background-position: 0% center; }
-      100% { background-position: -200% center; }
-    }
-    .hero p {
-      font-size: 1.3em; 
-      max-width: 680px;
-      margin: 0 auto 2em; 
-      color: #333; 
-      text-shadow: 0 3px 8px rgba(255,255,255,0.4);
-    }
-    :root[data-theme="dark"] .hero h1 { 
-        color: var(--dark-text);
-        text-shadow: 0 4px 14px rgba(0,0,0,0.5);
-    }
-    :root[data-theme="dark"] .hero h1 span {
-        background-image: linear-gradient(90deg, #fff7b3, var(--accent), #fff7b3);
-        -webkit-text-fill-color: transparent;
-    }
-    :root[data-theme="dark"] .hero p {
-        color: var(--dark-muted);
-        text-shadow: none;
-    }
-    .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 18px; }
-    .btn-primary, .btn-secondary {
-      padding: 16px 32px; border-radius: 12px; font-weight: 700;
-      font-size: 1.1em; text-decoration: none; transition: all .3s var(--ease);
-      border: none; cursor: pointer; will-change: transform, box-shadow;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg,var(--accent),var(--accent-2));
-      color: #111; box-shadow: 0 10px 24px rgba(244,197,66,0.5); 
-    }
-    .btn-primary:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 14px 36px rgba(244,197,66,0.8);
-    }
-    .btn-secondary {
-      background: rgba(255,255,255,0.1); 
-      border: 2px solid var(--accent);
-      color: var(--text);
-      box-shadow: 0 5px 14px rgba(0,0,0,0.1);
-    }
-    .btn-secondary:hover {
-      background: var(--accent);
-      color: #111;
-      box-shadow: 0 8px 20px rgba(244,197,66,0.5);
-    }
-    :root[data-theme="dark"] .btn-secondary {
-      background: rgba(255,255,255,0.15); 
-      border: 2px solid var(--accent);
-      color: var(--dark-text);
-      box-shadow: 0 5px 14px rgba(0,0,0,0.35);
-    }
-    :root[data-theme="dark"] .btn-secondary:hover {
-      background: var(--accent);
-      color: #111;
-      box-shadow: 0 8px 20px rgba(244,197,66,0.5);
-    }
+    /* KHÔNG CẦN CHÉP LẠI PHẦN .hero VÌ ĐÃ BỊ XÓA Ở MAIN 
+    ============== HERO SECTION ==============
+    .hero { ... }
+    */
 
     /* ============== MAIN SECTIONS ============== */
     .service-card{
@@ -1421,20 +1312,7 @@
     <button id="themeToggle" class="theme-toggle" aria-label="Chuyển chế độ sáng/tối">☀️</button>
   </header>
 
-  <main>
-    <section class="hero fade-left" id="hero"> 
-      <div class="hero-overlay"></div>
-      <div class="hero-inner">
-        <h1>Cho thuê xe máy 50cc Hà Nội - <span>Thu Hà</span></h1>
-        <p>Dịch vụ <strong>thuê xe máy Hà Nội</strong> uy tín, xe 50cc – Vision – Air Blade đời mới. Hỗ trợ <strong>thuê xe máy giao tận nơi</strong> nhanh tại Long Biên, Gia Lâm, Hoàn Kiếm, Phố Cổ.</p>
-        <div class="hero-actions">
-          <a href="https://zalo.me/0334699969" target="_blank" class="btn-primary">💬 Thuê xe ngay</a>
-          <a href="#bang-gia-chi-tiet" class="btn-secondary">📋 Xem bảng giá</a>
-        </div>
-      </div>
-    </section>
-
-      <section class="fade-left" style="margin:40px auto;max-width:800px;text-align:center;">
+  <main style="margin-top: 64px;"> <section class="fade-left" style="margin:40px auto;max-width:800px;text-align:center;">
         <h2 class="headline">Thuê xe máy Hà Nội – Giao tận nơi nhanh</h2>
         <p>Chúng tôi chuyên cung cấp dịch vụ <strong>thuê xe máy Hà Nội</strong> giá rẻ, đặc biệt là <strong>cho thuê xe máy 50cc Hà Nội</strong> phù hợp cho học sinh, sinh viên và khách du lịch. Với hệ thống giao nhận xe tận nơi, bạn có thể <strong>thuê xe máy giao tận nơi</strong> chỉ trong 15 phút tại Long Biên, Hoàn Kiếm, Gia Lâm, Phố Cổ và các quận nội thành khác.</p>
         <ul style="list-style: none; padding:0; text-align:left; max-width:700px; margin:20px auto; color:var(--muted);">
@@ -1447,16 +1325,7 @@
       </section>
 
       <hr style="border:0;border-top:1px solid rgba(0,0,0,0.08);margin:36px 0;">
-      <section class="carousel fade-right" aria-label="Đánh giá khách hàng" style="margin-top:28px">
-        <div class="carousel-track" id="carouselTrack" role="group" aria-live="polite" aria-roledescription="carousel">
-          <div class="slide active" role="tabpanel" aria-roledescription="slide" aria-label="Đánh giá 1">⭐️⭐️⭐️⭐️⭐️ “Xe tốt, giao tận nơi đúng hẹn. Rất hài lòng!” – Minh, Hà Nội</div>
-          <div class="slide" role="tabpanel" aria-roledescription="slide" aria-label="Đánh giá 2">⭐️⭐️⭐️⭐️⭐️ “Thủ tục nhanh gọn, chị chủ thân thiện, giá hợp lý.” – Hương, Gia Lâm</div>
-          <div class="slide" role="tabpanel" aria-roledescription="slide" aria-label="Đánh giá 3">⭐️⭐️⭐️⭐️⭐️ “Xe 50cc mới, đi êm, tiết kiệm xăng. Sẽ thuê lại!” – Tuấn, Long Biên</div>
-        </div>
-        <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Điều khiển đánh giá"></div>
-        <div class="visually-hidden">Vuốt sang trái/phải để xem thêm đánh giá</div>
-      </section>
-
+      
       <section class="service-page container py-5 fade-left">
         <header class="text-center mb-5">
           <h1 class="fw-bold headline" style="color:var(--text)">Dịch vụ thuê xe máy tại Hà Nội - Thu Hà</h1>
@@ -1923,64 +1792,8 @@
         });
       });
 
-      /* ---------- REVIEW CAROUSEL (V2) ---------- */
-      (function carouselInit(){
-        const track = document.getElementById('carouselTrack');
-        const slides = Array.from(track ? track.querySelectorAll('.slide') : []);
-        const dotsWrap = document.getElementById('carouselDots');
-        if(!track || !dotsWrap || slides.length === 0) return;
-
-        let idx = 0, timer = null, autoDelay = 4200;
-        
-        slides.forEach((s,i)=>{
-          const d = document.createElement('button'); d.className='dot'; d.setAttribute('aria-label','Xem đánh giá ' + (i+1)); d.setAttribute('role','tab');
-          d.setAttribute('aria-selected', i===0 ? 'true' : 'false');
-          if(i===0) d.classList.add('active');
-          d.addEventListener('click', ()=> goTo(i));
-          dotsWrap.appendChild(d);
-        });
-        const dots = Array.from(dotsWrap.children);
-        
-        function show(n){
-          slides.forEach((s,i)=>{
-            const isActive = i===n;
-            s.classList.toggle('active', isActive);
-            s.setAttribute('aria-hidden', !isActive);
-          });
-          dots.forEach((d,i)=>{
-            const isActive = i===n;
-            d.classList.toggle('active', isActive);
-            d.setAttribute('aria-selected', isActive);
-          });
-        }
-        function goTo(n){
-          idx = (n + slides.length) % slides.length;
-          show(idx);
-          resetTimer();
-        }
-        function next(){ goTo(idx+1); }
-        function resetTimer(){ if(timer) clearInterval(timer); timer = setInterval(next, autoDelay); }
-        
-        // Touch support
-        let startX = 0;
-        track.addEventListener('touchstart', e=> { startX = e.touches[0].clientX; clearInterval(timer); }, {passive:true});
-        track.addEventListener('touchend', e=> {
-          const endX = e.changedTouches[0].clientX;
-          if(Math.abs(startX - endX) > 40) {
-             if(startX - endX > 40) next();
-             else if(endX - startX > 40) goTo(idx-1);
-          }
-          startX = 0;
-          resetTimer();
-        });
-        
-        // Keyboard left/right
-        track.addEventListener('keydown', e=> { 
-            if(e.key==='ArrowLeft') goTo(idx-1); 
-            if(e.key==='ArrowRight') next(); 
-        });
-        resetTimer();
-      })();
+      /* Đã xóa: REVIEW CAROUSEL (V2)
+      */
 
 
       /* ---------- MINI APP FAB LOGIC (Tối ưu hóa) ---------- */
