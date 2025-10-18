@@ -2248,19 +2248,49 @@
         });
       });
 
-      (function autoSpotlight() {
-        const cards = document.querySelectorAll('.bike-card');
-        if (cards.length === 0) return;
+      /* ---------- SUNRISE REVEAL FOOTER (UX Premium v3) ---------- */
+      (function footerRevealInit(){
+        const footer = document.querySelector('.footer-sunlight');
+        if (!footer) return;
         
-        let index = 0;
-        setInterval(() => {
-          cards.forEach((card, i) => {
-            const glow = card.querySelector('.bike-glow');
-            if (glow) {
-              if (i === index) {
-                glow.style.setProperty('--x', '50%');
-                glow.style.setProperty('--y', '40%');
-                glow.style.opacity = '0.6';
-              } else {
-                glow.style.opacity = '0.2';
+        // Sử dụng Intersection Observer để tối ưu hóa thay vì lắng nghe sự kiện scroll
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                footer.classList.add('sunrise-active');
+                observer.unobserve(footer); // Ngừng theo dõi sau khi đã kích hoạt
               }
+            });
+          }, { 
+            rootMargin: '0px 0px -100px 0px', // Kích hoạt sớm hơn 100px so với cuối màn hình
+            threshold: 0.1 
+          });
+
+          observer.observe(footer);
+        } else {
+          // Fallback cho trình duyệt cũ
+          const revealSunlight = () => {
+            const rect = footer.getBoundingClientRect();
+            const vh = window.innerHeight || document.documentElement.clientHeight;
+            if (rect.top <= vh * 0.9) {
+              footer.classList.add('sunrise-active');
+              window.removeEventListener('scroll', revealSunlight);
+            }
+          };
+          window.addEventListener('scroll', revealSunlight);
+          revealSunlight(); // Chạy lần đầu phòng trường hợp footer đã nằm trong tầm nhìn
+        }
+      })();
+
+      /* ---------- FADE-IN TOÀN TRANG (GRAND ENTRY v3 - Smooth) ---------- */
+      window.addEventListener('load', () => {
+        // Chờ toàn bộ nội dung, ảnh và font tải xong rồi fade-in
+        setTimeout(() => {
+          document.body.classList.add('page-loaded');
+        }, 180); // thêm chút delay nhẹ cho mượt
+      });
+    });
+  </script>
+</body>
+</html>
