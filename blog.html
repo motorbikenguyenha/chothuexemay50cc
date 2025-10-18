@@ -1765,9 +1765,8 @@ html[data-theme="dark"] .pricing-table tr:hover td{
         </div>
       </section>
 
-      <!-- KHỐI ĐIỀU KIỆN THUÊ XE MÁY VỚI ÁNH SÁNG LUNG LINH -->
+      <!-- KHỐI ĐIỀU KIỆN THUÊ XE MÁY VỚI ÁNH SÁNG PREMIUM -->
 <style>
-/* KHỐI */
 #dieu-kien{
   max-width:1100px;
   margin:50px auto;
@@ -1792,12 +1791,16 @@ html[data-theme="dark"] .pricing-table tr:hover td{
   transition: text-shadow 0.4s ease, color 0.4s ease;
 }
 
-/* Mô tả */
+/* Mô tả từng dòng */
 #dieu-kien p.sub{
   font-size:1rem;
   color:#333;
-  margin-bottom:28px;
+  margin:10px 0;
   line-height:1.6;
+  position:relative;
+  overflow:hidden;
+  z-index:1;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 #dieu-kien p.sub span.icon{
   display:inline-block;
@@ -1806,7 +1809,7 @@ html[data-theme="dark"] .pricing-table tr:hover td{
   transition: transform 0.2s ease;
 }
 
-/* ÁNH SÁNG QUAY */
+/* ÁNH SÁNG QUAY CHO TOÀN KHỐI */
 #dieu-kien::before{
   content:"";
   position:absolute;
@@ -1819,6 +1822,29 @@ html[data-theme="dark"] .pricing-table tr:hover td{
   z-index:0;
 }
 
+/* ÁNH SÁNG THEO CHUỘT CHO TỪNG P */
+#dieu-kien p.sub::after{
+  content:"";
+  position:absolute;
+  top:var(--mouse-y,50%);
+  left:var(--mouse-x,50%);
+  width:200px;
+  height:200px;
+  background:radial-gradient(circle, rgba(244,197,66,0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events:none;
+  border-radius:50%;
+  transition: top 0.1s, left 0.1s, opacity 0.2s;
+  z-index:0;
+  opacity:0;
+}
+
+/* Flash khi hover từng câu */
+#dieu-kien p.sub:hover::after{
+  opacity:1;
+}
+
+/* Hover khối */
 #dieu-kien:hover{
   box-shadow: 0 20px 80px rgba(244,197,66,0.45);
   transform: translateY(-4px);
@@ -1865,27 +1891,27 @@ html[data-theme="dark"] #dieu-kien p.sub{
 
 <section id="dieu-kien">
   <h2>Điều kiện thuê xe máy - Thu Hà</h2>
-  <p class="sub">
-    Đặt cọc từ <span class="icon">💰</span> 1 đến 5 triệu đồng. 
-    Khách hàng cần cung cấp giấy tờ hợp lệ <span class="icon">📝</span> và tuân thủ quy định thuê. 
-    Xe sử dụng trong nội thành Hà Nội, bảo quản cẩn thận <span class="icon">⏱</span> để tránh phát sinh chi phí. 
-    Thanh toán khi nhận xe và trả xe đúng hạn để đảm bảo <span class="icon">✅</span> an toàn cho cả hai bên.
-  </p>
+  <p class="sub">Đặt cọc từ <span class="icon">💰</span> 1 đến 5 triệu đồng.</p>
+  <p class="sub">Khách hàng cần cung cấp giấy tờ hợp lệ <span class="icon">📝</span> và tuân thủ quy định thuê.</p>
+  <p class="sub">Xe sử dụng trong nội thành Hà Nội, bảo quản cẩn thận <span class="icon">⏱</span> để tránh phát sinh chi phí.</p>
+  <p class="sub">Thanh toán khi nhận xe và trả xe đúng hạn để đảm bảo <span class="icon">✅</span> an toàn cho cả hai bên.</p>
 </section>
 
 <script>
-/* ÁNH SÁNG THEO CHUỘT */
 const dieuKien = document.getElementById('dieu-kien');
+const paragraphs = dieuKien.querySelectorAll('p.sub');
 
 dieuKien.addEventListener('mousemove', (e)=>{
   const rect = dieuKien.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
-  dieuKien.style.setProperty('--mouse-x', x + 'px');
-  dieuKien.style.setProperty('--mouse-y', y + 'px');
+  
+  paragraphs.forEach(p => {
+    p.style.setProperty('--mouse-x', x + 'px');
+    p.style.setProperty('--mouse-y', y + 'px');
+  });
 });
 </script>
-
       <section class="fade-left" style="margin:40px auto;max-width:800px;text-align:center;">
         <h2 class="headline">Thuê xe máy Hà Nội – Giao tận nơi nhanh</h2>
         <p>Chúng tôi chuyên cung cấp dịch vụ <strong>thuê xe máy Hà Nội</strong> giá rẻ, đặc biệt là <strong>cho thuê xe máy 50cc Hà Nội</strong> phù hợp cho học sinh, sinh viên và khách du lịch. Với hệ thống giao nhận xe tận nơi, bạn có thể <strong>thuê xe máy giao tận nơi</strong> chỉ trong 15 phút tại Long Biên, Hoàn Kiếm, Gia Lâm, Phố Cổ và các quận nội thành khác.</p>
