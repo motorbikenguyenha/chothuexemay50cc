@@ -1764,9 +1764,9 @@ html[data-theme="dark"] .pricing-table tr:hover td{
           </div>
         </div>
       </section>
-
-      <!-- KHỐI ĐIỀU KIỆN THUÊ XE MÁY VỚI ÁNH SÁNG PREMIUM -->
+<!-- KHỐI ĐIỀU KIỆN THUÊ XE MÁY - VÀNG 99% LUXURY GLOW + ICON SPARKLE -->
 <style>
+/* KHỐI */
 #dieu-kien{
   max-width:1100px;
   margin:50px auto;
@@ -1779,93 +1779,74 @@ html[data-theme="dark"] .pricing-table tr:hover td{
   position:relative;
   overflow:hidden;
   transition: box-shadow 0.4s ease, transform 0.35s ease, background 0.4s ease;
+  z-index:1;
 }
 
-/* Tiêu đề */
+/* TIÊU ĐỀ - VÀNG 99% */
 #dieu-kien h2{
   font-size:2rem;
   font-weight:900;
-  color:#111;
-  text-shadow: 2px 2px 6px rgba(244,197,66,0.7), 0 0 10px rgba(244,197,66,0.3);
-  margin-bottom:18px;
+  background: linear-gradient(90deg, #FFD700, #FFEE58, #FFD700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 8px rgba(255,215,0,0.8), 0 0 12px rgba(255,215,0,0.6);
+  margin-bottom:28px;
   transition: text-shadow 0.4s ease, color 0.4s ease;
 }
 
-/* Mô tả từng dòng */
+/* DÒNG NỘI DUNG */
 #dieu-kien p.sub{
   font-size:1rem;
   color:#333;
-  margin:10px 0;
-  line-height:1.6;
+  line-height:1.7;
+  margin:12px 0;
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-start;
   position:relative;
-  overflow:hidden;
-  z-index:1;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 #dieu-kien p.sub span.icon{
   display:inline-block;
-  margin:0 6px;
-  font-size:1.1rem;
-  transition: transform 0.2s ease;
+  margin-right:10px;
+  font-size:1.3rem;
+  flex-shrink:0;
+  position:relative;
+  z-index:1;
+  transition: transform 0.25s ease, text-shadow 0.25s ease;
 }
 
-/* ÁNH SÁNG QUAY CHO TOÀN KHỐI */
+/* ÁNH SÁNG QUAY TOÀN KHỐI */
 #dieu-kien::before{
-  content:"";
-  position:absolute;
-  top:-50%; left:-50%;
-  width:200%; height:200%;
-  background:conic-gradient(from 0deg, rgba(244,197,66,0.3), transparent 60%);
-  animation:rotateLight 8s linear infinite;
-  pointer-events:none;
-  border-radius:50%;
-  z-index:0;
-}
-
-/* ÁNH SÁNG THEO CHUỘT CHO TỪNG P */
-#dieu-kien p.sub::after{
   content:"";
   position:absolute;
   top:var(--mouse-y,50%);
   left:var(--mouse-x,50%);
-  width:200px;
-  height:200px;
-  background:radial-gradient(circle, rgba(244,197,66,0.3) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
+  width:300%;
+  height:300%;
+  background:conic-gradient(from 0deg, rgba(255,215,0,0.25), transparent 40%, rgba(255,215,0,0.2), transparent 80%);
+  transform:translate(-50%,-50%);
   pointer-events:none;
   border-radius:50%;
-  transition: top 0.1s, left 0.1s, opacity 0.2s;
   z-index:0;
-  opacity:0;
+  transition: top 0.1s ease, left 0.1s ease;
 }
 
-/* Flash khi hover từng câu */
-#dieu-kien p.sub:hover::after{
-  opacity:1;
-}
-
-/* Hover khối */
+/* HOVER KHỐI */
 #dieu-kien:hover{
-  box-shadow: 0 20px 80px rgba(244,197,66,0.45);
+  box-shadow: 0 20px 80px rgba(255,215,0,0.45);
   transform: translateY(-4px);
 }
 #dieu-kien:hover h2{
-  text-shadow: 2px 2px 12px rgba(244,197,66,0.9), 0 0 20px rgba(244,197,66,0.6);
-}
-
-@keyframes rotateLight{
-  from{transform:rotate(0);}
-  to{transform:rotate(360deg);}
+  text-shadow: 0 2px 16px rgba(255,215,0,1), 0 0 24px rgba(255,215,0,0.8);
 }
 
 /* DARK MODE */
 html[data-theme="dark"] #dieu-kien{
   background: rgba(20,20,20,0.6);
-  box-shadow: 0 10px 50px rgba(244,197,66,0.4);
+  box-shadow: 0 10px 50px rgba(255,215,0,0.4);
 }
 html[data-theme="dark"] #dieu-kien h2{
-  color:#fff;
-  text-shadow: 2px 2px 6px rgba(244,197,66,0.7), 0 0 10px rgba(244,197,66,0.4);
+  text-shadow: 0 2px 12px rgba(255,215,0,0.8), 0 0 16px rgba(255,215,0,0.6);
 }
 html[data-theme="dark"] #dieu-kien p.sub{
   color:#eee;
@@ -1883,32 +1864,52 @@ html[data-theme="dark"] #dieu-kien p.sub{
     font-size:0.95rem;
   }
   #dieu-kien p.sub span.icon{
-    font-size:1rem;
-    margin:0 4px;
+    font-size:1.1rem;
+    margin-right:8px;
   }
+}
+
+/* ÁNH SÁNG XOAY QUANH ICON */
+@keyframes iconGlow{
+  0%{ text-shadow: 0 0 2px #FFD700,0 0 6px #FFD700,0 0 10px #FFD700;}
+  50%{ text-shadow: 0 0 6px #FFD700,0 0 12px #FFD700,0 0 16px #FFD700;}
+  100%{ text-shadow: 0 0 2px #FFD700,0 0 6px #FFD700,0 0 10px #FFD700;}
+}
+.icon-glow{
+  animation: iconGlow 2.5s ease-in-out infinite alternate;
 }
 </style>
 
 <section id="dieu-kien">
   <h2>Điều kiện thuê xe máy - Thu Hà</h2>
-  <p class="sub">Đặt cọc từ <span class="icon">💰</span> 1 đến 5 triệu đồng.</p>
-  <p class="sub">Khách hàng cần cung cấp giấy tờ hợp lệ <span class="icon">📝</span> và tuân thủ quy định thuê.</p>
-  <p class="sub">Xe sử dụng trong nội thành Hà Nội, bảo quản cẩn thận <span class="icon">⏱</span> để tránh phát sinh chi phí.</p>
-  <p class="sub">Thanh toán khi nhận xe và trả xe đúng hạn để đảm bảo <span class="icon">✅</span> an toàn cho cả hai bên.</p>
+  <p class="sub"><span class="icon icon-glow">💰</span>Đặt cọc từ 1 đến 5 triệu đồng.</p>
+  <p class="sub"><span class="icon icon-glow">📝</span>Khách hàng cần cung cấp giấy tờ hợp lệ và tuân thủ quy định thuê.</p>
+  <p class="sub"><span class="icon icon-glow">⏱</span>Xe sử dụng trong nội thành Hà Nội, bảo quản cẩn thận để tránh phát sinh chi phí.</p>
+  <p class="sub"><span class="icon icon-glow">✅</span>Thanh toán khi nhận xe và trả xe đúng hạn để đảm bảo an toàn cho cả hai bên.</p>
 </section>
 
 <script>
 const dieuKien = document.getElementById('dieu-kien');
-const paragraphs = dieuKien.querySelectorAll('p.sub');
+const icons = dieuKien.querySelectorAll('span.icon-glow');
 
-dieuKien.addEventListener('mousemove', (e)=>{
+/* ÁNH SÁNG THEO CHUỘT CHO KHỐI */
+dieuKien.addEventListener('mousemove', e => {
   const rect = dieuKien.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
-  
-  paragraphs.forEach(p => {
-    p.style.setProperty('--mouse-x', x + 'px');
-    p.style.setProperty('--mouse-y', y + 'px');
+  dieuKien.style.setProperty('--mouse-x', x+'px');
+  dieuKien.style.setProperty('--mouse-y', y+'px');
+
+  icons.forEach(icon => {
+    const iconRect = icon.getBoundingClientRect();
+    const ix = iconRect.left + iconRect.width/2 - rect.left;
+    const iy = iconRect.top + iconRect.height/2 - rect.top;
+    const dx = x - ix;
+    const dy = y - iy;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const maxDist = 120;
+    const glow = Math.max(0, 1 - dist/maxDist);
+    icon.style.textShadow = `0 0 ${8*glow}px #FFD700, 0 0 ${20*glow}px #FFD700`;
   });
 });
 </script>
