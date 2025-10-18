@@ -1252,71 +1252,72 @@
       background: linear-gradient(135deg, #f4c542, #d9a500);
       color: #000;
     }
-/* ================== Luxury V6 Showroom Ultimate ================== */
-.bike-showcase {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-  gap:28px; margin-top:32px;
-  overflow-x: visible;
-}
-.bike-card {
-  position: relative; border-radius:16px; overflow:hidden;
-  background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
-  transition: all .45s cubic-bezier(.18,.9,.28,1);
-  opacity:0; transform:translateY(20px);
-  animation:fadeInUp 0.6s forwards;
-}
-.bike-card:hover, .bike-card:focus-within {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 12px 50px rgba(244,197,66,0.5);
-}
-.bike-img {position: relative; overflow:hidden; height:200px; cursor:pointer; perspective:1000px;}
-.bike-img img {width:100%; height:100%; object-fit:cover; transition: transform .8s ease;}
-.bike-card:hover .bike-img img, .bike-card:focus-within .bike-img img {transform: scale(1.08) rotateY(2deg);}
 
-.bike-overlay {position:absolute; inset:0; background: linear-gradient(120deg, rgba(255,255,255,0) 20%, rgba(255,255,200,0.3) 50%, rgba(255,255,255,0) 80%); transform:translateX(-100%); transition:transform .8s ease;}
-.bike-card:hover .bike-overlay, .bike-card:focus-within .bike-overlay {transform:translateX(100%);}
-.overlay-content {position:absolute; bottom:0; left:0; width:100%; background:rgba(0,0,0,0.55); color:#fff; text-align:center; padding:10px 0; opacity:0; transition:opacity .4s ease;}
-.bike-card:hover .overlay-content, .bike-card:focus-within .overlay-content {opacity:1;}
-.bike-tooltip {position:absolute; bottom:10px; left:50%; transform:translateX(-50%); background: rgba(0,0,0,0.7); color:#fff; font-size:0.85em; padding:4px 10px; border-radius:6px; opacity:0; pointer-events:none; transition: opacity .3s ease;}
-.bike-card:hover .bike-tooltip, .bike-card:focus-within .bike-tooltip {opacity:1;}
+    /* ================== Luxury V6 Showroom Ultimate ================== */
+    .bike-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap:28px; margin-top:32px;
+      overflow-x: visible;
+    }
+    .bike-card {
+      position: relative; border-radius:16px; overflow:hidden;
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+      transition: all .45s cubic-bezier(.18,.9,.28,1);
+      opacity:0; transform:translateY(20px);
+      animation:fadeInUp 0.6s forwards;
+    }
+    .bike-card:hover, .bike-card:focus-within {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 50px rgba(244,197,66,0.5);
+    }
+    .bike-img {position: relative; overflow:hidden; height:200px; cursor:pointer; perspective:1000px;}
+    .bike-img img {width:100%; height:100%; object-fit:cover; transition: transform .8s ease;}
+    .bike-card:hover .bike-img img, .bike-card:focus-within .bike-img img {transform: scale(1.08) rotateY(2deg);}
 
-/* Glow + Auto Spotlight */
-.bike-glow {
-  position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;
-  background: radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(255,235,180,0.3) 0%, transparent 80%);
-  opacity:0.4; transition: opacity .2s ease, transform .2s ease;
-  animation: glowPulse 3s infinite alternate;
-}
+    .bike-overlay {position:absolute; inset:0; background: linear-gradient(120deg, rgba(255,255,255,0) 20%, rgba(255,255,200,0.3) 50%, rgba(255,255,255,0) 80%); transform:translateX(-100%); transition:transform .8s ease;}
+    .bike-card:hover .bike-overlay, .bike-card:focus-within .bike-overlay {transform:translateX(100%);}
+    .overlay-content {position:absolute; bottom:0; left:0; width:100%; background:rgba(0,0,0,0.55); color:#fff; text-align:center; padding:10px 0; opacity:0; transition:opacity .4s ease;}
+    .bike-card:hover .overlay-content, .bike-card:focus-within .overlay-content {opacity:1;}
+    .bike-tooltip {position:absolute; bottom:10px; left:50%; transform:translateX(-50%); background: rgba(0,0,0,0.7); color:#fff; font-size:0.85em; padding:4px 10px; border-radius:6px; opacity:0; pointer-events:none; transition: opacity .3s ease;}
+    .bike-card:hover .bike-tooltip, .bike-card:focus-within .bike-tooltip {opacity:1;}
 
-/* Reflection & shine */
-.bike-reflection {position:absolute; bottom:-10px; left:0; width:100%; height:60px; background: linear-gradient(to top, rgba(255,255,255,0.25), transparent); transform: scaleY(-1); pointer-events:none;}
-.bike-shine {position:absolute; top:0; left:-100%; width:100%; height:100%; background: linear-gradient(120deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.1) 100%); transform: skewX(-20deg); animation: shineMove 3s infinite; pointer-events:none;}
+    /* Glow + Auto Spotlight */
+    .bike-glow {
+      position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;
+      background: radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(255,235,180,0.3) 0%, transparent 80%);
+      opacity:0.4; transition: opacity .2s ease, transform .2s ease;
+      animation: glowPulse 3s infinite alternate;
+    }
 
-.bike-details {padding:18px 20px 26px; display:flex; flex-direction:column; gap:8px;}
-.bike-details h3 {font-weight:700;font-size:1.2em;margin:0;color:var(--text);}
-.bike-rating {color:#ffbb33;font-size:0.9em;margin-bottom:4px;}
-.bike-details .price {font-weight:700;background: linear-gradient(90deg,#ffbb33,#ff6b6b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.bike-details .desc {color:var(--muted);font-size:0.96em;line-height:1.5;flex:1;}
-.bike-cta {display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;}
-.bike-badge {position:absolute;top:12px;left:12px;background:#ffbb33;color:#fff;font-weight:700;font-size:0.85em;padding:5px 12px;border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.2); z-index:2;}
-.btn-zalo {display:inline-block;background:linear-gradient(135deg,#0068ff,#3a9bff);color:#fff;padding:10px 22px;border-radius:10px;font-weight:600;text-decoration:none;transition: all .35s ease;box-shadow:0 6px 14px rgba(0,104,255,0.25);}
-.btn-zalo:hover {background: linear-gradient(135deg,#3a9bff,#0068ff);box-shadow:0 8px 22px rgba(0,104,255,0.45);transform: translateY(-2px);}
-.btn-book {background:#ff6b6b;color:#fff;padding:8px 18px;border-radius:10px;font-weight:600;transition:all .3s ease;}
-.btn-book:hover {background:#ff4c4c;transform:translateY(-2px);}
+    /* Reflection & shine */
+    .bike-reflection {position:absolute; bottom:-10px; left:0; width:100%; height:60px; background: linear-gradient(to top, rgba(255,255,255,0.25), transparent); transform: scaleY(-1); pointer-events:none;}
+    .bike-shine {position:absolute; top:0; left:-100%; width:100%; height:100%; background: linear-gradient(120deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.1) 100%); transform: skewX(-20deg); animation: shineMove 3s infinite; pointer-events:none;}
 
-/* Animations */
-@keyframes fadeInUp{to {opacity:1; transform:translateY(0);}}
-@keyframes glowPulse{0%{opacity:0.2;}100%{opacity:0.5;}}
-@keyframes shineMove{0%{left:-100%;}100%{left:100%;}}
+    .bike-details {padding:18px 20px 26px; display:flex; flex-direction:column; gap:8px;}
+    .bike-details h3 {font-weight:700;font-size:1.2em;margin:0;color:var(--text);}
+    .bike-rating {color:#ffbb33;font-size:0.9em;margin-bottom:4px;}
+    .bike-details .price {font-weight:700;background: linear-gradient(90deg,#ffbb33,#ff6b6b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .bike-details .desc {color:var(--muted);font-size:0.96em;line-height:1.5;flex:1;}
+    .bike-cta {display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;}
+    .bike-badge {position:absolute;top:12px;left:12px;background:#ffbb33;color:#fff;font-weight:700;font-size:0.85em;padding:5px 12px;border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.2); z-index:2;}
+    .btn-zalo {display:inline-block;background:linear-gradient(135deg,#0068ff,#3a9bff);color:#fff;padding:10px 22px;border-radius:10px;font-weight:600;text-decoration:none;transition: all .35s ease;box-shadow:0 6px 14px rgba(0,104,255,0.25);}
+    .btn-zalo:hover {background: linear-gradient(135deg,#3a9bff,#0068ff);box-shadow:0 8px 22px rgba(0,104,255,0.45);transform: translateY(-2px);}
+    .btn-book {background:#ff6b6b;color:#fff;padding:8px 18px;border-radius:10px;font-weight:600;transition:all .3s ease;}
+    .btn-book:hover {background:#ff4c4c;transform:translateY(-2px);}
 
-@media(max-width:768px){.bike-img{height:180px;}.bike-details{padding:16px;}}
-@media(max-width:480px){
-  .bike-showcase {display:flex;overflow-x:auto;gap:16px;}
-  .bike-card {min-width:260px;flex-shrink:0;}
-  .bike-tooltip {font-size:0.8em;}
-}
+    /* Animations */
+    @keyframes fadeInUp{to {opacity:1; transform:translateY(0);}}
+    @keyframes glowPulse{0%{opacity:0.2;}100%{opacity:0.5;}}
+    @keyframes shineMove{0%{left:-100%;}100%{left:100%;}}
+
+    @media(max-width:768px){.bike-img{height:180px;}.bike-details{padding:16px;}}
+    @media(max-width:480px){
+      .bike-showcase {display:flex;overflow-x:auto;gap:16px;}
+      .bike-card {min-width:260px;flex-shrink:0;}
+      .bike-tooltip {font-size:0.8em;}
+    }
   </style>
 </head>
 
@@ -1387,165 +1388,20 @@
         </div>
       </div>
     </section>
+    
     <!-- ========== DANH SÁCH XE CHO THUÊ - THU HÀ MOTORBIKE RENTAL (Luxury V6 Ultimate 4:3 + Glow) ========== -->
-<section id="danhsachxe" class="luxury-bikes" style="margin:80px auto;max-width:1280px;">
-  <h2 class="headline" style="text-align:center;">Danh sách xe máy cho thuê</h2>
-  <p class="sub" style="text-align:center;">Xe được kiểm tra định kỳ – giao tận nơi 15 phút. Sang trọng, an toàn, giá tốt nhất Hà Nội.</p>
-
-  <div class="bike-showcase">
-    <!-- === XE MẪU === -->
-    <!-- 1. SYM ELITE 50cc -->
-    <article class="bike-card">
-      <div class="bike-img" tabindex="0">
-        <img src="https://raw.githubusercontent.com/motorbikenguyenha/chothuexemay50cc/refs/heads/main/IMG_5312.jpeg" alt="SYM ELITE 50cc">
-        <span class="bike-badge">Mới</span>
-        <div class="bike-overlay"></div>
-        <div class="bike-tooltip">Nhấn để xem chi tiết xe</div>
-        <div class="bike-glow"></div>
-        <div class="bike-reflection"></div>
-        <div class="bike-shine"></div>
-      </div>
-      <div class="bike-details">
-        <h3>SYM ELITE 50cc</h3>
-        <div class="bike-rating">⭐⭐⭐⭐☆ (4.5)</div>
-        <p class="price">💰 200.000 ₫ / ngày</p>
-        <p class="desc">Xe tay ga 50cc không cần bằng lái, vận hành nhẹ, phù hợp sinh viên, du khách. Kiểu dáng hiện đại, tiết kiệm nhiên liệu, dễ điều khiển.</p>
-        <div class="bike-cta">
-          <a href="https://zalo.me/0334699969" class="btn-zalo">💬 Liên hệ Zalo</a>
-          <a href="#booking" class="btn-book">🛵 Đặt ngay</a>
-        </div>
-      </div>
-    </article>
-
-    <!-- 2. Yamaha Sirius 110cc -->
-    <article class="bike-card">
-      <div class="bike-img" tabindex="0">
-        <img src="https://raw.githubusercontent.com/motorbikenguyenha/chothuexemay50cc/refs/heads/main/IMG_5320.png" alt="Yamaha Sirius 110cc">
-        <span class="bike-badge">Hot</span>
-        <div class="bike-overlay"></div>
-        <div class="bike-tooltip">Nhấn để xem chi tiết xe</div>
-        <div class="bike-glow"></div>
-        <div class="bike-reflection"></div>
-        <div class="bike-shine"></div>
-      </div>
-      <div class="bike-details">
-        <h3>Yamaha Sirius 110cc</h3>
-        <div class="bike-rating">⭐⭐⭐⭐☆ (4.4)</div>
-        <p class="price">💰 150.000 ₫ / ngày</p>
-        <p class="desc">Dòng xe số mạnh mẽ, máy êm, bền bỉ, tiết kiệm xăng. Thích hợp di chuyển nội thành hoặc du lịch ngắn ngày quanh Hà Nội.</p>
-        <div class="bike-cta">
-          <a href="https://zalo.me/0334699969" class="btn-zalo">💬 Liên hệ Zalo</a>
-          <a href="#booking" class="btn-book">🛵 Đặt ngay</a>
-        </div>
-      </div>
-    </article>
-
-    <!-- Thêm các xe khác tương tự -->
-  </div>
-</section>
-
-<style>
-/* ================== Luxury V6 Ultimate 4:3 ================== */
-.bike-showcase {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-  gap:28px;
-  margin-top:32px;
-}
-.bike-card {
-  position: relative; border-radius:16px; overflow:hidden;
-  background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
-  transition: all .45s cubic-bezier(.18,.9,.28,1);
-  opacity:0; transform:translateY(20px);
-  animation:fadeInUp 0.6s forwards;
-}
-:root[data-theme="dark"] .bike-card {
-  background: rgba(20,20,20,0.85);
-  box-shadow: 0 8px 24px rgba(244,197,66,0.08);
-}
-.bike-card:hover, .bike-card:focus-within {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 12px 50px rgba(244,197,66,0.5);
-}
-.bike-img {position: relative; overflow:hidden; height:200px; cursor:pointer; perspective:1000px; aspect-ratio:4/3;}
-.bike-img img {width:100%; height:100%; object-fit:contain; transition: transform .8s ease;}
-.bike-card:hover .bike-img img, .bike-card:focus-within .bike-img img {transform: scale(1.08) rotateY(2deg);}
-.bike-overlay {position:absolute; inset:0; background: linear-gradient(120deg, rgba(255,255,255,0) 20%, rgba(255,255,200,0.3) 50%, rgba(255,255,255,0) 80%); transform:translateX(-100%); transition:transform .8s ease;}
-.bike-card:hover .bike-overlay, .bike-card:focus-within .bike-overlay {transform:translateX(100%);}
-.overlay-content {position:absolute; bottom:0; left:0; width:100%; background:rgba(0,0,0,0.55); color:#fff; text-align:center; padding:10px 0; opacity:0; transition:opacity .4s ease;}
-.bike-card:hover .overlay-content, .bike-card:focus-within .overlay-content {opacity:1;}
-.bike-tooltip {position:absolute; bottom:10px; left:50%; transform:translateX(-50%); background: rgba(0,0,0,0.7); color:#fff; font-size:0.85em; padding:4px 10px; border-radius:6px; opacity:0; pointer-events:none; transition: opacity .3s ease;}
-.bike-card:hover .bike-tooltip, .bike-card:focus-within .bike-tooltip {opacity:1;}
-.bike-glow {position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; background: radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(255,235,180,0.3) 0%, transparent 80%); opacity:0.4; transition: opacity .2s ease, transform .2s ease; animation: glowPulse 3s infinite alternate;}
-.bike-reflection {position:absolute; bottom:-10px; left:0; width:100%; height:60px; background: linear-gradient(to top, rgba(255,255,255,0.25), transparent); transform: scaleY(-1); pointer-events:none;}
-.bike-shine {position:absolute; top:0; left:-100%; width:100%; height:100%; background: linear-gradient(120deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0.1) 100%); transform: skewX(-20deg); animation: shineMove 3s infinite; pointer-events:none;}
-.bike-details {padding:18px 20px 26px; display:flex; flex-direction:column; gap:8px;}
-.bike-details h3 {font-weight:700;font-size:1.2em;margin:0;color:var(--text);}
-.bike-rating {color:#ffbb33;font-size:0.9em;margin-bottom:4px;}
-.bike-details .price {font-weight:700;background: linear-gradient(90deg,#ffbb33,#ff6b6b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.bike-details .desc {color:var(--muted);font-size:0.96em;line-height:1.5;flex:1;}
-.bike-cta {display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;}
-.bike-badge {position:absolute;top:12px;left:12px;background:#ffbb33;color:#fff;font-weight:700;font-size:0.85em;padding:5px 12px;border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.2); z-index:2;}
-.btn-zalo {display:inline-block;background:linear-gradient(135deg,#0068ff,#3a9bff);color:#fff;padding:10px 22px;border-radius:10px;font-weight:600;text-decoration:none;transition: all .35s ease;box-shadow:0 6px 14px rgba(0,104,255,0.25);}
-.btn-zalo:hover {background: linear-gradient(135deg,#3a9bff,#0068ff);box-shadow:0 8px 22px rgba(0,104,255,0.45);transform: translateY(-2px);}
-.btn-book {background:#ff6b6b;color:#fff;padding:8px 18px;border-radius:10px;font-weight:600;transition:all .3s ease;}
-.btn-book:hover {background:#ff4c4c;transform:translateY(-2px);}
-@keyframes fadeInUp{to {opacity:1; transform:translateY(0);}}
-@keyframes glowPulse{0%{opacity:0.2;}100%{opacity:0.5;}}
-@keyframes shineMove{0%{left:-100%;}100%{left:100%;}}
-@media(max-width:768px){.bike-img{height:180px;}.bike-details{padding:16px;}}
-@media(max-width:480px){.bike-showcase {display:flex;overflow-x:auto;gap:16px;}.bike-card {min-width:260px;flex-shrink:0;}}
-</style>
-
-<script>
-// Glow theo con trỏ desktop
-document.querySelectorAll('.bike-card').forEach(card => {
-  const glow = card.querySelector('.bike-glow');
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    glow.style.setProperty('--x', x + '%');
-    glow.style.setProperty('--y', y + '%');
-  });
-});
-
-// Swipe glow mobile
-document.querySelectorAll('.bike-card').forEach(card => {
-  const glow = card.querySelector('.bike-glow');
-  let touchX = 0, touchY = 0;
-  card.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; });
-  card.addEventListener('touchmove', e => {
-    const dx = e.touches[0].clientX - touchX;
-    const dy = e.touches[0].clientY - touchY;
-    const rect = card.getBoundingClientRect();
-    let x = Math.min(Math.max((dx / rect.width) * 100 + 50, 0), 100);
-    let y = Math.min(Math.max((dy / rect.height) * 100 + 50, 0), 100);
-    glow.style.setProperty('--x', x + '%');
-    glow.style.setProperty('--y', y + '%');
-  });
-});
-
-// Auto Spotlight
-(function autoSpotlight() {
-  const cards = document.querySelectorAll('.bike-card');
-  let index
     <section id="danhsachxe" class="luxury-bikes" style="margin:80px auto;max-width:1280px;">
       <h2 class="headline" style="text-align:center;">Danh sách xe máy cho thuê</h2>
       <p class="sub" style="text-align:center;">Xe được kiểm tra định kỳ – giao tận nơi 15 phút. Sang trọng, an toàn, giá tốt nhất Hà Nội.</p>
 
       <div class="bike-showcase">
+        <!-- === XE MẪU === -->
+        <!-- 1. SYM ELITE 50cc -->
         <article class="bike-card">
           <div class="bike-img" tabindex="0">
             <img src="https://raw.githubusercontent.com/motorbikenguyenha/chothuexemay50cc/refs/heads/main/IMG_5312.jpeg" alt="SYM ELITE 50cc">
             <span class="bike-badge">Mới</span>
-            <div class="bike-overlay">
-              <div class="overlay-content">
-                <p>Động cơ: 50cc</p>
-                <p>Tình trạng: Mới 2025</p>
-              </div>
-            </div>
+            <div class="bike-overlay"></div>
             <div class="bike-tooltip">Nhấn để xem chi tiết xe</div>
             <div class="bike-glow"></div>
             <div class="bike-reflection"></div>
@@ -1563,16 +1419,12 @@ document.querySelectorAll('.bike-card').forEach(card => {
           </div>
         </article>
 
+        <!-- 2. Yamaha Sirius 110cc -->
         <article class="bike-card">
           <div class="bike-img" tabindex="0">
             <img src="https://raw.githubusercontent.com/motorbikenguyenha/chothuexemay50cc/refs/heads/main/IMG_5320.png" alt="Yamaha Sirius 110cc">
             <span class="bike-badge">Hot</span>
-            <div class="bike-overlay">
-              <div class="overlay-content">
-                <p>Động cơ: 110cc</p>
-                <p>Tình trạng: Mới 2024</p>
-              </div>
-            </div>
+            <div class="bike-overlay"></div>
             <div class="bike-tooltip">Nhấn để xem chi tiết xe</div>
             <div class="bike-glow"></div>
             <div class="bike-reflection"></div>
@@ -1590,8 +1442,10 @@ document.querySelectorAll('.bike-card').forEach(card => {
           </div>
         </article>
 
-        </div>
+        <!-- Thêm các xe khác tương tự -->
+      </div>
     </section>
+
     <section class="container" id="top">
       <section id="dichvu" class="fade-right" aria-labelledby="dichvu-title" style="margin-top:28px;text-align:center;">
         <h2 id="dichvu-title" class="headline">Dịch vụ cho thuê xe máy 50cc Hà Nội</h2>
@@ -1628,9 +1482,9 @@ document.querySelectorAll('.bike-card').forEach(card => {
       <hr style="border:0;border-top:1px solid rgba(0,0,0,0.08);margin:36px 0;">
       <section class="carousel fade-right" aria-label="Đánh giá khách hàng" style="margin-top:28px">
         <div class="carousel-track" id="carouselTrack" role="group" aria-live="polite" aria-roledescription="carousel">
-          <div class="slide active" role="tabpanel" aria-roledescription="slide" aria-label="Đánh giá 1">⭐️⭐️⭐️⭐️⭐️ “Xe tốt, giao tận nơi đúng hẹn. Rất hài lòng!” – Minh, Hà Nội</div>
-          <div class="slide" role="tabpanel" aria-roledescription="slide" aria-label="Đánh giá 2">⭐️⭐️⭐️⭐️⭐️ “Thủ tục nhanh gọn, chị chủ thân thiện, giá hợp lý.” – Hương, Gia Lâm</div>
-          <div class="slide" role="tabpanel" aria-roledescription="slide" aria-label="Đánh giá 3">⭐️⭐️⭐️⭐️⭐️ “Xe 50cc mới, đi êm, tiết kiệm xăng. Sẽ thuê lại!” – Tuấn, Long Biên</div>
+          <div class="slide active" role="tabpanel" aria-roledescription="slide" aria-label="Đánh giá 1">⭐️⭐️⭐️⭐️⭐️ "Xe tốt, giao tận nơi đúng hẹn. Rất hài lòng!" – Minh, Hà Nội</div>
+          <div class="slide" role="tabpanel" aria-roledescription="slide" aria-label="Đánh giá 2">⭐️⭐️⭐️⭐️⭐️ "Thủ tục nhanh gọn, chị chủ thân thiện, giá hợp lý." – Hương, Gia Lâm</div>
+          <div class="slide" role="tabpanel" aria-roledescription="slide" aria-label="Đánh giá 3">⭐️⭐️⭐️⭐️⭐️ "Xe 50cc mới, đi êm, tiết kiệm xăng. Sẽ thuê lại!" – Tuấn, Long Biên</div>
         </div>
         <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Điều khiển đánh giá"></div>
         <div class="visually-hidden">Vuốt sang trái/phải để xem thêm đánh giá</div>
@@ -1661,7 +1515,7 @@ document.querySelectorAll('.bike-card').forEach(card => {
             <button class="faq-question" data-q="q5" aria-expanded="false" aria-controls="faq-a5">Thuê xe máy Hà Nội có giao tận nơi không?<span>+</span></button>
             <div class="faq-answer" id="faq-a5" data-a="q5" role="region" aria-labelledby="q5"><p>Có, chúng tôi hỗ trợ giao xe tận nơi (có tính phí nhỏ) tại các khu vực: <strong>Phố Cổ, Hoàn Kiếm, Long Biên, Gia Lâm, Tây Hồ, Ba Đình</strong> và các khu vực lân cận khác.</p></div>
           </div>
-          </div>
+        </div>
       </section>
     </section>
 
@@ -1679,7 +1533,7 @@ document.querySelectorAll('.bike-card').forEach(card => {
         </div>
       </div>
     </section>
-    </main>
+  </main>
 
   <footer class="mini-footer fade-right footer-sunlight" id="lienhe" role="contentinfo">
     <div class="footer-container footer-content">
@@ -1748,86 +1602,7 @@ document.querySelectorAll('.bike-card').forEach(card => {
   </div>
 
   <script>
-// Glow desktop + mobile
-document.querySelectorAll// Glow theo con trỏ desktop
-document.querySelectorAll('.bike-card').forEach(card => {
-  const glow = card.querySelector('.bike-glow');
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    glow.style.setProperty('--x', x + '%');
-    glow.style.setProperty('--y', y + '%');
-  });
-});
-
-// Swipe glow mobile
-document.querySelectorAll('.bike-card').forEach(card => {
-  const glow = card.querySelector('.bike-glow');
-  let touchX = 0, touchY = 0;
-  card.addEventListener('touchstart', e => {
-    touchX = e.touches[0].clientX;
-    touchY = e.touches[0].clientY;
-  });
-  card.addEventListener('touchmove', e => {
-    const dx = e.touches[0].clientX - touchX;
-    const dy = e.touches[0].clientY - touchY;
-    const rect = card.getBoundingClientRect();
-    let x = Math.min(Math.max((dx / rect.width) * 100 + 50, 0), 100);
-    let y = Math.min(Math.max((dy / rect.height) * 100 + 50, 0), 100);
-    glow.style.setProperty('--x', x + '%');
-    glow.style.setProperty('--y', y + '%');
-  });
-});
-
-// Auto Spotlight: ánh sáng di chuyển qua các xe liên tục
-(function autoSpotlight() {
-  const cards = document.querySelectorAll('.bike-card');
-  let index = 0;
-  setInterval(() => {
-    cards.forEach((card, i) => {
-      const glow = card.querySelector('.bike-glow');
-      if (i === index) {
-        glow.style.setProperty('--x', '50%');
-        glow.style.setProperty('--y', '40%');
-        glow.style.opacity = 0.6;
-      } else {
-        glow.style.opacity = 0.2;
-      }
-    });
-    index = (index + 1) % cards.length;
-  }, 2500); // 2.5 giây spotlight chuyển sang xe khác
-})();
-
-    /* ✨ Parallax light script */
-    document.addEventListener('mousemove', function(e) {
-      const portal = document.querySelector('.luxury-portal');
-      if (!portal) return;
-
-      // Lấy kích thước và vị trí của phần tử portal
-      const rect = portal.getBoundingClientRect();
-
-      // Kiểm tra xem con trỏ chuột có nằm trong vùng portal không
-      if (e.clientX >= rect.left && e.clientX <= rect.right &&
-          e.clientY >= rect.top && e.clientY <= rect.bottom) {
-        
-        // Tính toán vị trí tương đối (từ 0 đến 100%)
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        
-        // Cập nhật biến CSS để di chuyển ánh sáng
-        portal.style.setProperty('--x', `${x}%`);
-        portal.style.setProperty('--y', `${y}%`);
-
-      } else {
-        // Khi rời chuột, đưa ánh sáng về vị trí trung tâm (50% 50%)
-        portal.style.setProperty('--x', `50%`);
-        portal.style.setProperty('--y', `50%`);
-      }
-    });
-
     document.addEventListener('DOMContentLoaded', () => {
-
       const html = document.documentElement;
       const menuBtn = document.getElementById('menuBtn');
       const sidebar = document.getElementById('sidebar');
@@ -1909,7 +1684,6 @@ document.querySelectorAll('.bike-card').forEach(card => {
           }, i*70);
         });
       }
-
 
       /* ---------- MENU open/close + ripple + stagger + focus trap ---------- */
       const rippleEl = document.getElementById('menuRipple');
@@ -1999,7 +1773,6 @@ document.querySelectorAll('.bike-card').forEach(card => {
         if(e.key === 'Escape' && sidebar.classList.contains('open')) closeMenu();
       });
 
-
       /* ---------- ACTIVE link based on URL ---------- */
       (function markActive(){
         const path = location.pathname.split('/').pop().toLowerCase() || 'index.html';
@@ -2029,7 +1802,6 @@ document.querySelectorAll('.bike-card').forEach(card => {
       }
       backTopBtn.style.display = 'none';
       window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-
 
       /* ---------- FAQ accordion ---------- */
       faqItems.forEach(item=>{
@@ -2117,7 +1889,6 @@ document.querySelectorAll('.bike-card').forEach(card => {
         });
         resetTimer();
       })();
-
 
       /* ---------- MINI APP FAB LOGIC (Tối ưu hóa) ---------- */
       (function miniAppInit(){
@@ -2211,6 +1982,92 @@ document.querySelectorAll('.bike-card').forEach(card => {
         setTimeout(() => {
           document.body.classList.add('page-loaded');
         }, 180); // thêm chút delay nhẹ cho mượt
+      });
+
+      /* ================== GLOW EFFECTS FOR BIKE CARDS ================== */
+      // Glow theo con trỏ desktop
+      document.querySelectorAll('.bike-card').forEach(card => {
+        const glow = card.querySelector('.bike-glow');
+        if (!glow) return;
+        
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          glow.style.setProperty('--x', x + '%');
+          glow.style.setProperty('--y', y + '%');
+        });
+      });
+
+      // Swipe glow mobile
+      document.querySelectorAll('.bike-card').forEach(card => {
+        const glow = card.querySelector('.bike-glow');
+        if (!glow) return;
+        
+        let touchX = 0, touchY = 0;
+        card.addEventListener('touchstart', e => {
+          touchX = e.touches[0].clientX;
+          touchY = e.touches[0].clientY;
+        });
+        card.addEventListener('touchmove', e => {
+          const dx = e.touches[0].clientX - touchX;
+          const dy = e.touches[0].clientY - touchY;
+          const rect = card.getBoundingClientRect();
+          let x = Math.min(Math.max((dx / rect.width) * 100 + 50, 0), 100);
+          let y = Math.min(Math.max((dy / rect.height) * 100 + 50, 0), 100);
+          glow.style.setProperty('--x', x + '%');
+          glow.style.setProperty('--y', y + '%');
+        });
+      });
+
+      // Auto Spotlight: ánh sáng di chuyển qua các xe liên tục
+      (function autoSpotlight() {
+        const cards = document.querySelectorAll('.bike-card');
+        if (cards.length === 0) return;
+        
+        let index = 0;
+        setInterval(() => {
+          cards.forEach((card, i) => {
+            const glow = card.querySelector('.bike-glow');
+            if (glow) {
+              if (i === index) {
+                glow.style.setProperty('--x', '50%');
+                glow.style.setProperty('--y', '40%');
+                glow.style.opacity = '0.6';
+              } else {
+                glow.style.opacity = '0.2';
+              }
+            }
+          });
+          index = (index + 1) % cards.length;
+        }, 2500); // 2.5 giây spotlight chuyển sang xe khác
+      })();
+
+      /* ✨ Parallax light script */
+      document.addEventListener('mousemove', function(e) {
+        const portal = document.querySelector('.luxury-portal');
+        if (!portal) return;
+
+        // Lấy kích thước và vị trí của phần tử portal
+        const rect = portal.getBoundingClientRect();
+
+        // Kiểm tra xem con trỏ chuột có nằm trong vùng portal không
+        if (e.clientX >= rect.left && e.clientX <= rect.right &&
+            e.clientY >= rect.top && e.clientY <= rect.bottom) {
+          
+          // Tính toán vị trí tương đối (từ 0 đến 100%)
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          
+          // Cập nhật biến CSS để di chuyển ánh sáng
+          portal.style.setProperty('--x', `${x}%`);
+          portal.style.setProperty('--y', `${y}%`);
+
+        } else {
+          // Khi rời chuột, đưa ánh sáng về vị trí trung tâm (50% 50%)
+          portal.style.setProperty('--x', `50%`);
+          portal.style.setProperty('--y', `50%`);
+        }
       });
     });
   </script>
