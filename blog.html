@@ -1519,6 +1519,149 @@ html[data-theme="dark"]{
   </div>
 </section>
 
+    <!-- ==== BẢNG GIÁ CHO THUÊ XE MÁY - THU HÀ (ĐƠN GIẢN) ==== -->
+<section id="banggia" class="thuha-pricing-basic">
+  <h2>📋 Bảng Giá Cho Thuê Xe Máy Ở Hà Nội</h2>
+  <p class="sub">Giá cập nhật mới nhất – Tiết kiệm hơn khi thuê dài hạn</p>
+
+  <div class="table-wrap">
+    <table class="banggia-table">
+      <thead>
+        <tr>
+          <th>Loại Xe</th>
+          <th>1 Ngày</th>
+          <th>3 Ngày</th>
+          <th>1 Tuần</th>
+          <th>2 Tuần</th>
+          <th>1 Tháng</th>
+          <th>3 Tháng</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Xe Ga 50cc</td>
+          <td>200K</td>
+          <td>500K</td>
+          <td>800K</td>
+          <td>1.5Tr</td>
+          <td>2.0Tr</td>
+          <td>5.0Tr</td>
+        </tr>
+        <tr>
+          <td>Honda Wave 110cc</td>
+          <td>150K</td>
+          <td>400K</td>
+          <td>600K</td>
+          <td>-</td>
+          <td>1.2Tr</td>
+          <td>2.7Tr</td>
+        </tr>
+        <tr>
+          <td>Yamaha Sirius 110cc</td>
+          <td>150K</td>
+          <td>400K</td>
+          <td>600K</td>
+          <td>-</td>
+          <td>1.2Tr</td>
+          <td>2.7Tr</td>
+        </tr>
+        <tr>
+          <td>Xe Máy Giá Rẻ</td>
+          <td>150K</td>
+          <td>400K</td>
+          <td>600K</td>
+          <td>-</td>
+          <td>1.1Tr</td>
+          <td>3.0Tr</td>
+        </tr>
+        <tr>
+          <td>Honda Air Blade 125cc</td>
+          <td>200K</td>
+          <td>500K</td>
+          <td>800K</td>
+          <td>-</td>
+          <td>1.4Tr</td>
+          <td>3.6Tr</td>
+        </tr>
+        <tr>
+          <td>Honda Vision 110cc</td>
+          <td>200K</td>
+          <td>500K</td>
+          <td>850K</td>
+          <td>-</td>
+          <td>2.0Tr</td>
+          <td>5.0Tr</td>
+        </tr>
+        <tr>
+          <td>Xe Điện</td>
+          <td>200K</td>
+          <td>500K</td>
+          <td>800K</td>
+          <td>-</td>
+          <td>1.5Tr</td>
+          <td>3.9Tr</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+.thuha-pricing-basic{
+  max-width:1000px;
+  margin:70px auto;
+  padding:0 16px;
+  text-align:center;
+}
+.thuha-pricing-basic h2{
+  font-size:1.9rem;
+  color:var(--thu-text,#111);
+  margin-bottom:6px;
+}
+.thuha-pricing-basic .sub{
+  color:var(--thu-muted,#666);
+  margin-bottom:20px;
+  font-size:1rem;
+}
+
+/* Bảng chính */
+.table-wrap{
+  overflow-x:auto;
+  border-radius:12px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+}
+.banggia-table{
+  width:100%;
+  border-collapse:collapse;
+  background:var(--thu-bg,#fff);
+  color:var(--thu-text,#111);
+}
+.banggia-table th{
+  background:linear-gradient(135deg,#f4c542,#ffe58a);
+  color:#111;
+  font-weight:800;
+  padding:12px 8px;
+  text-transform:uppercase;
+  font-size:.95rem;
+}
+.banggia-table td{
+  padding:12px 8px;
+  border-bottom:1px solid rgba(0,0,0,0.05);
+  transition:background .3s ease;
+}
+.banggia-table tr:hover td{
+  background:rgba(255,245,180,0.4);
+}
+
+/* Responsive */
+@media(max-width:768px){
+  .banggia-table th, .banggia-table td{
+    padding:10px 6px;
+    font-size:.9rem;
+  }
+}
+</style>
+
 <!-- LIGHTBOX SCRIPT -->
 <script>
 (function(){
