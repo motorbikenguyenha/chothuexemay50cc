@@ -1519,33 +1519,6 @@ html[data-theme="dark"]{
   </div>
 </section>
 
-    
-
-<!-- LIGHTBOX SCRIPT -->
-<script>
-(function(){
-  const grid=document.querySelector('.thuha-grid');
-  if(!grid) return;
-  const lb=document.createElement('div');
-  lb.className='thuha-lightbox';
-  lb.innerHTML='<button aria-label="Đóng">✕</button><img alt="Ảnh xe">';
-  document.body.appendChild(lb);
-  const imgEl=lb.querySelector('img');
-  const closeBtn=lb.querySelector('button');
-  grid.addEventListener('click',e=>{
-    const img=e.target.closest('.thuha-bike-img img');
-    if(!img)return;
-    imgEl.src=img.src;
-    lb.classList.add('open');
-    document.body.style.overflow='hidden';
-  });
-  const closeLb=()=>{lb.classList.remove('open');document.body.style.overflow='';};
-  lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
-  closeBtn.addEventListener('click',closeLb);
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
-})();
-</script>
-
     <!-- ==== BẢNG GIÁ THUÊ XE MÁY - THU HÀ PREMIUM v7 ==== -->
 <section id="banggia" class="thuha-pricing-v7">
   <h2>💎 BẢNG GIÁ CHO THUÊ XE MÁY Ở HÀ NỘI</h2>
@@ -1779,6 +1752,32 @@ html[data-theme="dark"] .pricing-table tr:hover td{
       });
     });
   });
+</script>
+
+
+<!-- LIGHTBOX SCRIPT -->
+<script>
+(function(){
+  const grid=document.querySelector('.thuha-grid');
+  if(!grid) return;
+  const lb=document.createElement('div');
+  lb.className='thuha-lightbox';
+  lb.innerHTML='<button aria-label="Đóng">✕</button><img alt="Ảnh xe">';
+  document.body.appendChild(lb);
+  const imgEl=lb.querySelector('img');
+  const closeBtn=lb.querySelector('button');
+  grid.addEventListener('click',e=>{
+    const img=e.target.closest('.thuha-bike-img img');
+    if(!img)return;
+    imgEl.src=img.src;
+    lb.classList.add('open');
+    document.body.style.overflow='hidden';
+  });
+  const closeLb=()=>{lb.classList.remove('open');document.body.style.overflow='';};
+  lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
+  closeBtn.addEventListener('click',closeLb);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
+})();
 </script>
 
     <section class="container" id="top">
