@@ -1557,7 +1557,6 @@ html[data-theme="dark"]{
           <th>1 Ngày</th>
           <th>3 Ngày</th>
           <th>1 Tuần</th>
-          <th>2 Tuần</th>
           <th>1 Tháng</th>
           <th>3 Tháng</th>
         </tr>
@@ -1568,7 +1567,6 @@ html[data-theme="dark"]{
           <td>200K</td>
           <td>500K</td>
           <td>800K</td>
-          <td>1.5Tr</td>
           <td>2.0Tr</td>
           <td>5.0Tr</td>
         </tr>
@@ -1577,7 +1575,6 @@ html[data-theme="dark"]{
           <td>150K</td>
           <td>400K</td>
           <td>600K</td>
-          <td>-</td>
           <td>1.2Tr</td>
           <td>2.7Tr</td>
         </tr>
@@ -1586,7 +1583,6 @@ html[data-theme="dark"]{
           <td>150K</td>
           <td>400K</td>
           <td>600K</td>
-          <td>-</td>
           <td>1.2Tr</td>
           <td>2.7Tr</td>
         </tr>
@@ -1595,7 +1591,6 @@ html[data-theme="dark"]{
           <td>150K</td>
           <td>400K</td>
           <td>600K</td>
-          <td>-</td>
           <td>1.1Tr</td>
           <td>3.0Tr</td>
         </tr>
@@ -1604,7 +1599,6 @@ html[data-theme="dark"]{
           <td>200K</td>
           <td>500K</td>
           <td>800K</td>
-          <td>-</td>
           <td>1.4Tr</td>
           <td>3.6Tr</td>
         </tr>
@@ -1613,7 +1607,6 @@ html[data-theme="dark"]{
           <td>200K</td>
           <td>500K</td>
           <td>850K</td>
-          <td>-</td>
           <td>2.0Tr</td>
           <td>5.0Tr</td>
         </tr>
@@ -1622,7 +1615,6 @@ html[data-theme="dark"]{
           <td>200K</td>
           <td>500K</td>
           <td>800K</td>
-          <td>-</td>
           <td>1.5Tr</td>
           <td>3.9Tr</td>
         </tr>
@@ -1690,6 +1682,7 @@ html[data-theme="dark"] .pricing-container{
   border-collapse:collapse;
   z-index:2;
   position:relative;
+  table-layout: fixed; /* Tự động cân bằng chiều rộng cột */
 }
 .pricing-table th{
   background:linear-gradient(135deg,#f4c542,#ffea9b);
@@ -1699,6 +1692,7 @@ html[data-theme="dark"] .pricing-container{
   font-size:.95rem;
   text-transform:uppercase;
   border-bottom:2px solid rgba(0,0,0,0.1);
+  word-wrap: break-word; /* tránh tràn chữ */
 }
 html[data-theme="dark"] .pricing-table th{
   background:linear-gradient(135deg,#f4c542,#b58b0d);
@@ -1708,6 +1702,7 @@ html[data-theme="dark"] .pricing-table th{
   padding:14px 10px;
   border-bottom:1px solid rgba(0,0,0,0.06);
   transition:background .3s ease, color .3s ease;
+  word-wrap: break-word;
 }
 .pricing-table tr:hover td{
   background:rgba(255,240,160,0.45);
