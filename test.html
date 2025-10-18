@@ -1544,6 +1544,193 @@ html[data-theme="dark"]{
 })();
 </script>
 
+    <!-- ==== BẢNG GIÁ THUÊ XE MÁY - THU HÀ PREMIUM v7 ==== -->
+<section id="banggia" class="thuha-pricing-v7">
+  <h2>💎 BẢNG GIÁ CHO THUÊ XE MÁY Ở HÀ NỘI</h2>
+  <p class="sub">Bảng giá ưu đãi – Thuê càng lâu, tiết kiệm càng nhiều!</p>
+
+  <div class="pricing-container">
+    <table class="pricing-table">
+      <thead>
+        <tr>
+          <th>Loại Xe</th>
+          <th>1 Ngày</th>
+          <th>3 Ngày</th>
+          <th>1 Tuần</th>
+          <th>2 Tuần</th>
+          <th>1 Tháng</th>
+          <th>3 Tháng</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Xe Ga 50cc</td>
+          <td>200K</td>
+          <td>500K</td>
+          <td>800K</td>
+          <td>1.5Tr</td>
+          <td>2.0Tr</td>
+          <td>5.0Tr</td>
+        </tr>
+        <tr>
+          <td>Honda Wave 110cc</td>
+          <td>150K</td>
+          <td>400K</td>
+          <td>600K</td>
+          <td>-</td>
+          <td>1.2Tr</td>
+          <td>2.7Tr</td>
+        </tr>
+        <tr>
+          <td>Yamaha Sirius 110cc</td>
+          <td>150K</td>
+          <td>400K</td>
+          <td>600K</td>
+          <td>-</td>
+          <td>1.2Tr</td>
+          <td>2.7Tr</td>
+        </tr>
+        <tr>
+          <td>Xe Máy Giá Rẻ</td>
+          <td>150K</td>
+          <td>400K</td>
+          <td>600K</td>
+          <td>-</td>
+          <td>1.1Tr</td>
+          <td>3.0Tr</td>
+        </tr>
+        <tr>
+          <td>Honda Air Blade 125cc</td>
+          <td>200K</td>
+          <td>500K</td>
+          <td>800K</td>
+          <td>-</td>
+          <td>1.4Tr</td>
+          <td>3.6Tr</td>
+        </tr>
+        <tr>
+          <td>Honda Vision 110cc</td>
+          <td>200K</td>
+          <td>500K</td>
+          <td>850K</td>
+          <td>-</td>
+          <td>2.0Tr</td>
+          <td>5.0Tr</td>
+        </tr>
+        <tr>
+          <td>Xe Điện</td>
+          <td>200K</td>
+          <td>500K</td>
+          <td>800K</td>
+          <td>-</td>
+          <td>1.5Tr</td>
+          <td>3.9Tr</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+.thuha-pricing-v7{
+  max-width:1100px;
+  margin:90px auto;
+  padding:0 16px;
+  text-align:center;
+  animation:fadeUp 1.2s ease both;
+}
+.thuha-pricing-v7 h2{
+  font-size:2rem;
+  font-weight:900;
+  background:linear-gradient(90deg,#f4c542,#ffe57e,#f4c542);
+  -webkit-background-clip:text;
+  color:transparent;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:10px;
+}
+.thuha-pricing-v7 .sub{
+  color:var(--thu-muted,#666);
+  margin-bottom:28px;
+  font-size:1rem;
+}
+
+/* ==== VÙNG BẢNG ==== */
+.pricing-container{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  background:rgba(255,255,255,0.8);
+  backdrop-filter:blur(10px);
+  box-shadow:0 10px 40px rgba(0,0,0,0.1);
+}
+html[data-theme="dark"] .pricing-container{
+  background:rgba(30,30,30,0.6);
+  box-shadow:0 8px 30px rgba(0,0,0,0.6);
+}
+
+/* Ánh sáng động */
+.pricing-container::before{
+  content:"";
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:conic-gradient(from 0deg, rgba(244,197,66,0.3), transparent 60%);
+  animation:rotateLight 8s linear infinite;
+}
+@keyframes rotateLight{
+  from{transform:rotate(0);}
+  to{transform:rotate(360deg);}
+}
+
+.pricing-table{
+  width:100%;
+  border-collapse:collapse;
+  z-index:2;
+  position:relative;
+}
+.pricing-table th{
+  background:linear-gradient(135deg,#f4c542,#ffea9b);
+  color:#111;
+  font-weight:800;
+  padding:16px 10px;
+  font-size:.95rem;
+  text-transform:uppercase;
+  border-bottom:2px solid rgba(0,0,0,0.1);
+}
+html[data-theme="dark"] .pricing-table th{
+  background:linear-gradient(135deg,#f4c542,#b58b0d);
+  color:#000;
+}
+.pricing-table td{
+  padding:14px 10px;
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  transition:background .3s ease, color .3s ease;
+}
+.pricing-table tr:hover td{
+  background:rgba(255,240,160,0.45);
+}
+html[data-theme="dark"] .pricing-table tr:hover td{
+  background:rgba(255,220,100,0.1);
+}
+
+/* Hiệu ứng fade-up */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* Responsive */
+@media(max-width:768px){
+  .pricing-table th,.pricing-table td{
+    padding:10px 6px;
+    font-size:.9rem;
+  }
+}
+</style>
+
     <section class="container" id="top">
       <section id="dichvu" class="fade-right" aria-labelledby="dichvu-title" style="margin-top:28px;text-align:center;">
         <h2 id="dichvu-title" class="headline">Dịch vụ cho thuê xe máy 50cc Hà Nội</h2>
