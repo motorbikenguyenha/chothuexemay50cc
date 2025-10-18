@@ -124,28 +124,17 @@
     }
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block;height:auto}
-    /* container chung, margin-top sẽ được điều chỉnh cho tiêu đề chính */
-    .container{width:92%;max-width:var(--max-w);margin:110px auto 48px auto} 
+    /* container chung, ĐÃ XÓA margin-top cũ */
+    .container{width:92%;max-width:var(--max-w);margin:0 auto 48px auto} 
     .visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);border:0;}
     .headline{font-size:2.2em;margin:0 0 .2em 0;line-height:1.2;font-weight:900;}
     .sub{font-size:1.1em;margin-bottom:1.5em;color:var(--muted);}
     .visually-hidden-on-mobile{ display: initial; }
 
-    /* YÊU CẦU 1: THÊM KHOẢNG CÁCH CHO TIÊU ĐỀ SAU KHI XÓA HERO */
-    /* Padding-top cho section nội dung chính */
-    .service-page {
-      /* Trên desktop, container đã có margin-top: 110px. 
-         Điều chỉnh lại thành 110px để đồng bộ với .container */
-      padding-top: 110px !important; 
-    }
+    /* YÊU CẦU 1: THÊM KHOẢNG CÁCH CHO TIÊU ĐỀ SAU KHI XÓA HERO - ĐÃ CHUYỂN VÀO .privacy-page */
     
     @media(max-width:600px){
-      .container{width: 95%; margin-top: 80px;} /* margin-top cũ */
-      .service-page {
-        /* Trên mobile (<=600px), header cao 56px (max).
-           Thêm khoảng 60px padding-top để cách menu: 56px (header) + 60px (khoảng cách) = ~116px total. */
-        padding-top: 120px !important; /* Đặt trong khoảng 60px-80px padding-top yêu cầu */
-      }
+      .container{width: 95%; margin-top: 0;} /* margin-top cũ bị xóa */
       header.site-header{padding: 8px 15px; height: 56px;} /* Chiều cao mobile header */
     }
 
@@ -556,6 +545,8 @@
       /* Style riêng để tránh xung đột margin-top/bottom với container chung */
       margin-top: 3rem !important;
       margin-bottom: 3rem !important;
+      /* ĐIỀU CHỈNH KHOẢNG CÁCH CHO DESKTOP: Header 64px + ~70px padding = 134px */
+      padding-top: 134px; 
     }
     :root[data-theme="dark"] .privacy-page { color: #eee; }
 
@@ -969,10 +960,16 @@
     
     /* ================== FIX: iPhone Dọc (<= 600px) - HIỆN ICON INFO ================== */
     @media(max-width:600px){
-      .container{width: 95%; margin-top: 80px;}
+      .container{width: 95%; margin-top: 0;}
       header.site-header{padding: 8px 15px; height: 56px;}
       header.site-header.scrolled{height: 48px;}
 
+      /* ĐIỀU CHỈNH KHOẢNG CÁCH CHO MOBILE: Header 56px + ~70px padding = 126px */
+      .privacy-page {
+        padding-top: 126px; 
+        margin-top: 0 !important;
+      }
+      
       /* 1. Đặt lại cấu trúc Grid 3 cột: [Menu Toggle] [Logo] [Info Icons + Theme Toggle] */
       .site-header {
         grid-template-columns: auto 1fr auto; 
