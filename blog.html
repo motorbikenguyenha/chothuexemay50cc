@@ -1744,6 +1744,126 @@ html[data-theme="dark"] .pricing-table tr:hover td{
 }
 </style>
 
+    <section id="slot-section" style="font-family:sans-serif; padding:20px; background:#FFDFA1; color:#111; text-align:center; border-radius:15px; max-width:500px; margin:20px auto; transition: background 0.3s, color 0.3s;">
+  <h2 style="color:#EEAD0E; text-shadow:2px 2px 8px #FFD700; margin-bottom:10px;">Quay để nhận giảm giá thuê xe máy</h2>
+  <h3 style="font-size:1rem; color:#111; margin-bottom:20px;">
+    🎉 Chơi ngay để nhận giảm giá thuê xe máy bên chúng tôi 25%! Chỉ cần quay và trúng, chụp màn hình là xong. Càng nhanh càng sướng!
+  </h3>
+
+  <div id="slot" style="display:flex; justify-content:center; flex-wrap:wrap; margin-bottom:20px;">
+    <div class="reel" id="reel1" style="width:80px;height:80px;margin:5px;border-radius:15px;background:linear-gradient(45deg,#FFD700,#FFB200);display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;text-shadow:0 0 5px #FFD700;box-shadow:0 0 15px rgba(255,215,0,0.5);position:relative;overflow:hidden; transition: transform 0.3s;"><span>🏍️</span></div>
+    <div class="reel" id="reel2" style="width:80px;height:80px;margin:5px;border-radius:15px;background:linear-gradient(45deg,#FF9E00,#FF6F00);display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;text-shadow:0 0 5px #FFD700;box-shadow:0 0 15px rgba(255,215,0,0.5);position:relative;overflow:hidden; transition: transform 0.3s;"><span>🛞</span></div>
+    <div class="reel" id="reel3" style="width:80px;height:80px;margin:5px;border-radius:15px;background:linear-gradient(45deg,#FFBF00,#FF7F00);display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;text-shadow:0 0 5px #FFD700;box-shadow:0 0 15px rgba(255,215,0,0.5);position:relative;overflow:hidden; transition: transform 0.3s;"><span>🛢️</span></div>
+  </div>
+
+  <button id="spinBtn" style="padding:10px 20px;font-size:1.1rem;cursor:pointer;background:#EEAD0E;border:none;border-radius:10px;color:#111;font-weight:bold;margin-bottom:10px; transition: transform 0.2s;">Quay Slot</button>
+
+  <div id="result" style="margin-top:20px;font-size:1.2rem;font-weight:bold;color:#111;text-shadow:0 0 5px #FFD700; transition: all 0.3s;"></div>
+  <div id="reward" style="margin-top:10px;font-size:1rem;font-weight:bold;color:#111;display:none;text-shadow:0 0 5px #FFD700; transform: scale(0); transition: transform 0.5s;">
+    🎁 Phần thưởng: Giảm giá 5% khi thuê xe máy tháng (không áp dụng thuê ngày, tuần)
+  </div>
+  <canvas id="confetti-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;"></canvas>
+</section>
+
+<script>
+const spinBtn = document.getElementById('spinBtn');
+const reels = [document.getElementById('reel1'), document.getElementById('reel2'), document.getElementById('reel3')];
+const resultDiv = document.getElementById('result');
+const rewardDiv = document.getElementById('reward');
+const canvas = document.getElementById('confetti-canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+
+const symbols = ["🏍️","🛞","🛢️"];
+let confettiParticles = [];
+
+// Thêm âm thanh
+const spinSound = new Audio("https://raw.githubusercontent.com/motorbikenguyenha/chothuexemay50cc/refs/heads/main/mlg-airhorn.mp3");
+const winSound = new Audio("https://raw.githubusercontent.com/motorbikenguyenha/chothuexemay50cc/refs/heads/main/notification_o14egLP.mp3");
+
+function spinReel(reel, duration){
+  return new Promise(resolve=>{
+    const span = reel.querySelector('span');
+    const start = performance.now();
+    spinSound.play(); // phát âm thanh quay
+    function animate(now){
+      const elapsed = now - start;
+      if(elapsed < duration){
+        const index = Math.floor(Math.random() * symbols.length);
+        span.textContent = symbols[index];
+        reel.style.transform = `rotate(${Math.random()*20-10}deg)`; 
+        requestAnimationFrame(animate);
+      } else {
+        const finalIndex = Math.floor(Math.random() * symbols.length);
+        span.textContent = symbols[finalIndex];
+        reel.style.transform = `rotate(0deg)`; 
+        resolve(finalIndex);
+      }
+    }
+    animate(performance.now());
+  });
+}
+
+// Confetti
+function createConfetti(){
+  for(let i=0;i<100;i++){
+    confettiParticles.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height - canvas.height,
+      r: Math.random()*6+2,
+      d: Math.random()*10+5,
+      color: `hsl(${Math.random()*360}, 100%, 50%)`,
+      tilt: Math.random()*10-10,
+      tiltAngleIncrement: Math.random()*0.07+0.05,
+      tiltAngle: 0
+    });
+  }
+}
+
+function drawConfetti(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  confettiParticles.forEach((p)=>{
+    ctx.beginPath();
+    ctx.lineWidth = p.r;
+    ctx.strokeStyle = p.color;
+    ctx.moveTo(p.x + p.tilt + p.r/2, p.y);
+    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r/2);
+    ctx.stroke();
+    p.tiltAngle += p.tiltAngleIncrement;
+    p.x += Math.sin(p.tiltAngle) * 2;
+    p.y += Math.cos(p.tiltAngle + p.d) + 1;
+    if(p.y > canvas.height){ p.y = -10; p.x = Math.random()*canvas.width; }
+  });
+  requestAnimationFrame(drawConfetti);
+}
+
+spinBtn.addEventListener('click', async ()=>{
+  spinBtn.disabled = true;
+  resultDiv.textContent = "";
+  rewardDiv.style.display = "none";
+  rewardDiv.style.transform = "scale(0)";
+  
+  const results = await Promise.all(reels.map((r,i)=>spinReel(r,4000 + i*1000)));
+  const win = results.every(s => s === results[0]);
+
+  if(win){
+    winSound.play(); // phát âm thanh trúng thưởng
+    rewardDiv.style.display = "block";
+    setTimeout(()=>{ rewardDiv.style.transform = "scale(1.2) rotate(-5deg)"; setTimeout(()=>rewardDiv.style.transform="scale(1)",200); },50);
+    createConfetti();
+    drawConfetti();
+  }
+
+  resultDiv.textContent = win ? `🎉 Chúc mừng! Bạn trúng ${results[0]}!` : `😅 Thua rồi, thử lần sau!`;
+  spinBtn.disabled = false;
+});
+
+// Hover nút
+spinBtn.addEventListener('mouseenter', ()=>{ spinBtn.style.transform="scale(1.05)"; });
+spinBtn.addEventListener('mouseleave', ()=>{ spinBtn.style.transform="scale(1)"; });
+</script>
+
     <!-- KHỐI ĐIỀU KIỆN THUÊ XE MÁY VỚI ÁNH SÁNG LUNG LINH -->
 <style>
 /* KHỐI */
