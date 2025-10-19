@@ -1941,6 +1941,66 @@ dieuKien.addEventListener('mousemove', (e)=>{
       </section>
     </section>
 
+    <section id="slot-section" style="font-family:sans-serif; text-align:center; padding:20px; background:#FFDFA1; border-radius:15px; max-width:500px; margin:20px auto;">
+  <h2 style="color:#EEAD0E; text-shadow:2px 2px 8px #FFD700; margin-bottom:10px;">🎉 Quay để nhận giảm giá thuê xe máy!</h2>
+  <p style="color:#111; margin-bottom:20px;">Chơi ngay để nhận giảm giá thuê xe máy bên chúng tôi 25%! Chỉ cần quay và trúng, chụp màn hình là xong. Càng nhanh càng sướng!</p>
+
+  <div id="slot" style="display:flex; justify-content:center; flex-wrap:wrap; margin-bottom:20px;">
+    <div class="reel" id="reel1" style="width:80px; height:80px; margin:5px; border-radius:15px; background:#fff; display:flex; align-items:center; justify-content:center; font-size:2rem; color:#fff; text-shadow:0 0 5px #FFD700; box-shadow:0 0 15px rgba(255,215,0,0.5); position:relative;"><span>🏍️</span></div>
+    <div class="reel" id="reel2" style="width:80px; height:80px; margin:5px; border-radius:15px; background:#fff; display:flex; align-items:center; justify-content:center; font-size:2rem; color:#fff; text-shadow:0 0 5px #FFD700; box-shadow:0 0 15px rgba(255,215,0,0.5); position:relative;"><span>🛞</span></div>
+    <div class="reel" id="reel3" style="width:80px; height:80px; margin:5px; border-radius:15px; background:#fff; display:flex; align-items:center; justify-content:center; font-size:2rem; color:#fff; text-shadow:0 0 5px #FFD700; box-shadow:0 0 15px rgba(255,215,0,0.5); position:relative;"><span>🛢️</span></div>
+  </div>
+
+  <button id="spinBtn" style="padding:10px 20px; font-size:1.1rem; cursor:pointer; background:#EEAD0E; border:none; border-radius:10px; color:#111; font-weight:bold;">Quay Slot</button>
+  <div id="result" style="margin-top:20px; font-size:1.2rem; font-weight:bold; color:#111; text-shadow:0 0 5px #FFD700;"></div>
+  <div id="reward" style="margin-top:10px; font-size:1rem; font-weight:bold; color:#111; display:none; text-shadow:0 0 5px #FFD700;">🎁 Phần thưởng: Giảm giá 5% khi thuê xe máy tháng (không áp dụng thuê ngày, tuần)</div>
+</section>
+
+<script>
+const spinBtn = document.getElementById('spinBtn');
+const reels = [
+  document.getElementById('reel1'),
+  document.getElementById('reel2'),
+  document.getElementById('reel3')
+];
+const resultDiv = document.getElementById('result');
+const rewardDiv = document.getElementById('reward');
+const symbols = ["🏍️","🛞","🛢️"]; // chỉ biểu tượng xe vàng
+
+function spinReel(reel, duration){
+  return new Promise(resolve=>{
+    const span = reel.querySelector('span');
+    const start = performance.now();
+    function animate(now){
+      const elapsed = now - start;
+      if(elapsed < duration){
+        const index = Math.floor(Math.random() * symbols.length);
+        span.textContent = symbols[index];
+        requestAnimationFrame(animate);
+      } else {
+        const finalIndex = Math.floor(Math.random() * symbols.length);
+        span.textContent = symbols[finalIndex];
+        resolve(finalIndex);
+      }
+    }
+    animate(performance.now());
+  });
+}
+
+spinBtn.addEventListener('click', async ()=>{
+  spinBtn.disabled = true;
+  resultDiv.textContent = "";
+  rewardDiv.style.display = "none"; // ẩn trước khi quay
+  const results = await Promise.all(reels.map((r,i)=>spinReel(r,4000 + i*1000)));
+
+  // Kiểm tra kết quả trúng
+  const win = results.every(s => s === results[0]);
+  resultDiv.textContent = win ? `🎉 Chúc mừng! Bạn trúng ${results[0]}!` : `😅 Thua rồi, thử lần sau!`;
+  rewardDiv.style.display = win ? "block" : "none";
+  spinBtn.disabled = false;
+});
+</script>
+
     <section class="luxury-portal text-center py-5 fade-left">
       <div class="portal-inner">
         <h2 class="fw-bold mb-4 portal-title">Khám phá thêm ✨</h2>
