@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Slot Machine May Mắn</title>
+<title>Slot Machine Xe Máy</title>
 <style>
 body {
   font-family: sans-serif;
@@ -72,11 +72,11 @@ button {
 </head>
 <body>
 
-<h1>Slot Machine May Mắn</h1>
+<h1>Slot Machine Xe Máy</h1>
 <div id="slot">
-  <div class="reel" id="reel1"><span>🍒</span></div>
-  <div class="reel" id="reel2"><span>🍋</span></div>
-  <div class="reel" id="reel3"><span>🍊</span></div>
+  <div class="reel" id="reel1"><span>🏍️</span></div>
+  <div class="reel" id="reel2"><span>🛞</span></div>
+  <div class="reel" id="reel3"><span>🛢️</span></div>
 </div>
 <button id="spinBtn">Quay Slot</button>
 <div id="result"></div>
@@ -90,7 +90,8 @@ const reels = [
 ];
 const resultDiv = document.getElementById('result');
 
-const symbols = ["🍒","🍋","🍊","🍉","⭐","💎"];
+// Chỉ sử dụng các biểu tượng xe vàng
+const symbols = ["🏍️","🛞","🛢️"];
 
 function spinReel(reel, duration){
   return new Promise(resolve=>{
