@@ -10,12 +10,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   min-height: 100vh;
-  background: #111;
-  color: #fff;
+  background: #FFDFA1; /* nền vàng nhạt dễ nhìn */
+  color: #111;
   margin: 0;
-  padding-top: 40px;
+  padding: 10px;
 }
 h1 {
   color: #EEAD0E;
@@ -24,20 +24,16 @@ h1 {
   text-align: center;
 }
 p.description {
-  max-width: 380px;
+  max-width: 300px;
   text-align: center;
-  font-size: 0.95rem;
   margin-bottom: 20px;
-  color: #FFD;
+  color: #333;
+  font-size: 0.95rem;
 }
 #slot {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
-  padding: 15px;
-  border-radius: 15px;
-  background: linear-gradient(135deg, #FFF8E1, #FFE082); /* gradient vàng nhạt */
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
   flex-wrap: wrap;
 }
 .reel {
@@ -45,12 +41,12 @@ p.description {
   height: 80px;
   margin: 5px;
   border-radius: 15px;
-  background: #222;
+  background: #fff; /* nền reel sáng */
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  color: #FFD700;
+  color: #fff; /* icon trắng */
   text-shadow: 0 0 5px #FFD700;
   box-shadow: 0 0 15px rgba(255,215,0,0.5);
   overflow: hidden;
@@ -86,18 +82,20 @@ button {
 
 /* RESPONSIVE */
 @media(max-width:480px){
-  #slot {
-    padding: 10px;
-  }
   .reel {
     width: 60px;
     height: 60px;
-    font-size: 1.5rem;
-    margin: 3px;
+    font-size: 1.6rem;
+  }
+  #slot {
+    margin-bottom: 15px;
   }
   button {
-    padding: 8px 16px;
     font-size: 1rem;
+    padding: 8px 16px;
+  }
+  p.description {
+    font-size: 0.9rem;
   }
 }
 </style>
@@ -106,7 +104,8 @@ button {
 
 <h1>Quay để nhận giảm giá thuê xe máy</h1>
 <p class="description">
-Bạn sẽ được giảm giá khi chơi trò này. Khi trúng thưởng, hãy chụp ảnh màn hình để được giảm giá khi ký hợp đồng thuê xe máy bên chúng tôi.
+Bạn sẽ được giảm giá khi chơi trò này, khi trúng thưởng thì bạn chụp ảnh màn hình để được giảm giá khi kí hợp đồng thuê xe máy bên chúng tôi.<br>
+🎁 Phần thưởng: Giảm giá 10% khi thuê xe máy tháng (không áp dụng thuê ngày, tuần)
 </p>
 
 <div id="slot">
@@ -115,7 +114,7 @@ Bạn sẽ được giảm giá khi chơi trò này. Khi trúng thưởng, hãy 
   <div class="reel" id="reel3"><span>🛢️</span></div>
 </div>
 <button id="spinBtn">Quay Slot</button>
-<div id="result">Phần thưởng: Giảm giá 10% khi thuê xe máy tháng (không áp dụng thuê ngày, tuần)</div>
+<div id="result"></div>
 
 <script>
 const spinBtn = document.getElementById('spinBtn');
@@ -125,9 +124,7 @@ const reels = [
   document.getElementById('reel3')
 ];
 const resultDiv = document.getElementById('result');
-
-// Biểu tượng slot
-const symbols = ["🏍️","🛞","🛢️"];
+const symbols = ["🏍️","🛞","🛢️"]; // chỉ các biểu tượng xe vàng
 
 function spinReel(reel, duration){
   return new Promise(resolve=>{
@@ -156,9 +153,7 @@ spinBtn.addEventListener('click', async ()=>{
 
   // Kiểm tra kết quả trúng
   const win = results.every(s => s === results[0]);
-  resultDiv.textContent = win 
-    ? `🎉 Chúc mừng! Bạn trúng: Giảm giá 10% khi thuê xe máy tháng!` 
-    : `😅 Thua rồi, thử lần sau!`;
+  resultDiv.textContent = win ? `🎉 Chúc mừng! Bạn trúng ${results[0]}!` : `😅 Thua rồi, thử lần sau!`;
   spinBtn.disabled = false; // cho quay tiếp
 });
 </script>
