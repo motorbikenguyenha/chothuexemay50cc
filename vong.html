@@ -1,151 +1,130 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vòng quay may mắn</title>
+<!-- KHỐI VÒNG QUAY MAY MẮN -->
 <style>
-  body {
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background: #111;
-    color: #fff;
-  }
-  canvas {
-    margin-top: 20px;
-    border-radius: 50%;
-    background: #222;
-  }
-  button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    background: #EEAD0E;
-    border: none;
-    border-radius: 10px;
-    color: #111;
-    font-weight: bold;
-  }
-  #result {
-    margin-top: 20px;
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #FFD700;
-  }
-</style>
-</head>
-<body>
+#wheel-section {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px 20px;
+  text-align: center;
+  border-radius: 20px;
+  background: rgba(255,245,200,0.08);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 50px rgba(244,197,66,0.25);
+  position: relative;
+}
 
-<h1 style="color:#EEAD0E;">Vòng quay may mắn</h1>
-<canvas id="wheel" width="400" height="400"></canvas>
-<button id="spinBtn">Quay vòng</button>
-<div id="result"></div>
+#wheel-section h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #EEAD0E;
+  margin-bottom: 28px;
+  text-shadow: 0 2px 8px rgba(255,173,14,0.8);
+}
+
+#wheel-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto 20px auto;
+  border-radius: 50%;
+  border: 8px solid #EEAD0E;
+  overflow: hidden;
+}
+
+#wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  transition: transform 20s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.segment {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0% 0%;
+  background: repeating-conic-gradient(
+    #FFD700 0deg 45deg,
+    #FFEE58 45deg 90deg
+  );
+}
+
+#spin-btn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: #EEAD0E;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#spin-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+}
+</style>
+
+<section id="wheel-section">
+  <h2>Vòng quay may mắn</h2>
+  <div id="wheel-container">
+    <div id="wheel">
+      <div class="segment"></div>
+    </div>
+  </div>
+  <button id="spin-btn">Quay ngay</button>
+  <div id="result"></div>
+</section>
 
 <script>
-const canvas = document.getElementById('wheel');
-const ctx = canvas.getContext('2d');
-const spinBtn = document.getElementById('spinBtn');
+const wheel = document.getElementById('wheel');
+const spinBtn = document.getElementById('spin-btn');
 const resultDiv = document.getElementById('result');
 
 const prizes = [
-  "🎁 100k", "🍀 Thêm lượt", "🎉 50k", "💎 Quà VIP", 
-  "🎊 200k", "🎫 Vé xem phim", "🥳 10k", "🏆 Quà lớn"
+  "🎁 Voucher 10k",
+  "🎉 Voucher 50k",
+  "🍀 Free thuê xe 1 giờ",
+  "💵 Giảm 20%",
+  "⭐ Sticker Thu Hà",
+  "🏆 Quà bí mật"
 ];
 
-const colors = ["#EEAD0E","#FFD700","#FFC107","#FFB300",
-                "#F9A825","#F57F17","#FFCA28","#FFEB3B"];
-
-const numSlices = prizes.length;
-const sliceAngle = (2 * Math.PI) / numSlices;
-
-let rotation = 0; // góc hiện tại
-let spinning = false;
-
-function drawWheel() {
-  const radius = canvas.width / 2;
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.save();
-  ctx.translate(radius,radius);
-  ctx.rotate(rotation);
-  
-  // Vẽ slice
-  for(let i=0; i<numSlices; i++){
-    ctx.beginPath();
-    ctx.moveTo(0,0);
-    ctx.arc(0,0,radius, i*sliceAngle, (i+1)*sliceAngle);
-    ctx.fillStyle = colors[i % colors.length];
-    ctx.fill();
-    ctx.strokeStyle = "#111";
-    ctx.lineWidth = 2;
-    ctx.stroke();
-    
-    // Vẽ chữ
-    ctx.save();
-    const angle = i*sliceAngle + sliceAngle/2;
-    ctx.rotate(angle);
-    ctx.textAlign = "right";
-    ctx.fillStyle = "#111";
-    ctx.font = "16px sans-serif";
-    ctx.fillText(prizes[i], radius - 10, 5); // cách tâm 10px
-    ctx.restore();
-  }
-  ctx.restore();
-  
-  // Kim cố định ở trên
-  ctx.fillStyle = "#FF3D00";
-  ctx.beginPath();
-  ctx.moveTo(radius-5,0);
-  ctx.lineTo(radius+5,0);
-  ctx.lineTo(radius,radius/6);
-  ctx.closePath();
-  ctx.fill();
+// Kiểm tra đã quay chưa
+if(localStorage.getItem('hasSpun')){
+  spinBtn.disabled = true;
+  resultDiv.textContent = "Bạn đã quay vòng rồi! 😎";
 }
 
-drawWheel();
+spinBtn.addEventListener('click', () => {
+  spinBtn.disabled = true;
 
-function spinWheel() {
-  if(spinning) return;
-  spinning = true;
-  resultDiv.textContent = "";
+  // Chọn phần thưởng ngẫu nhiên
+  const prizeIndex = Math.floor(Math.random() * prizes.length);
+  const prize = prizes[prizeIndex];
 
-  const duration = 20000; // 20s
-  const start = performance.now();
-  const initialRotation = rotation;
-  const spins = Math.random()*5 + 5; // quay thêm 5~10 vòng
+  // Tính góc quay: mỗi vòng 360 + góc đến phần thưởng
+  const spins = 5; // số vòng quay
+  const segmentAngle = 360 / prizes.length;
+  const finalAngle = spins*360 + prizeIndex * segmentAngle + segmentAngle/2;
 
-  function animate(now){
-    const elapsed = now - start;
-    if(elapsed < duration){
-      const t = elapsed / duration;
-      // easing out (quay chậm dần)
-      const eased = 1 - Math.pow(1-t, 3);
-      rotation = initialRotation + eased * spins * 2*Math.PI;
-      drawWheel();
-      requestAnimationFrame(animate);
-    } else {
-      rotation = initialRotation + spins * 2*Math.PI;
-      drawWheel();
-      spinning = false;
-      showResult();
-    }
-  }
-  requestAnimationFrame(animate);
-}
+  wheel.style.transform = `rotate(${finalAngle}deg)`;
 
-function showResult(){
-  const normalizedRotation = rotation % (2*Math.PI);
-  const index = numSlices - 1 - Math.floor(normalizedRotation / sliceAngle);
-  const prize = prizes[index % numSlices];
-  resultDiv.textContent = `🎉 Bạn trúng: ${prize}`;
-}
-
-spinBtn.addEventListener('click', spinWheel);
+  // 20s sau hiện kết quả
+  setTimeout(()=>{
+    resultDiv.textContent = `Chúc mừng bạn trúng: ${prize} 🎉`;
+    localStorage.setItem('hasSpun','true');
+  }, 20000); // 20 giây
+});
 </script>
-
-</body>
-</html>
