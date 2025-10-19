@@ -3,159 +3,142 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vòng quay may mắn</title>
+<title>Mini Game Slot Machine</title>
 <style>
-  body {
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background: #111;
-    color: #fff;
-  }
-  canvas {
-    margin-top: 20px;
-    border-radius: 50%;
-    background: #222;
-  }
-  button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    background: #EEAD0E;
-    border: none;
-    border-radius: 10px;
-    color: #111;
-    font-weight: bold;
-  }
-  button:disabled {
-    background: #555;
-    cursor: not-allowed;
-  }
-  #result {
-    margin-top: 20px;
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: #FFD700;
-    text-align: center;
-  }
+body {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #111;
+  color: #fff;
+  margin: 0;
+}
+h1 {
+  color: #EEAD0E;
+  text-shadow: 2px 2px 8px #FFD700;
+  margin-bottom: 20px;
+}
+#slot {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.reel {
+  width: 80px;
+  height: 80px;
+  margin: 0 10px;
+  border-radius: 15px;
+  background: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #FFD700;
+  text-shadow: 0 0 5px #FFD700;
+  box-shadow: 0 0 15px rgba(255,215,0,0.5);
+  overflow: hidden;
+  position: relative;
+}
+button {
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  background: #EEAD0E;
+  border: none;
+  border-radius: 10px;
+  color: #111;
+  font-weight: bold;
+}
+#result {
+  margin-top: 20px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #FFD700;
+  text-shadow: 0 0 10px #FFD700;
+}
+
+/* Reel animation */
+.reel span {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
 </style>
 </head>
 <body>
 
-<h1 style="color:#EEAD0E;">Vòng quay may mắn</h1>
-<canvas id="wheel" width="400" height="400"></canvas>
-<button id="spinBtn">Quay vòng</button>
+<h1>Slot Machine May Mắn</h1>
+<div id="slot">
+  <div class="reel" id="reel1"><span>🍒</span></div>
+  <div class="reel" id="reel2"><span>🍋</span></div>
+  <div class="reel" id="reel3"><span>🍊</span></div>
+</div>
+<button id="spinBtn">Quay Slot</button>
 <div id="result"></div>
 
 <script>
-const canvas = document.getElementById('wheel');
-const ctx = canvas.getContext('2d');
 const spinBtn = document.getElementById('spinBtn');
+const reels = [
+  document.getElementById('reel1'),
+  document.getElementById('reel2'),
+  document.getElementById('reel3')
+];
 const resultDiv = document.getElementById('result');
 
-const prizes = [
-  "🎁 100k", "🍀 Thêm lượt", "🎉 50k", "💎 Quà VIP", 
-  "🎊 200k", "🎫 Vé xem phim", "🥳 10k", "🏆 Quà lớn"
-];
+const symbols = ["🍒","🍋","🍊","🍉","⭐","💎"];
+let played = localStorage.getItem('slotPlayed') === 'true';
 
-const colors = ["#EEAD0E","#FFD700","#FFC107","#FFB300",
-                "#F9A825","#F57F17","#FFCA28","#FFEB3B"];
-
-const numSlices = prizes.length;
-const sliceAngle = (2 * Math.PI) / numSlices;
-
-let rotation = 0; // góc hiện tại
-let spinning = false;
-
-// Kiểm tra nếu đã quay
-if(localStorage.getItem('hasSpun')){
+if(played){
   spinBtn.disabled = true;
-  resultDiv.textContent = "Bạn đã quay vòng rồi! 😎";
+  resultDiv.textContent = "Bạn đã chơi rồi!";
 }
 
-function drawWheel() {
-  const radius = canvas.width / 2;
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.save();
-  ctx.translate(radius,radius);
-  ctx.rotate(rotation);
-  
-  for(let i=0; i<numSlices; i++){
-    ctx.beginPath();
-    ctx.moveTo(0,0);
-    ctx.arc(0,0,radius, i*sliceAngle, (i+1)*sliceAngle);
-    ctx.fillStyle = colors[i % colors.length];
-    ctx.fill();
-    ctx.strokeStyle = "#111";
-    ctx.lineWidth = 2;
-    ctx.stroke();
-    
-    ctx.save();
-    const angle = i*sliceAngle + sliceAngle/2;
-    ctx.rotate(angle);
-    ctx.textAlign = "right";
-    ctx.fillStyle = "#111";
-    ctx.font = "16px sans-serif";
-    ctx.fillText(prizes[i], radius - 10, 5);
-    ctx.restore();
-  }
-  ctx.restore();
-  
-  // Kim cố định
-  ctx.fillStyle = "#FF3D00";
-  const radius = canvas.width / 2;
-  ctx.beginPath();
-  ctx.moveTo(radius-5,0);
-  ctx.lineTo(radius+5,0);
-  ctx.lineTo(radius,radius/6);
-  ctx.closePath();
-  ctx.fill();
-}
-
-drawWheel();
-
-function spinWheel() {
-  if(spinning) return;
-  spinning = true;
-  resultDiv.textContent = "";
-  spinBtn.disabled = true;
-
-  const duration = 20000; // 20s
+function spinReel(reel, duration, callback){
+  const span = reel.querySelector('span');
   const start = performance.now();
-  const initialRotation = rotation;
-  const spins = Math.random()*5 + 5; // quay 5~10 vòng
-
   function animate(now){
     const elapsed = now - start;
     if(elapsed < duration){
-      const t = elapsed / duration;
-      const eased = 1 - Math.pow(1-t, 3); // easing out
-      rotation = initialRotation + eased * spins * 2*Math.PI;
-      drawWheel();
+      const index = Math.floor(Math.random() * symbols.length);
+      span.textContent = symbols[index];
       requestAnimationFrame(animate);
     } else {
-      rotation = initialRotation + spins * 2*Math.PI;
-      drawWheel();
-      spinning = false;
-      showResult();
-      localStorage.setItem('hasSpun','true'); // Lưu trạng thái đã quay
+      const finalIndex = Math.floor(Math.random() * symbols.length);
+      span.textContent = symbols[finalIndex];
+      callback(finalIndex);
     }
   }
-  requestAnimationFrame(animate);
+  animate(performance.now());
 }
 
-function showResult(){
-  const normalizedRotation = rotation % (2*Math.PI);
-  const index = numSlices - 1 - Math.floor(normalizedRotation / sliceAngle);
-  const prize = prizes[index % numSlices];
-  resultDiv.textContent = `🎉 Bạn trúng: ${prize}`;
-}
+spinBtn.addEventListener('click', ()=>{
+  if(played) return;
+  spinBtn.disabled = true;
+  resultDiv.textContent = "";
+  let results = [];
+  let completed = 0;
 
-spinBtn.addEventListener('click', spinWheel);
+  reels.forEach((reel,i)=>{
+    spinReel(reel, 5000 + i*1000, (index)=>{
+      results[i] = symbols[index];
+      completed++;
+      if(completed === reels.length){
+        // Kết quả cuối cùng
+        let win = results.every(s => s === results[0]);
+        resultDiv.textContent = win ? `🎉 Chúc mừng! Bạn trúng ${results[0]}!` : `😅 Thua rồi, thử lần sau!`;
+        localStorage.setItem('slotPlayed','true');
+        played = true;
+      }
+    });
+  });
+});
 </script>
 
 </body>
