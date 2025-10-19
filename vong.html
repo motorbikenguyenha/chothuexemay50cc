@@ -1,0 +1,81 @@
+<!-- KHỐI VÒNG QUAY MAY MẮN LUXURY -->
+<section id="lucky-wheel" style="max-width:600px;margin:50px auto;text-align:center;position:relative;">
+  <h2 style="font-size:1.8rem;margin-bottom:20px;color:#FFD700;text-shadow:0 0 8px #FFD700,0 0 16px #FFE57F;">Vòng quay may mắn 🎉</h2>
+  <div id="wheel-container" style="position:relative;margin:auto;width:300px;height:300px;border-radius:50%;overflow:hidden;box-shadow:0 8px 30px rgba(255,215,0,0.3);">
+    <canvas id="wheel" width="300" height="300" style="border-radius:50%;"></canvas>
+    <button id="spin-btn" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);padding:10px 20px;font-size:1rem;border:none;border-radius:50%;background:#FFD700;color:#111;cursor:pointer;box-shadow:0 4px 12px rgba(255,215,0,0.5);transition:0.3s;">Quay</button>
+  </div>
+  <p id="result" style="margin-top:20px;font-weight:700;font-size:1.1rem;color:#FFD700;text-shadow:0 0 4px #FFD700;"></p>
+</section>
+
+<script>
+const canvas = document.getElementById('wheel');
+const ctx = canvas.getContext('2d');
+const spinBtn = document.getElementById('spin-btn');
+const resultP = document.getElementById('result');
+
+const prizes = ["🎁 10% OFF","🏍️ Free Ride 1h","💰 50k Cash","🍹 Free Drink","🛵 1 Day Rental","🎟️ Voucher"];
+const colors = ["#FFD700","#FFEE58","#FFC107","#FFF176","#FFE082","#FFD54F"];
+const segCount = prizes.length;
+const segAngle = 2*Math.PI/segCount;
+let currentAngle = 0;
+
+// Vẽ bánh xe
+function drawWheel(){
+  for(let i=0;i<segCount;i++){
+    ctx.beginPath();
+    ctx.moveTo(150,150);
+    ctx.arc(150,150,150,i*segAngle,(i+1)*segAngle);
+    ctx.fillStyle = colors[i];
+    ctx.fill();
+    ctx.save();
+    ctx.translate(150,150);
+    ctx.rotate((i+0.5)*segAngle);
+    ctx.fillStyle="#111";
+    ctx.font="bold 14px Arial";
+    ctx.textAlign="right";
+    ctx.fillText(prizes[i],140,5);
+    ctx.restore();
+  }
+}
+
+// Quay bánh xe
+function spinWheel(){
+  spinBtn.disabled=true;
+  let spins = Math.floor(Math.random()*3)+3;
+  let extraAngle = Math.random()*2*Math.PI;
+  let finalAngle = currentAngle + spins*2*Math.PI + extraAngle;
+  let duration = 4000;
+  let start = null;
+
+  function animate(timestamp){
+    if(!start) start=timestamp;
+    let progress = timestamp-start;
+    let ease = 1 - Math.pow(1-progress/duration,3); // easing out
+    let angle = currentAngle + (finalAngle-currentAngle)*ease;
+    ctx.clearRect(0,0,300,300);
+    ctx.save();
+    ctx.translate(150,150);
+    ctx.rotate(angle);
+    ctx.translate(-150,-150);
+    drawWheel();
+    ctx.restore();
+    if(progress<duration){
+      requestAnimationFrame(animate);
+    }else{
+      currentAngle = finalAngle%(2*Math.PI);
+      let index = Math.floor(segCount - (currentAngle/segAngle))%segCount;
+      resultP.textContent = "Chúc mừng bạn nhận: " + prizes[index];
+      spinBtn.disabled=false;
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+// Hover hiệu ứng nút
+spinBtn.addEventListener('mouseover',()=>spinBtn.style.transform='translate(-50%,-50%) scale(1.1)');
+spinBtn.addEventListener('mouseout',()=>spinBtn.style.transform='translate(-50%,-50%) scale(1)');
+
+drawWheel();
+spinBtn.addEventListener('click',spinWheel);
+</script>
