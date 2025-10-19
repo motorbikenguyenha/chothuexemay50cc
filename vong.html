@@ -1,189 +1,133 @@
 <!DOCTYPE html>
-<html lang="vi" data-theme="light">
+<html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vòng quay may mắn - Thu Hà</title>
+<title>Vòng Quay May Mắn</title>
 <style>
-body{
-  font-family: 'Arial', sans-serif;
-  margin:0;
-  background:#f0f0f0;
+body {
+  font-family: Arial, sans-serif;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #fff;
+  margin: 0;
 }
 
-/* KHỐI TIÊU ĐỀ VÀNG */
-#dieu-kien{
-  max-width:1100px;
-  margin:50px auto;
-  padding:30px 20px;
-  text-align:center;
-  border-radius:20px;
-  background:rgba(255,245,200,0.08);
-  backdrop-filter: blur(12px);
-  box-shadow:0 10px 50px rgba(244,197,66,0.25);
-  position:relative;
-  overflow:hidden;
+/* Vòng quay */
+#wheel-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
 }
 
-#dieu-kien h2{
-  font-size:2rem;
-  font-weight:900;
-  color:#EEAD0E;
-  text-shadow:0 0 8px #EEAD0E, 0 0 20px #EEAD0E, 0 0 32px #EEAD0E;
-  margin-bottom:28px;
-  transition: text-shadow 0.4s ease;
+#wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 8px solid #EEAD0E;
+  position: relative;
+  overflow: hidden;
+  transform: rotate(0deg);
+  transition: transform 20s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-/* NỘI DUNG */
-#dieu-kien p.sub{
-  font-size:1rem;
-  color:#333;
-  line-height:1.7;
-  margin:12px 0;
-  display:flex;
-  align-items:flex-start;
-  justify-content:flex-start;
-}
-#dieu-kien p.sub span.icon{
-  display:inline-block;
-  margin-right:10px;
-  font-size:1.3rem;
-  flex-shrink:0;
-  transition: transform 0.25s ease;
-}
-
-/* VÒNG QUAY */
-#wheel-container{
-  margin:50px auto;
-  width:300px;
-  height:300px;
-  position:relative;
+.slice {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0% 0%;
+  background: #FFD70033;
+  border-right: 1px solid #EEAD0E;
+  border-bottom: 1px solid #EEAD0E;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 10px;
+  box-sizing: border-box;
+  font-weight: bold;
+  color: #EEAD0E;
 }
 
-#wheel{
-  width:100%;
-  height:100%;
-  border-radius:50%;
-  border:8px solid #EEAD0E;
-  background:conic-gradient(
-    #FFEE58 0deg 60deg,
-    #FFD700 60deg 120deg,
-    #FFEE58 120deg 180deg,
-    #FFD700 180deg 240deg,
-    #FFEE58 240deg 300deg,
-    #FFD700 300deg 360deg
-  );
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:bold;
-  font-size:1.2rem;
-  color:#333;
-  transition: transform 0.1s linear;
+/* Cảm giác xen kẽ màu */
+.slice:nth-child(odd) {
+  background: #FFD70022;
 }
 
-#wheel:after{
-  content:"🎯";
-  position:absolute;
-  top:50%; left:50%;
-  transform:translate(-50%,-50%);
-  font-size:2rem;
+#pointer {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; 
+  height: 0; 
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 24px solid #EEAD0E;
+  z-index: 10;
+  filter: drop-shadow(0 0 6px #EEAD0E);
 }
 
-#spin-btn{
-  margin-top:30px;
-  padding:12px 24px;
-  font-size:1rem;
-  font-weight:700;
-  border:none;
-  border-radius:8px;
-  background:#EEAD0E;
-  color:#fff;
-  cursor:pointer;
-  box-shadow:0 4px 12px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
+button#spin {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background: #EEAD0E;
+  color: #111;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
-
-#spin-btn:hover{
-  transform:scale(1.05);
-  box-shadow:0 6px 16px rgba(0,0,0,0.25);
-}
-
-/* DARK MODE */
-html[data-theme="dark"] body{
-  background:#111;
-}
-html[data-theme="dark"] #dieu-kien{
-  background:rgba(20,20,20,0.6);
-  box-shadow:0 10px 50px rgba(255,215,0,0.4);
-}
-html[data-theme="dark"] #dieu-kien p.sub{
-  color:#eee;
-}
-html[data-theme="dark"] #wheel{
-  border:8px solid #EEAD0E;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  #dieu-kien h2{
-    font-size:1.5rem;
-  }
-  #dieu-kien p.sub{
-    font-size:0.95rem;
-  }
-  #dieu-kien p.sub span.icon{
-    font-size:1.1rem;
-    margin-right:8px;
-  }
-  #wheel-container{
-    width:250px;
-    height:250px;
-  }
+button#spin:active {
+  transform: scale(0.95);
 }
 </style>
 </head>
 <body>
 
-<section id="dieu-kien">
-  <h2>Điều kiện thuê xe máy - Thu Hà</h2>
-  <p class="sub"><span class="icon">💰</span>Đặt cọc từ 1 đến 5 triệu đồng.</p>
-  <p class="sub"><span class="icon">📝</span>Khách hàng cần cung cấp giấy tờ hợp lệ và tuân thủ quy định thuê.</p>
-  <p class="sub"><span class="icon">⏱</span>Xe sử dụng trong nội thành Hà Nội, bảo quản cẩn thận để tránh phát sinh chi phí.</p>
-  <p class="sub"><span class="icon">✅</span>Thanh toán khi nhận xe và trả xe đúng hạn để đảm bảo an toàn cho cả hai bên.</p>
-</section>
-
-<!-- VÒNG QUAY -->
-<div id="wheel-container">
-  <div id="wheel"></div>
-  <button id="spin-btn">Quay Ngay!</button>
+<div style="text-align:center;">
+  <div id="wheel-container">
+    <div id="wheel">
+      <div class="slice" style="transform: rotate(0deg)">🎁 Free 1h</div>
+      <div class="slice" style="transform: rotate(60deg)">💵 Giảm 20%</div>
+      <div class="slice" style="transform: rotate(120deg)">🍀 May mắn</div>
+      <div class="slice" style="transform: rotate(180deg)">🎫 Voucher</div>
+      <div class="slice" style="transform: rotate(240deg)">🏍️ Miễn phí 1 ngày</div>
+      <div class="slice" style="transform: rotate(300deg)">⭐ Quà bí mật</div>
+    </div>
+    <div id="pointer"></div>
+  </div>
+  <button id="spin">Quay Ngay!</button>
 </div>
 
 <script>
 const wheel = document.getElementById('wheel');
-const btn = document.getElementById('spin-btn');
+const spinBtn = document.getElementById('spin');
+let spinning = false;
 
-btn.addEventListener('click', ()=>{
-  btn.disabled = true;
-  let totalRotation = 0;
-  let duration = 20000; // 20s
-  let startTime = null;
+spinBtn.addEventListener('click', () => {
+  if (spinning) return;
+  spinning = true;
 
-  function rotate(timestamp){
-    if(!startTime) startTime = timestamp;
-    let elapsed = timestamp - startTime;
-    let progress = Math.min(elapsed/duration,1);
-    let ease = 1 - Math.pow(1-progress,3); // ease-out cubic
-    wheel.style.transform = `rotate(${3600*ease}deg)`; // quay 10 vòng
-    if(progress<1){
-      requestAnimationFrame(rotate);
-    } else {
-      btn.disabled = false;
-      alert("🎉 Chúc mừng! Bạn đã quay xong.");
-    }
-  }
+  // Quay ngẫu nhiên 20s
+  const spins = Math.floor(Math.random() * 360 + 1440); // 4 vòng + random
+  wheel.style.transition = 'transform 20s cubic-bezier(0.33, 1, 0.68, 1)';
+  wheel.style.transform = `rotate(${spins}deg)`;
 
-  requestAnimationFrame(rotate);
+  setTimeout(() => {
+    spinning = false;
+    // Lấy góc hiện tại để xác định phần thưởng
+    const normalized = spins % 360;
+    const slice = Math.floor(normalized / 60);
+    const prizes = ["🎁 Free 1h", "💵 Giảm 20%", "🍀 May mắn", "🎫 Voucher", "🏍️ Miễn phí 1 ngày", "⭐ Quà bí mật"];
+    alert("Bạn nhận được: " + prizes[5 - slice]);
+  }, 20000);
 });
 </script>
 
