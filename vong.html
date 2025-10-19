@@ -15,11 +15,22 @@ body {
   background: #111;
   color: #fff;
   margin: 0;
+  padding: 10px;
 }
 h1 {
   color: #EEAD0E;
   text-shadow: 2px 2px 8px #FFD700;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 1.8rem;
+}
+p.description {
+  color: #FFD700;
+  font-size: 0.95rem;
+  max-width: 600px;
+  text-align: center;
+  margin: 0 0 20px 0;
+  line-height: 1.5;
 }
 #slot {
   display: flex;
@@ -27,24 +38,24 @@ h1 {
   margin-bottom: 20px;
 }
 .reel {
-  width: 80px;
-  height: 80px;
-  margin: 0 10px;
-  border-radius: 15px;
+  width: 70px;
+  height: 70px;
+  margin: 0 8px;
+  border-radius: 12px;
   background: #222;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #FFD700;
   text-shadow: 0 0 5px #FFD700;
-  box-shadow: 0 0 15px rgba(255,215,0,0.5);
+  box-shadow: 0 0 12px rgba(255,215,0,0.5);
   overflow: hidden;
   position: relative;
 }
 button {
-  padding: 10px 20px;
-  font-size: 1.1rem;
+  padding: 8px 18px;
+  font-size: 1rem;
   cursor: pointer;
   background: #EEAD0E;
   border: none;
@@ -53,11 +64,12 @@ button {
   font-weight: bold;
 }
 #result {
-  margin-top: 20px;
-  font-size: 1.3rem;
+  margin-top: 15px;
+  font-size: 1.1rem;
   font-weight: bold;
   color: #FFD700;
-  text-shadow: 0 0 10px #FFD700;
+  text-shadow: 0 0 8px #FFD700;
+  text-align: center;
 }
 .reel span {
   display: block;
@@ -68,11 +80,29 @@ button {
   left: 0;
   text-align: center;
 }
+
+/* Responsive cho điện thoại */
+@media(max-width: 480px){
+  h1 { font-size: 1.5rem; }
+  p.description { font-size: 0.85rem; }
+  .reel {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    margin: 0 6px;
+  }
+  button { font-size: 0.95rem; padding: 6px 14px; }
+  #result { font-size: 1rem; }
+}
 </style>
 </head>
 <body>
 
-<h1>Slot Machine Xe Máy</h1>
+<h1>Quay để nhận giảm giá thuê xe máy</h1>
+<p class="description">
+  Bạn sẽ được giảm giá khi chơi trò này. Khi trúng thưởng, hãy chụp ảnh màn hình để được giảm giá khi ký hợp đồng thuê xe máy bên chúng tôi.
+</p>
+
 <div id="slot">
   <div class="reel" id="reel1"><span>🏍️</span></div>
   <div class="reel" id="reel2"><span>🛞</span></div>
@@ -90,8 +120,10 @@ const reels = [
 ];
 const resultDiv = document.getElementById('result');
 
-// Chỉ sử dụng các biểu tượng xe vàng
+// Biểu tượng xe vàng
 const symbols = ["🏍️","🛞","🛢️"];
+// Nội dung phần thưởng khi trúng
+const prizeText = "Giảm giá 10% khi thuê xe máy tháng (không áp dụng thuê ngày/tuần)";
 
 function spinReel(reel, duration){
   return new Promise(resolve=>{
@@ -120,7 +152,7 @@ spinBtn.addEventListener('click', async ()=>{
 
   // Kiểm tra kết quả trúng
   const win = results.every(s => s === results[0]);
-  resultDiv.textContent = win ? `🎉 Chúc mừng! Bạn trúng ${results[0]}!` : `😅 Thua rồi, thử lần sau!`;
+  resultDiv.textContent = win ? `🎉 Chúc mừng! Bạn trúng: ${prizeText}` : `😅 Thua rồi, thử lần sau!`;
   spinBtn.disabled = false; // cho quay tiếp
 });
 </script>
