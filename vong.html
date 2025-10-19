@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mini Game Slot Machine</title>
+<title>Slot Machine May Mắn</title>
 <style>
 body {
   font-family: sans-serif;
@@ -59,8 +59,6 @@ button {
   color: #FFD700;
   text-shadow: 0 0 10px #FFD700;
 }
-
-/* Reel animation */
 .reel span {
   display: block;
   position: absolute;
@@ -93,51 +91,36 @@ const reels = [
 const resultDiv = document.getElementById('result');
 
 const symbols = ["🍒","🍋","🍊","🍉","⭐","💎"];
-let played = localStorage.getItem('slotPlayed') === 'true';
 
-if(played){
-  spinBtn.disabled = true;
-  resultDiv.textContent = "Bạn đã chơi rồi!";
-}
-
-function spinReel(reel, duration, callback){
-  const span = reel.querySelector('span');
-  const start = performance.now();
-  function animate(now){
-    const elapsed = now - start;
-    if(elapsed < duration){
-      const index = Math.floor(Math.random() * symbols.length);
-      span.textContent = symbols[index];
-      requestAnimationFrame(animate);
-    } else {
-      const finalIndex = Math.floor(Math.random() * symbols.length);
-      span.textContent = symbols[finalIndex];
-      callback(finalIndex);
+function spinReel(reel, duration){
+  return new Promise(resolve=>{
+    const span = reel.querySelector('span');
+    const start = performance.now();
+    function animate(now){
+      const elapsed = now - start;
+      if(elapsed < duration){
+        const index = Math.floor(Math.random() * symbols.length);
+        span.textContent = symbols[index];
+        requestAnimationFrame(animate);
+      } else {
+        const finalIndex = Math.floor(Math.random() * symbols.length);
+        span.textContent = symbols[finalIndex];
+        resolve(finalIndex);
+      }
     }
-  }
-  animate(performance.now());
+    animate(performance.now());
+  });
 }
 
-spinBtn.addEventListener('click', ()=>{
-  if(played) return;
+spinBtn.addEventListener('click', async ()=>{
   spinBtn.disabled = true;
   resultDiv.textContent = "";
-  let results = [];
-  let completed = 0;
+  const results = await Promise.all(reels.map((r,i)=>spinReel(r,4000 + i*1000)));
 
-  reels.forEach((reel,i)=>{
-    spinReel(reel, 5000 + i*1000, (index)=>{
-      results[i] = symbols[index];
-      completed++;
-      if(completed === reels.length){
-        // Kết quả cuối cùng
-        let win = results.every(s => s === results[0]);
-        resultDiv.textContent = win ? `🎉 Chúc mừng! Bạn trúng ${results[0]}!` : `😅 Thua rồi, thử lần sau!`;
-        localStorage.setItem('slotPlayed','true');
-        played = true;
-      }
-    });
-  });
+  // Kiểm tra kết quả trúng
+  const win = results.every(s => s === results[0]);
+  resultDiv.textContent = win ? `🎉 Chúc mừng! Bạn trúng ${results[0]}!` : `😅 Thua rồi, thử lần sau!`;
+  spinBtn.disabled = false; // cho quay tiếp
 });
 </script>
 
