@@ -3,132 +3,148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vòng Quay May Mắn</title>
+<title>Vòng quay may mắn</title>
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #111;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  color: #fff;
-  margin: 0;
-}
-
-/* Vòng quay */
-#wheel-container {
-  position: relative;
-  width: 300px;
-  height: 300px;
-}
-
-#wheel {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 8px solid #EEAD0E;
-  position: relative;
-  overflow: hidden;
-  transform: rotate(0deg);
-  transition: transform 20s cubic-bezier(0.33, 1, 0.68, 1);
-}
-
-.slice {
-  position: absolute;
-  width: 50%;
-  height: 50%;
-  top: 50%;
-  left: 50%;
-  transform-origin: 0% 0%;
-  background: #FFD70033;
-  border-right: 1px solid #EEAD0E;
-  border-bottom: 1px solid #EEAD0E;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  padding: 10px;
-  box-sizing: border-box;
-  font-weight: bold;
-  color: #EEAD0E;
-}
-
-/* Cảm giác xen kẽ màu */
-.slice:nth-child(odd) {
-  background: #FFD70022;
-}
-
-#pointer {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0; 
-  height: 0; 
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-bottom: 24px solid #EEAD0E;
-  z-index: 10;
-  filter: drop-shadow(0 0 6px #EEAD0E);
-}
-
-button#spin {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  background: #EEAD0E;
-  color: #111;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-button#spin:active {
-  transform: scale(0.95);
-}
+  body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #111;
+    color: #fff;
+  }
+  canvas {
+    margin-top: 20px;
+    border-radius: 50%;
+    background: #222;
+  }
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    background: #EEAD0E;
+    border: none;
+    border-radius: 10px;
+    color: #111;
+    font-weight: bold;
+  }
+  #result {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #FFD700;
+  }
 </style>
 </head>
 <body>
 
-<div style="text-align:center;">
-  <div id="wheel-container">
-    <div id="wheel">
-      <div class="slice" style="transform: rotate(0deg)">🎁 Free 1h</div>
-      <div class="slice" style="transform: rotate(60deg)">💵 Giảm 20%</div>
-      <div class="slice" style="transform: rotate(120deg)">🍀 May mắn</div>
-      <div class="slice" style="transform: rotate(180deg)">🎫 Voucher</div>
-      <div class="slice" style="transform: rotate(240deg)">🏍️ Miễn phí 1 ngày</div>
-      <div class="slice" style="transform: rotate(300deg)">⭐ Quà bí mật</div>
-    </div>
-    <div id="pointer"></div>
-  </div>
-  <button id="spin">Quay Ngay!</button>
-</div>
+<h1 style="color:#EEAD0E;">Vòng quay may mắn</h1>
+<canvas id="wheel" width="400" height="400"></canvas>
+<button id="spinBtn">Quay vòng</button>
+<div id="result"></div>
 
 <script>
-const wheel = document.getElementById('wheel');
-const spinBtn = document.getElementById('spin');
+const canvas = document.getElementById('wheel');
+const ctx = canvas.getContext('2d');
+const spinBtn = document.getElementById('spinBtn');
+const resultDiv = document.getElementById('result');
+
+const prizes = [
+  "🎁 100k", "🍀 Thêm lượt", "🎉 50k", "💎 Quà VIP", 
+  "🎊 200k", "🎫 Vé xem phim", "🥳 10k", "🏆 Quà lớn"
+];
+
+const colors = ["#EEAD0E","#FFD700","#FFC107","#FFB300",
+                "#F9A825","#F57F17","#FFCA28","#FFEB3B"];
+
+const numSlices = prizes.length;
+const sliceAngle = (2 * Math.PI) / numSlices;
+
+let rotation = 0; // góc hiện tại
 let spinning = false;
 
-spinBtn.addEventListener('click', () => {
-  if (spinning) return;
+function drawWheel() {
+  const radius = canvas.width / 2;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.save();
+  ctx.translate(radius,radius);
+  ctx.rotate(rotation);
+  
+  // Vẽ slice
+  for(let i=0; i<numSlices; i++){
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.arc(0,0,radius, i*sliceAngle, (i+1)*sliceAngle);
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.fill();
+    ctx.strokeStyle = "#111";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    // Vẽ chữ
+    ctx.save();
+    const angle = i*sliceAngle + sliceAngle/2;
+    ctx.rotate(angle);
+    ctx.textAlign = "right";
+    ctx.fillStyle = "#111";
+    ctx.font = "16px sans-serif";
+    ctx.fillText(prizes[i], radius - 10, 5); // cách tâm 10px
+    ctx.restore();
+  }
+  ctx.restore();
+  
+  // Kim cố định ở trên
+  ctx.fillStyle = "#FF3D00";
+  ctx.beginPath();
+  ctx.moveTo(radius-5,0);
+  ctx.lineTo(radius+5,0);
+  ctx.lineTo(radius,radius/6);
+  ctx.closePath();
+  ctx.fill();
+}
+
+drawWheel();
+
+function spinWheel() {
+  if(spinning) return;
   spinning = true;
+  resultDiv.textContent = "";
 
-  // Quay ngẫu nhiên 20s
-  const spins = Math.floor(Math.random() * 360 + 1440); // 4 vòng + random
-  wheel.style.transition = 'transform 20s cubic-bezier(0.33, 1, 0.68, 1)';
-  wheel.style.transform = `rotate(${spins}deg)`;
+  const duration = 20000; // 20s
+  const start = performance.now();
+  const initialRotation = rotation;
+  const spins = Math.random()*5 + 5; // quay thêm 5~10 vòng
 
-  setTimeout(() => {
-    spinning = false;
-    // Lấy góc hiện tại để xác định phần thưởng
-    const normalized = spins % 360;
-    const slice = Math.floor(normalized / 60);
-    const prizes = ["🎁 Free 1h", "💵 Giảm 20%", "🍀 May mắn", "🎫 Voucher", "🏍️ Miễn phí 1 ngày", "⭐ Quà bí mật"];
-    alert("Bạn nhận được: " + prizes[5 - slice]);
-  }, 20000);
-});
+  function animate(now){
+    const elapsed = now - start;
+    if(elapsed < duration){
+      const t = elapsed / duration;
+      // easing out (quay chậm dần)
+      const eased = 1 - Math.pow(1-t, 3);
+      rotation = initialRotation + eased * spins * 2*Math.PI;
+      drawWheel();
+      requestAnimationFrame(animate);
+    } else {
+      rotation = initialRotation + spins * 2*Math.PI;
+      drawWheel();
+      spinning = false;
+      showResult();
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+function showResult(){
+  const normalizedRotation = rotation % (2*Math.PI);
+  const index = numSlices - 1 - Math.floor(normalizedRotation / sliceAngle);
+  const prize = prizes[index % numSlices];
+  resultDiv.textContent = `🎉 Bạn trúng: ${prize}`;
+}
+
+spinBtn.addEventListener('click', spinWheel);
 </script>
 
 </body>
