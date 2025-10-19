@@ -20,15 +20,8 @@ body {
 h1 {
   color: #EEAD0E;
   text-shadow: 2px 2px 8px #FFD700;
-  margin-bottom: 10px;
-  text-align: center;
-}
-p.description {
-  max-width: 300px;
-  text-align: center;
   margin-bottom: 20px;
-  color: #333;
-  font-size: 0.95rem;
+  text-align: center;
 }
 #slot {
   display: flex;
@@ -70,14 +63,14 @@ button {
   text-shadow: 0 0 5px #FFD700; /* glow vàng nhạt */
   text-align: center;
 }
-.reel span {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+#reward {
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #111;
   text-align: center;
+  display: none; /* ẩn mặc định */
+  text-shadow: 0 0 5px #FFD700;
 }
 
 /* RESPONSIVE */
@@ -94,19 +87,12 @@ button {
     font-size: 1rem;
     padding: 8px 16px;
   }
-  p.description {
-    font-size: 0.9rem;
-  }
 }
 </style>
 </head>
 <body>
 
 <h1>Quay để nhận giảm giá thuê xe máy</h1>
-<p class="description">
-Bạn sẽ được giảm giá khi chơi trò này, khi trúng thưởng thì bạn chụp ảnh màn hình để được giảm giá khi kí hợp đồng thuê xe máy bên chúng tôi.<br>
-🎁 Phần thưởng: Giảm giá 10% khi thuê xe máy tháng (không áp dụng thuê ngày, tuần)
-</p>
 
 <div id="slot">
   <div class="reel" id="reel1"><span>🏍️</span></div>
@@ -115,6 +101,7 @@ Bạn sẽ được giảm giá khi chơi trò này, khi trúng thưởng thì b
 </div>
 <button id="spinBtn">Quay Slot</button>
 <div id="result"></div>
+<div id="reward">🎁 Phần thưởng: Giảm giá 10% khi thuê xe máy tháng (không áp dụng thuê ngày, tuần)</div>
 
 <script>
 const spinBtn = document.getElementById('spinBtn');
@@ -124,6 +111,7 @@ const reels = [
   document.getElementById('reel3')
 ];
 const resultDiv = document.getElementById('result');
+const rewardDiv = document.getElementById('reward');
 const symbols = ["🏍️","🛞","🛢️"]; // chỉ các biểu tượng xe vàng
 
 function spinReel(reel, duration){
@@ -149,11 +137,13 @@ function spinReel(reel, duration){
 spinBtn.addEventListener('click', async ()=>{
   spinBtn.disabled = true;
   resultDiv.textContent = "";
+  rewardDiv.style.display = "none"; // ẩn phần thưởng trước khi quay
   const results = await Promise.all(reels.map((r,i)=>spinReel(r,4000 + i*1000)));
 
   // Kiểm tra kết quả trúng
   const win = results.every(s => s === results[0]);
   resultDiv.textContent = win ? `🎉 Chúc mừng! Bạn trúng ${results[0]}!` : `😅 Thua rồi, thử lần sau!`;
+  rewardDiv.style.display = win ? "block" : "none"; // chỉ hiện phần thưởng khi trúng
   spinBtn.disabled = false; // cho quay tiếp
 });
 </script>
